@@ -1,0 +1,24 @@
+
+<div fxLayoutAlign="center center" fxLayout="column">
+  <h2 mat-dialog-title>Add to Cart</h2>
+  
+  <mat-dialog-content>
+     The {{product.name}} is a Great choice!
+   
+  </mat-dialog-content>
+<mat-dialog-content >
+  <img test="product.name"  style="max-width:15rem" src="{{product.imgUrl}}">
+</mat-dialog-content>
+  <mat-dialog-content>
+      <mat-icon (click)="increment()">add_circle_outline</mat-icon>
+      <mat-form-field appearance="outline">        
+        <input min="1" matInput type="number" [(ngModel)]="amountControl" readonly>
+      </mat-form-field>
+      <mat-icon (click)="decrement()" >remove_circle_outline</mat-icon>  
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+     <button mat-button [mat-dialog-close]="false">Cancel</button>
+  <button mat-button [mat-dialog-close]="false" (click)="save(product)">Add</button>
+  </mat-dialog-actions>
+</div>

@@ -1,0 +1,29 @@
+<mat-card *ngIf="orderDetails && cartLists" class="example-card ">
+    <mat-card-title>Your receipt</mat-card-title>
+
+
+    <mat-list role="list">
+
+
+        <mat-list-item role="listitem">Delivery Date:{{orderDetails.DateDelivery|date}}</mat-list-item>
+        <mat-list-item role="listitem">Total Price:{{orderDetails.TotalPrice|currency}}</mat-list-item>
+        <mat-list-item role="listitem"> Order creation date:{{orderDetails.DateOfCreateOrder|date}}</mat-list-item>
+        <h4>Shipping Details</h4>
+        <mat-list-item role="listitem">Address:{{orderDetails.address}}</mat-list-item>
+        <mat-list-item role="listitem">City:{{orderDetails.cityDelivery}}</mat-list-item>
+        <mat-list-item role="listitem">Credit Cart:{{orderDetails.fourDigitCreditCard}}</mat-list-item>
+    </mat-list>
+
+    <mat-list role="list" *ngFor="let item of cartLists">
+
+        <mat-list-item role="listitem">{{item.products.name}}</mat-list-item>
+        <mat-list-item role="listitem">{{item.products.price}}</mat-list-item>
+        <mat-list-item role="listitem">{{item.products.totalPrice}}</mat-list-item>
+
+    </mat-list>
+
+    <button mat-raised-button (click)=" startNewShopping()">Return to the Store</button>
+
+    <button (click)="downloadReceipt()">Download Respiet</button>
+</mat-card>
+

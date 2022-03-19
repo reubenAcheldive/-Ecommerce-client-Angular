@@ -1,0 +1,42 @@
+
+  <mat-toolbar class="nav-bar container-fulfid" >
+    <mat-toolbar-row>
+      <span *ngIf="userInformation  ;else guest ">Welcome {{userInformation?.firstName}}
+        {{userInformation?.lastName}}</span>
+      <ng-template #guest>
+        <span> Welcome guest</span>
+
+
+      </ng-template>
+
+
+      <span class="example-spacer"></span>
+      <button *ngIf="userInformation" (click)="logOut()" routerLink="/home-page" mat-icon-button class="example-icon"
+        aria-label="Example icon-button with menu icon">
+        Log Out
+      </button>
+      <ng-template *ngIf="!userInformation">
+        <button routerLink="/home-page" mat-icon-button class="example-icon"
+          aria-label="Example icon-button with menu icon">
+          Login
+        </button>
+        <button routerLink="/register" mat-icon-button class="example-icon"
+          aria-label="Example icon-button with menu icon">
+          Sign-up
+        </button>
+      </ng-template>
+
+    </mat-toolbar-row>
+
+    <mat-toolbar-row>
+
+      <span>
+        <button *ngIf="userInformation && !userInformation.isAdmin" mat-icon-button
+          (click)="showSideNave()">
+         <mat-icon> shopping_cart</mat-icon>
+        </button>
+      </span>
+      <span class="example-spacer"></span>
+
+    </mat-toolbar-row>
+  </mat-toolbar>

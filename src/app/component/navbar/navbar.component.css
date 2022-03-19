@@ -1,0 +1,7 @@
+.example-spacer {
+  flex: auto;
+}
+.nav-bar {
+  background: rgb(85,85,97);
+  background: linear-gradient(90deg, rgba(85,85,97,1) 0%, rgba(134,199,212,1) 0%, rgba(238,238,238,1) 84%);
+}
