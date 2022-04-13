@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { Subject, takeUntil } from 'rxjs';
 import { AddProductComponent } from '../add-product/add-product.component';
-import { IProduct } from 'src/app/InterfaceModal/Products';
+import { IProduct } from 'src/app/Interfaces/Products';
 
 @Component({
   selector: 'app-products',

@@ -1,16 +1,16 @@
 import { createAction, props } from '@ngrx/store';
-import { IProduct } from '../../../app/InterfaceModal/Products';
+import { IProduct } from '../../../app/Interfaces/Products';
 
 import {
   CartItems,
   GetCartByCartIdResponse,
-} from 'src/app/InterfaceModal/GetCartByCartIdResponse';
-import { GetCartByCustomerResponse } from 'src/app/InterfaceModal/GetCartByCustomerResponse';
-import { createNewOrder } from 'src/app/InterfaceModal/createNewOrder';
-import { CreateNewProduct } from 'src/app/InterfaceModal/CreateNewProduct';
-import { Categories } from 'src/app/InterfaceModal/categories';
-import { lastOrderDetail } from 'src/app/InterfaceModal/lastOrderDetail';
-import { ICities } from 'src/app/InterfaceModal/Cities';
+} from 'src/app/Interfaces/GetCartByCartIdResponse';
+import { GetCartByCustomerResponse } from 'src/app/Interfaces/GetCartByCustomerResponse';
+import { createNewOrder } from 'src/app/Interfaces/createNewOrder';
+import { CreateNewProduct } from 'src/app/Interfaces/CreateNewProduct';
+import { Categories } from 'src/app/Interfaces/categories';
+import { lastOrderDetail } from 'src/app/Interfaces/lastOrderDetail';
+import { ICities } from 'src/app/Interfaces/Cities';
 
 export const fetchCategories = createAction('[Categories] fetch Categories');
 

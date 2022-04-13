@@ -6,10 +6,10 @@ import { Shopping } from '../../../state/reducers/index';
 import * as ShoppingSelectors from '../../../state/selectors/shopping-selectors';
 import * as ShoppingActions from '../../../state/actions/shopping.actions';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { createNewOrder } from 'src/app/InterfaceModal/createNewOrder';
+import { createNewOrder } from 'src/app/Interfaces/createNewOrder';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
-import { ICities } from 'src/app/InterfaceModal/Cities';
+import { ICities } from 'src/app/Interfaces/Cities';
 @Component({
   selector: 'app-form-order',
   templateUrl: './form-order.component.html',

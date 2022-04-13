@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
-import { IProduct } from 'src/app/InterfaceModal/Products';
+import { IProduct } from 'src/app/Interfaces/Products';
 
 import * as ShoppingActions from '../../state/actions/shopping.actions';
 import { EditProductModalComponent } from './edit-product-modal/edit-product-modal.component';

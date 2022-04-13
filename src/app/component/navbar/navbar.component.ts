@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {  Subject, Subscription, takeUntil } from 'rxjs';
-import { IUserInformation } from 'src/app/InterfaceModal/userInformation';
+import { IUserInformation } from 'src/app/Interfaces/userInformation';
 import { AuthService } from 'src/app/services/auth.service';
 import { SidenavService } from 'src/app/services/sidenave/sidenav.service';
 import { Shopping } from 'src/app/state/reducers';

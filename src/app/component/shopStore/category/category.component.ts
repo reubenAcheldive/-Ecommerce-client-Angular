@@ -9,7 +9,7 @@ import { Shopping } from '../../../state/reducers/index';
 import { SidenavService } from 'src/app/services/sidenave/sidenav.service';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { MatDrawer, MatSidenav } from '@angular/material/sidenav';
-import { IUserInformation } from '../../../InterfaceModal/userInformation';
+import { IUserInformation } from '../../../Interfaces/userInformation';
 
 @Component({
   selector: 'app-category',

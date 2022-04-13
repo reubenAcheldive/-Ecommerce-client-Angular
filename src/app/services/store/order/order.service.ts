@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { createNewOrder } from 'src/app/InterfaceModal/createNewOrder';
+import { createNewOrder } from 'src/app/Interfaces/createNewOrder';
 import {
   lastOrderDetail,
 
-} from 'src/app/InterfaceModal/lastOrderDetail';
+} from 'src/app/Interfaces/lastOrderDetail';
 import { CHECK_ORDER_DATE, CREATE_NEW_ORDER, GET_ALL_ORDER, GET_LAST_ORDER, GET_USER_DETAILS, RESPITES } from '../../environment';
 
 @Injectable({

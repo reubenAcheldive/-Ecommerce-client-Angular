@@ -3,12 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { Categories } from 'src/app/InterfaceModal/categories';
+import { Categories } from 'src/app/Interfaces/categories';
 import { Shopping } from 'src/app/state/reducers';
 
 import * as ShoppingSelector from '../../../state/selectors/shopping-selectors';
 
-import { CreateNewProduct } from 'src/app/InterfaceModal/CreateNewProduct';
+import { CreateNewProduct } from 'src/app/Interfaces/CreateNewProduct';
 @Component({
   selector: 'app-create-new-product-modal',
   templateUrl: './create-product-modal.component.html',

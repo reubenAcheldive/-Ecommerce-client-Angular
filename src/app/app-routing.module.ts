@@ -27,7 +27,7 @@ const routes: Routes = [
     path: 'home-page/front-door',
     // canActivate: [AuthGuard, AuthGuardAdmin],
     loadChildren: () =>
-      import('./component/front-door/front-door.module').then(
+      import('./component/front-page/front-page.module').then(
         (m) => m.FrontDoorModule
       ),
   },

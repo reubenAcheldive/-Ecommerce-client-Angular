@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { CartItems } from 'src/app/InterfaceModal/GetCartByCartIdResponse';
+import { CartItems } from 'src/app/Interfaces/GetCartByCartIdResponse';
 import { Shopping } from 'src/app/state/reducers';
-import { lastOrderDetail } from '../../../../app/InterfaceModal/lastOrderDetail';
+import { lastOrderDetail } from '../../../../app/Interfaces/lastOrderDetail';
 import * as ShoppingSelector from '../../../../app/state/selectors/shopping-selectors';
 import * as ShoppingAction from '../../../../app/state/actions/shopping.actions';
 import { Router } from '@angular/router';

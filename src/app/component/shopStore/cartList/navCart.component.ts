@@ -16,7 +16,7 @@ import * as shoppingAction from '../../../state/actions/shopping.actions';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { Subject, takeUntil } from 'rxjs';
-import { CartItems } from 'src/app/InterfaceModal/GetCartByCartIdResponse';
+import { CartItems } from 'src/app/Interfaces/GetCartByCartIdResponse';
 import { Router } from '@angular/router';
 import { SidenavService } from '../../../services/sidenave/sidenav.service';
 

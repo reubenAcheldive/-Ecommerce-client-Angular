@@ -4,7 +4,7 @@ import { Subject, takeUntil } from 'rxjs';
 import {
   CartItems,
 
-} from 'src/app/InterfaceModal/GetCartByCartIdResponse';
+} from 'src/app/Interfaces/GetCartByCartIdResponse';
 import { Shopping } from '../../../state/reducers/index';
 import * as shoppingSelector from '../../../state/selectors/shopping-selectors';
 @Component({

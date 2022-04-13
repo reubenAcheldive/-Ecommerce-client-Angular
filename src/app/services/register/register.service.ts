@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Iuser } from 'src/app/InterfaceModal/user';
-import { IUserInformation } from 'src/app/InterfaceModal/userInformation';
+import { Iuser } from 'src/app/Interfaces/user';
+import { IUserInformation } from 'src/app/Interfaces/userInformation';
 
 import { URL_FIRST_STEP_REGISTER, URL_STEP_TWO_REGISTER } from '../environment';
 let headers = new HttpHeaders();

@@ -1,13 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
-import { CartItems } from 'src/app/InterfaceModal/GetCartByCartIdResponse';
-import { IUserInformation } from 'src/app/InterfaceModal/userInformation';
-import { lastOrderDetail } from 'src/app/InterfaceModal/lastOrderDetail';
-import { Categories } from 'src/app/InterfaceModal/categories';
-import { ICities } from 'src/app/InterfaceModal/Cities';
+import { CartItems } from 'src/app/Interfaces/GetCartByCartIdResponse';
+import { IUserInformation } from 'src/app/Interfaces/userInformation';
+import { lastOrderDetail } from 'src/app/Interfaces/lastOrderDetail';
+import { Categories } from 'src/app/Interfaces/categories';
+import { ICities } from 'src/app/Interfaces/Cities';
 
 import * as ShoppingActions from '../actions/shopping.actions';
 import * as UserInformation from '../actions/user.actions';
-import { IProduct } from '../../../app/InterfaceModal/Products';
+import { IProduct } from '../../../app/Interfaces/Products';
 
 export interface Shopping {
   categories: Categories[] | null;
@@ -108,7 +108,7 @@ export const shoppingReducer = createReducer(
     UserInformation.registerUserSuccess,
     (state, { infoLogin }) => ({
       ...state,
-      infoLogin:infoLogin,
+      infoLogin: infoLogin,
       loading: true,
       errorAlert: null,
     })

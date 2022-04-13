@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { IUserInformation } from 'src/app/InterfaceModal/userInformation';
+import { IUserInformation } from 'src/app/Interfaces/userInformation';
 
 import { URL_LOGIN, API_LOGIN_CHECK_JWT } from '../../services/environment';
 @Injectable({

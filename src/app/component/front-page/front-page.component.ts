@@ -5,14 +5,14 @@ import { Shopping } from '../../state/reducers/index';
 import * as ShoppingActions from '../../state/actions/shopping.actions';
 import * as ShoppingSelectors from '../../state/selectors/shopping-selectors';
 import { Router } from '@angular/router';
-import { IUserInformation } from 'src/app/InterfaceModal/userInformation';
+import { IUserInformation } from 'src/app/Interfaces/userInformation';
 
 @Component({
-  selector: 'app-front-door',
-  templateUrl: './front-door.component.html',
-  styleUrls: ['./front-door.component.css'],
+  selector: 'app-front-page',
+  templateUrl: './front-page.component.html',
+  styleUrls: ['./front-page.component.css'],
 })
-export class FrontDoorComponent implements OnInit {
+export class FrontPageComponent implements OnInit {
   private readonly unsubscribe$ = new Subject<void>();
   getCustomerDetails: IUserInformation;
   lastCartDate:number | Date

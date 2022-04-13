@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, OnDestroy, Input } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { IProduct } from 'src/app/InterfaceModal/Products';
+import { IProduct } from 'src/app/Interfaces/Products';
 import { SidenavService } from 'src/app/services/sidenave/sidenav.service';
 
 
