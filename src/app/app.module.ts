@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 
@@ -14,28 +15,28 @@ import { AuthEffects } from './state/effects/auth-effects';
 import { EffectsModule } from '@ngrx/effects';
 import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { NavbarModule } from './component/navbar/navbar.module';
+
 import { JwtInterceptor } from './services/interceptors/jwt.interceptor';
 import { AuthGuard } from './services/AuthGuard/AuthGuard.guard';
 import { AuthGuardAdmin } from './services/AuthGuard/AuthGurdAdmin';
-
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [AppComponent ],
+  declarations: [AppComponent],
 
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,
 
-
     AppRoutingModule,
     HttpClientModule,
-    NavbarModule,
+    FormsModule,
+    MatDialogModule,
+
     StoreModule.forRoot({ shoppingFeature: shoppingReducer }),
     EffectsModule.forRoot([AuthEffects, ShoppingEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-
   ],
   providers: [
     {
@@ -44,10 +45,8 @@ import { AuthGuardAdmin } from './services/AuthGuard/AuthGurdAdmin';
       multi: true,
     },
 
-
     AuthGuard,
     AuthGuardAdmin,
-
   ],
   bootstrap: [AppComponent],
 })

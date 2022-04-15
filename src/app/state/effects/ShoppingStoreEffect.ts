@@ -59,12 +59,16 @@ export class ShoppingEffects {
     return this.actions$.pipe(
       ofType(shoppingActions.fetchProductsInit),
       exhaustMap((action) => {
+        console.log(action.categoryId);
+
         return this.categoryService
           .getAllProductByCategoryId(action.categoryId)
           .pipe(
-            map((products) =>
-              shoppingActions.fetchProductsSuccess({ products })
-            ),
+            map((products) => {
+              console.log(products);
+
+              return shoppingActions.fetchProductsSuccess({ products });
+            }),
             catchError((error) =>
               of(shoppingActions.fetchProductsFailure({ error }))
             )

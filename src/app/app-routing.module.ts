@@ -9,14 +9,6 @@ import { AuthGuard } from './services/AuthGuard/AuthGuard.guard';
 import { AuthGuardAdmin } from './services/AuthGuard/AuthGurdAdmin';
 const routes: Routes = [
   {
-    path: 'home-page',
-    loadChildren: () =>
-      import('./component/home-page/home-page.module').then(
-        (m) => m.HomePageModule
-      ),
-  },
-
-  {
     path: 'register',
     loadChildren: () =>
       import('./component/userAuth/registration/registration.module').then(
@@ -24,31 +16,16 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'home-page/front-door',
-    // canActivate: [AuthGuard, AuthGuardAdmin],
+    path: 'online',
     loadChildren: () =>
-      import('./component/front-door/front-door.module').then(
-        (m) => m.FrontDoorModule
+      import('./component/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
       ),
   },
 
-  {
-    path: 'store',
-    // canActivate: [AuthGuard],
-    loadChildren: () =>
-      import('./component/shopStore/shop-store.module').then(
-        (m) => m.ShopStoreModule
-      ),
-  },
-  {
-    path: 'store/order',
-    // canActivate: [AuthGuard, AuthGuardAdmin],
-    loadChildren: () =>
-      import('./component/order/order.module').then((m) => m.OrderModule),
-  },
-
-  { path: '**', redirectTo: '/home-page', pathMatch: 'full' },
+  { path: '**', redirectTo: '/online', pathMatch: 'full' },
 ];
+
 
 @NgModule({
   imports: [
