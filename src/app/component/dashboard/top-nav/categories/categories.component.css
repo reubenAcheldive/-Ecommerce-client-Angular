@@ -8,7 +8,7 @@
   width: 100%;
   height: 100%;
  
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.6);
 }
 .menu_wrapper .navbar {
   display: flex;
@@ -18,6 +18,7 @@
   flex: 1;
   font-size: 30px;
   cursor: pointer;
+
 }
 .menu_wrapper .navbar li a {
   color: #252525;
@@ -31,8 +32,8 @@
   transition: 0.5s ease;
   background-color: #f3f3f3;
 }
-.menu_wrapper .navbar li:hover img {
-  background-color: #a08686;
+.menu_wrapper .navbar li img :hover {
+ 
   border-radius: 50%;
 }
 .menu_wrapper .navbar li .active1 img {

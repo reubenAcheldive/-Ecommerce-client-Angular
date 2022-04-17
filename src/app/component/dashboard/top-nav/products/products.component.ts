@@ -24,6 +24,8 @@ export class ProductsComponent implements OnInit {
   amount: number = 1;
   products$: Observable<IProduct[]> = this.store.select(selectProducts);
   ngOnInit(): void {
+    console.log(1);
+    
     this.route.params.pipe(takeUntil(this.unsubscribe$)).subscribe((params) => {
       this.categoryId = params['categoryRef'];
       this.fetchNewProducts();

@@ -19,7 +19,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { JwtInterceptor } from './services/interceptors/jwt.interceptor';
 import { AuthGuard } from './services/AuthGuard/AuthGuard.guard';
 import { AuthGuardAdmin } from './services/AuthGuard/AuthGurdAdmin';
-import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,7 +31,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    MatDialogModule,
 
     StoreModule.forRoot({ shoppingFeature: shoppingReducer }),
     EffectsModule.forRoot([AuthEffects, ShoppingEffects]),

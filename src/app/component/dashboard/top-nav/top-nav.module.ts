@@ -14,14 +14,19 @@ import { FormsModule } from '@angular/forms';
 import { SelectProductComponent } from './select-product/select-product.component';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductStyleDirective } from 'src/app/directives/product-style.directive';
+import { SideNavComponent } from './side-nav/side-nav.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
+    SideNavComponent,
     TopNavComponent,
     SearchProductComponent,
     CategoriesComponent,
     ProductsComponent,
     SelectProductComponent,
+    ProductStyleDirective,
   ],
   imports: [
     CommonModule,
@@ -34,6 +39,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     MatTooltipModule,
     MatCardModule,
+    MatSidenavModule,
   ],
   exports: [TopNavComponent],
 })

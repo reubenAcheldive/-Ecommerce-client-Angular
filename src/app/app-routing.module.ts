@@ -22,6 +22,7 @@ const routes: Routes = [
         (m) => m.DashboardModule
       ),
   },
+  
 
   { path: '**', redirectTo: '/online', pathMatch: 'full' },
 ];
