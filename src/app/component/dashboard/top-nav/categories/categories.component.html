@@ -10,19 +10,13 @@
   <div class="menu_wrapper">
     <div class="navbar row" id="navbar">
       <div *ngFor="let category of categories | async" class="col-md-2 m-2">
-        <a
-          (click)="onSelectCategory(category)"
-          routerLink="category/{{ category._id }}"
-          class="btn-category"
-          ><i routerLinkActive="active1">
-            <img
-              src="/assets/icons/{{ category.icon }}.png"
-              (click)="onSelectCategory(category)"
-            />
+        <a (click)="onSelectCategory(category)" routerLink="category/{{ category._id }}" class="btn-category"><i
+            routerLinkActive="active1">
+            <img src="/assets/icons/{{ category.icon }}.png" (click)="onSelectCategory(category)"
+              alt="/assets/icons/{{ category.icon }}.png">
           </i>
         </a>
       </div>
     </div>
   </div>
 </div>
-
