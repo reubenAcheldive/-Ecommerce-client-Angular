@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ICities } from 'src/app/InterfaceModal/Cities';
+import { ICities } from 'src/app/Interfaces/Cities';
 import { Shopping } from 'src/app/state/reducers';
 import { CITIES_URL } from '../../environment';
 @Injectable({

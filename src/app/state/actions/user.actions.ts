@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { Iuser } from 'src/app/InterfaceModal/user';
-import { IUserInformation } from 'src/app/InterfaceModal/userInformation';
+import { Iuser } from 'src/app/Interfaces/user';
+import { IUserInformation } from 'src/app/Interfaces/userInformation';
 
 
 

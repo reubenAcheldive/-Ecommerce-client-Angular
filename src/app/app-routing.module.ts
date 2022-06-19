@@ -18,8 +18,13 @@ const routes: Routes = [
   {
     path: 'online',
     loadChildren: () =>
+<<<<<<< HEAD
       import('./component/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
+=======
+      import('./component/front-page/front-page.module').then(
+        (m) => m.FrontDoorModule
+>>>>>>> origin/master
       ),
   },
   

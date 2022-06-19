@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { map, Observable } from 'rxjs';
-import { CartItemsResponse } from 'src/app/InterfaceModal/LastCartItemResponse';
-import { GetCartByCustomerResponse } from '../../../InterfaceModal/GetCartByCustomerResponse';
-import { GetCartByCartIdResponse } from 'src/app/InterfaceModal/GetCartByCartIdResponse';
+import { CartItemsResponse } from 'src/app/Interfaces/LastCartItemResponse';
+import { GetCartByCustomerResponse } from '../../../Interfaces/GetCartByCustomerResponse';
+import { GetCartByCartIdResponse } from 'src/app/Interfaces/GetCartByCartIdResponse';
 import { API_GET_CART_BY_CART_ID, URL_ADD_PRODUCT, URL_DELETE_ALL_PRODUCT, URL_DELETE_PRODUCT, URL_GET_CART_BY_CUSTOMER_ID } from '../../environment';
 
 @Injectable({

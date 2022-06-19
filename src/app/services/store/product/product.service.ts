@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Categories } from 'src/app/InterfaceModal/categories';
-import { IProduct } from 'src/app/InterfaceModal/Products';
+import { Categories } from 'src/app/Interfaces/categories';
+import { IProduct } from 'src/app/Interfaces/Products';
 import { ALL_PRODUCT_QUN, GET_CATEGORY, SEARCH_PRODUCT_BY_NAME } from '../../environment';
 
 

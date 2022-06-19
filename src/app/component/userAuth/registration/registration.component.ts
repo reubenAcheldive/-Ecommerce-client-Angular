@@ -12,7 +12,7 @@ import * as shoppingAction from '../../../state/actions/shopping.actions';
 
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
-import { Iuser } from 'src/app/InterfaceModal/user';
+import { Iuser } from 'src/app/Interfaces/user';
 
 @Component({
   selector: 'app-registration',

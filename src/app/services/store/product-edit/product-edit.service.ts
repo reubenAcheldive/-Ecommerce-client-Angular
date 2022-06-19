@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { CreateNewProduct } from 'src/app/InterfaceModal/CreateNewProduct';
-import { IProduct } from 'src/app/InterfaceModal/Products';
+import { CreateNewProduct } from 'src/app/Interfaces/CreateNewProduct';
+import { IProduct } from 'src/app/Interfaces/Products';
 import { EDIT_PRODUCT, NEW_PRODUCT } from '../../environment';
 
 @Injectable({
