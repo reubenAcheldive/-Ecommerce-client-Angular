@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IProduct } from 'src/app/InterfaceModal/Products';
+
 
 
 @Component({

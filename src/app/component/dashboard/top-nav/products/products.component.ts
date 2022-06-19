@@ -4,7 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { fetchProductsInit } from '../../../../state/actions/shopping.actions';
 import { selectProducts } from '../../../../state/selectors/shopping-selectors';
-import { IProduct } from 'src/app/InterfaceModal/Products';
+import { IProduct } from 'src/app/Interfaces/Products';
+
 
 
 

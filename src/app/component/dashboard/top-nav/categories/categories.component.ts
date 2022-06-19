@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Categories } from 'src/app/Interfaces/categories';
 
-import { Categories } from 'src/app/InterfaceModal/categories';
 import { ProductsComponent } from '../products/products.component';
 
 @Component({

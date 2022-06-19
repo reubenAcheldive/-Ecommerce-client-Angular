@@ -7,10 +7,11 @@ import {
 import { ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Categories } from 'src/app/InterfaceModal/categories';
+
 import { Shopping } from 'src/app/state/reducers';
 import { selectCategories } from '../../../state/selectors/shopping-selectors';
 import { fetchCategories } from '../../../state/actions/shopping.actions';
+import { Categories } from 'src/app/Interfaces/categories';
 
 @Component({
   selector: 'app-top-nav',
