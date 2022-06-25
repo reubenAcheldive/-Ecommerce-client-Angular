@@ -1,15 +1,8 @@
-<mat-drawer-container class="example-container container-fulfid " autosize>
-  <app-nav-bar></app-nav-bar>
-  <mat-drawer #drawer class="example-sidenav " mode="side">
-    bnb
-  </mat-drawer>
-  <router-outlet></router-outlet>
-  <div class="example-sidenav-content ">
-
-    <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button>
-
+<div class="row container-dashboard ">
+  <div class="col-lg-2 cart ">
+    <app-cart></app-cart>
   </div>
-
-</mat-drawer-container>
+  <div class="col-lg-10 content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

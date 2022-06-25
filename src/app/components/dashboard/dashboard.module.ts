@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { CartModule } from './cart/cart.module';
 
 @NgModule({
-  declarations: [DashboardComponent, NavBarComponent],
-  imports: [CommonModule, DashboardRoutingModule, MatToolbarModule,MatSidenavModule],
+  declarations: [DashboardComponent],
+  imports: [CommonModule, DashboardRoutingModule, MatToolbarModule,MatSidenavModule,CartModule],
 })
 export class DashboardModule {}

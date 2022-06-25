@@ -19,9 +19,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { JwtInterceptor } from './services/interceptors/jwt.interceptor';
 import { AuthGuard } from './services/AuthGuard/AuthGuard.guard';
 import { AuthGuardAdmin } from './services/AuthGuard/AuthGurdAdmin';
+import {NavBarComponent} from "./components/nav-bar/nav-bar.component"
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,NavBarComponent],
 
   imports: [
     BrowserModule,
@@ -35,6 +37,7 @@ import { AuthGuardAdmin } from './services/AuthGuard/AuthGurdAdmin';
     StoreModule.forRoot({ shoppingFeature: shoppingReducer }),
     EffectsModule.forRoot([AuthEffects, ShoppingEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    MatToolbarModule
   ],
   providers: [
     {
