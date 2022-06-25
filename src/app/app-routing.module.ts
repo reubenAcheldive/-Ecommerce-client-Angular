@@ -3,9 +3,9 @@ import {RouterModule, Routes, PreloadAllModules, CanActivate} from '@angular/rou
 import {AuthGuard} from './services/AuthGuard/AuthGuard.guard';
 import {AuthGuardAdmin} from './services/AuthGuard/AuthGurdAdmin';
 const routes: Routes = [{
-        path: 'dashboard',
+        path: '',
         loadChildren: () => import ('./components/dashboard/dashboard.module').then(m => m.DashboardModule)
-    }];
+    },];
 @NgModule({
     imports: [
         RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules}),
