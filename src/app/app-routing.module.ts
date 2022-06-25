@@ -5,7 +5,12 @@ import {AuthGuardAdmin} from './services/AuthGuard/AuthGurdAdmin';
 const routes: Routes = [{
         path: '',
         loadChildren: () => import ('./components/dashboard/dashboard.module').then(m => m.DashboardModule)
-    },];
+    },
+{
+  path:"**",redirectTo:"/store",pathMatch:"full"
+}
+
+  ];
 @NgModule({
     imports: [
         RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules}),

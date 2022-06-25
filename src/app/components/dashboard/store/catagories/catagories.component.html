@@ -1,1 +1,9 @@
-<p>catagories works!</p>
+<div class="categories-nav-bar">
+
+  <ul class="row justify-content-lg-center">
+    <li class="col-lg-1 " *ngFor="let category of categories">
+      <a  routerLink="{{category._id}}"><img width="48"  height="48"
+          src="../../../../../assets/icons/{{category.nameCategory}}.png" alt="" /></a>
+    </li>
+  </ul>
+</div>

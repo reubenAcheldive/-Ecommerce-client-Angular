@@ -1,0 +1,46 @@
+.btn-position .btn-position-item {
+  display: flex;
+  justify-content: center;
+
+  position: relative;
+  z-index: 2;
+  top: -133px;
+}
+
+.btn-position-item {
+  align-items: baseline;
+  align-content: center;
+}
+
+.Ibtn {
+  margin: auto;
+  padding: 11px;
+  background-color: rgb(255 255 255 / 0%);
+  border: none;
+  font-size: 55px;
+  font-weight: 100;
+  color: #615f5f;
+}
+
+.Ibtn .decrement {
+  font-size: 75px;
+}
+
+.amount {
+  font-size: 80px;
+  font-weight: 300;
+  color: #0c0c0ca3;
+  position: relative;
+  animation: mymove;
+  animation-duration: 0.5s;
+}
+
+@keyframes mymove {
+  from {
+    top: 200px;
+  }
+
+  to {
+    top: 0;
+  }
+}

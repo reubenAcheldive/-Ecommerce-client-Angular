@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Categories} from './../../../../Interfaces/categories';
+import {Observable} from 'rxjs';
+import {Component, Input, OnInit} from '@angular/core';
 
-@Component({
-  selector: 'app-catagories',
-  templateUrl: './catagories.component.html',
-  styleUrls: ['./catagories.component.css']
-})
+@Component({selector: 'app-catagories', templateUrl: './catagories.component.html', styleUrls: ['./catagories.component.css']})
 export class CatagoriesComponent implements OnInit {
 
-  constructor() { }
+    @Input()categories : Categories[]
 
-  ngOnInit(): void {
-  }
+    constructor(private route : ActivatedRoute, private router : Router) {}
+
+    ngOnInit(): void {}
+    fetchProductByCategoryId(id : string) {
+        this.router.navigate([id])
+
+    }
 
 }
