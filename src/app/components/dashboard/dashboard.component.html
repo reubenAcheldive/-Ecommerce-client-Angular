@@ -1,2 +1,15 @@
-<app-nav-bar></app-nav-bar>
-<router-outlet></router-outlet>
+<mat-drawer-container class="example-container container-fulfid " autosize>
+  <app-nav-bar></app-nav-bar>
+  <mat-drawer #drawer class="example-sidenav " mode="side">
+    bnb
+  </mat-drawer>
+  <router-outlet></router-outlet>
+  <div class="example-sidenav-content ">
+
+    <button type="button" mat-button (click)="drawer.toggle()">
+      Toggle sidenav
+    </button>
+
+  </div>
+
+</mat-drawer-container>

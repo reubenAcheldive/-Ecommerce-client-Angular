@@ -2,14 +2,18 @@
   display: flex;
   justify-content: center;
 
-  position: relative;
+  position: absolute;
   z-index: 2;
   top: -133px;
+  left: calc(50% - -93px);
+  top: calc(50% - 127px);
+
 }
 
 .btn-position-item {
   align-items: baseline;
   align-content: center;
+
 }
 
 .Ibtn {
@@ -33,6 +37,7 @@
   position: relative;
   animation: mymove;
   animation-duration: 0.5s;
+  display: block;
 }
 
 @keyframes mymove {

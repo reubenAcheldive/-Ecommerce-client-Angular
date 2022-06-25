@@ -1,5 +1,3 @@
-
-
 img {
   display: flex;
   width: 245px;
@@ -17,4 +15,16 @@ img {
   to {
     top: 100px;
   }
+}
+
+
+
+.show-btn .showme {
+  position: relative;
+
+}
+
+.show-btn:hover .showme {
+  position: absolute;
+  display: block;
 }

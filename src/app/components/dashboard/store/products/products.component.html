@@ -1,11 +1,11 @@
 <div class="row justify-content-center product">
 
-  <mat-card class="col-lg-3 m-3"  *ngFor="let product of  fetchProducts$ |async">
-    <div >
+  <mat-card class="col-lg-3 m-2"  *ngFor="let product of  fetchProducts$ |async">
+    <div class="show-btn">
       <img class="col-md-12" mat-card-image src="{{product.imgUrl}}"
         alt="{{product.imgUrl}}">
-      <span class="show-btn">
-        <app-add-product-amount class="showme"></app-add-product-amount>
+      <span class="showme" >
+        <app-add-product-amount ></app-add-product-amount>
       </span>
       <mat-card-footer>"{{product.name}}" <br/> {{product.description}}</mat-card-footer>
     </div>
