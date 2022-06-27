@@ -1,5 +1,14 @@
 <p>
   <mat-toolbar>
-    <span>My Application</span>
+    <div class="row">
+      <div class="col">
+        <span>My Application</span>
+      </div>
+      <div class="col">
+        <button mat-button type="button" (click)="openDialog()">
+          open auth
+        </button>
+      </div>
+    </div>
   </mat-toolbar>
 </p>

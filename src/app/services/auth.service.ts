@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import * as UserAction from '../../../src/app/state/actions/user.actions';
 import { logOut } from '../../../src/app/state/actions/shopping.actions';
 import {
-  selectLoginInformation,
+
   selectCartList,
 } from '../state/selectors/shopping-selectors';
 import { Subject, takeUntil } from 'rxjs';

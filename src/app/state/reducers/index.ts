@@ -116,7 +116,7 @@ export const shoppingReducer = createReducer(
   ),
   on(UserInformation.loginInitFailure, (state, { error }) => ({
     ...state,
-    errorAlert: error,
+    error: error,
     loading: false,
   })),
 

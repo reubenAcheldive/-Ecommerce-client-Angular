@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { Store } from '@ngrx/store';
 
 import { loginInit } from '../../../state/actions/user.actions';
+import { AuthenticationComponent } from '../authentication.component';
 import { TogglePageService } from '../togglePage/toggle-page.service';
 @Component({
   selector: 'app-login',
@@ -13,7 +15,8 @@ import { TogglePageService } from '../togglePage/toggle-page.service';
 export class LoginComponent implements OnInit {
   constructor(
     private store: Store,
-    private togglePageService: TogglePageService
+    private togglePageService: TogglePageService,
+    public dialogRef: MatDialogRef<AuthenticationComponent>
   ) {}
   profileLogin: FormGroup;
 
@@ -33,6 +36,7 @@ export class LoginComponent implements OnInit {
     if (this.emailError.errors || this.passwordError.errors) return;
     const { email, password } = this.profileLogin.value;
     this.store.dispatch(loginInit({ email, password }));
+    this.dialogRef.close();
   }
   goToRegister() {
     return this.togglePageService.handleWithChangeBetweenForms();

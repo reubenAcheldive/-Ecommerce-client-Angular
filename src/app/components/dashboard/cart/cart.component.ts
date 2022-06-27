@@ -1,6 +1,6 @@
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
-import { selectLoginInformation } from 'src/app/state/selectors/shopping-selectors';
+import { authDetails } from 'src/app/state/selectors/auth-selectors';
 import { getCartByCartIdInit } from '../../../state/actions/shopping.actions';
 import { selectCartList } from '../../../state/selectors/shopping-selectors';
 import { CartResponseForUser } from 'src/app/Interfaces/GetCartUser';
@@ -16,7 +16,7 @@ export class CartComponent implements OnInit {
   cartList: Observable<CartResponseForUser> =this.store.select(selectCartList);
   ngOnInit(): void {
     this.store
-      .select(selectLoginInformation)
+      .select(authDetails)
       .subscribe((l) => (this.getUserId = l.userId));
 
     if (this.getUserId) {

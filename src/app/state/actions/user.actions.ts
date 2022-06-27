@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { AuthErrorLogin } from 'src/app/Interfaces/Errors/Auth/Auth.error';
 import { Iuser } from 'src/app/Interfaces/user';
 import { IUserInformation } from 'src/app/Interfaces/userInformation';
 
@@ -16,7 +17,7 @@ export const loginInitSuccess = createAction(
 
 export const loginInitFailure = createAction(
   '[User] Login User Failure',
-  props<{ error: any }>()
+  props<{ error: AuthErrorLogin }>()
 );
 
 export const checkRegisterInit = createAction(

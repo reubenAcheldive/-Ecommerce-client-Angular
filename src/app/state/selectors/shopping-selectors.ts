@@ -18,28 +18,15 @@ export const selectCategories = createSelector(
   shoppingSelectorFetcher,
   (state) => state?.categories
 );
-export const selectErrorAlert = createSelector(
-  shoppingSelectorFetcher,
-  (state) => state?.errorAlert
-);
-export const selectLoginInformation = createSelector(
-  shoppingSelectorFetcher,
-  (state) => state?.infoLogin
-);
-export const selectIsRegistered = createSelector(
-  shoppingSelectorFetcher,
-  (state) => state?.isRegistered
-);
+
+
 export const selectCities = createSelector(
   shoppingSelectorFetcher,
   (state) => state?.citiesList
 );
 
 
-export const errorInRegister = createSelector(
-  shoppingSelectorFetcher,
-  (state) => state?.errorInRegister
-);
+
 
 
 export const selectProductEditByAdmin = createSelector(

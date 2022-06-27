@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   declarations: [AuthenticationComponent, RegisterComponent, LoginComponent],
   imports: [
@@ -20,6 +21,8 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule
   ],
+  exports:[AuthenticationModule]
 })
 export class AuthenticationModule {}

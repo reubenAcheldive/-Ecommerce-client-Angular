@@ -1,4 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { TogglePageService } from './togglePage/toggle-page.service';
 
 @Component({
@@ -7,9 +8,9 @@ import { TogglePageService } from './togglePage/toggle-page.service';
   styleUrls: ['./authentication.component.css'],
 })
 export class AuthenticationComponent implements OnInit {
-  constructor(private togglePageService: TogglePageService) {}
+  constructor(private togglePageService: TogglePageService,) {}
   toggle = true;
   ngOnInit(): void {
-    this.togglePageService.toggleStatus.subscribe((l) => (this.toggle = l));
+    this.togglePageService.toggleStatus.subscribe((l) => (this.toggle = !l));
   }
 }

@@ -5,8 +5,7 @@ import {
   PreloadAllModules,
   CanActivate,
 } from '@angular/router';
-import { AuthGuard } from './services/AuthGuard/AuthGuard.guard';
-import { AuthGuardAdmin } from './services/AuthGuard/AuthGurdAdmin';
+
 const routes: Routes = [
   {
     path: 'dashboard',
@@ -15,14 +14,8 @@ const routes: Routes = [
         (m) => m.DashboardModule
       ),
   },
-  {
-    path: 'authentication',
-    loadChildren: () =>
-      import('./components/authentication/authentication.module').then(
-        (m) => m.AuthenticationModule
-      ),
-  },
-  { path: '',   redirectTo: '/dashboard/store', pathMatch: 'full' },
+
+  { path: '', redirectTo: '/dashboard/store', pathMatch: 'full' },
 ];
 @NgModule({
   imports: [

@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 
@@ -17,13 +17,16 @@ import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { JwtInterceptor } from './services/interceptors/jwt.interceptor';
-import { AuthGuard } from './services/AuthGuard/AuthGuard.guard';
-import { AuthGuardAdmin } from './services/AuthGuard/AuthGurdAdmin';
-import {NavBarComponent} from "./components/nav-bar/nav-bar.component"
+
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { MatDialogModule } from '@angular/material/dialog';
+import { AuthenticationModule } from './components/authentication/authentication.module';
+import { MatButtonModule } from '@angular/material/button';
+
 @NgModule({
-  declarations: [AppComponent,NavBarComponent],
+  declarations: [AppComponent, NavBarComponent],
 
   imports: [
     BrowserModule,
@@ -37,7 +40,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     StoreModule.forRoot({ shoppingFeature: shoppingReducer }),
     EffectsModule.forRoot([AuthEffects, ShoppingEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    MatToolbarModule
+    MatToolbarModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    AuthenticationModule,
+    MatButtonModule,
   ],
   providers: [
     {
@@ -46,8 +53,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
       multi: true,
     },
 
-    AuthGuard,
-    AuthGuardAdmin,
+
   ],
   bootstrap: [AppComponent],
 })

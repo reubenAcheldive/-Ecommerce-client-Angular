@@ -6,7 +6,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class TogglePageService {
   constructor() {}
-  private toggle = new BehaviorSubject<boolean>(true);
+  private toggle = new BehaviorSubject<boolean>(false);
 
   handleWithChangeBetweenForms() {
     this.toggle.next(!this.toggle.value);
