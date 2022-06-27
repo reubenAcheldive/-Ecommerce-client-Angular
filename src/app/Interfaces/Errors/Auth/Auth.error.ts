@@ -1,15 +1,19 @@
-export type MessageError = {
-  message: string;
-  status: boolean;
-};
-export type emailOrPasswordIsMissing = {
-  statusCode: number;
-  message: string[];
-  error: string;
+type emailOrPasswordIsMissing = {
+  message: string[] | string;
 };
 
-export interface AuthErrorLogin {
+interface Error {
   status: number;
   createBy: string;
-  messageError: MessageError | emailOrPasswordIsMissing;
+  messageError: emailOrPasswordIsMissing;
+}
+export interface AuthErrorLogin {
+  headers: Headers;
+  status: number;
+  statusText: string;
+  url: string;
+  ok: boolean;
+  name: string;
+  message: string;
+  error: Error;
 }

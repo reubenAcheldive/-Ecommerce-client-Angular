@@ -1,10 +1,13 @@
 <div class="row text-center mt-3">
   <mat-card class="col">
-    <app-icon-info icon="shopping_cart"></app-icon-info>
+    <app-icon-info icon="shopping_basket"></app-icon-info>
   </mat-card>
 
   <mat-card class="col">
-    <app-icon-info icon="shopping_basket"></app-icon-info>
+
+    <span  matBadge="{{cartList.items.length}}" matBadgeOverlap="false">
+      <app-icon-info icon="shopping_cart"></app-icon-info
+    ></span>
   </mat-card>
 </div>
 <div class="row mt-2">
@@ -13,7 +16,8 @@
   </mat-card>
 </div>
 <div class="row mt-2">
-  <mat-card class="col delete_outline">
-    <app-lists *ngIf="cartList" [cartList]="cartList|async"></app-lists>
-  </mat-card>
+
+    <app-lists *ngIf="cartList" [cartList]="cartList "></app-lists>
+
 </div>
+<p></p>

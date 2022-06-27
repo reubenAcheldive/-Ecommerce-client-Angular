@@ -4,6 +4,7 @@ import * as UserActions from '../actions/user.actions';
 import { LoginService } from '../../services/login/login.service';
 import { Injectable } from '@angular/core';
 import { RegisterService } from 'src/app/services/register/register.service';
+import { AuthErrorLogin } from 'src/app/Interfaces/Errors/Auth/Auth.error';
 
 @Injectable()
 export class AuthEffects {
@@ -16,17 +17,17 @@ export class AuthEffects {
   login$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(UserActions.loginInit),
-      exhaustMap(({email,password}) => {
-        return this.loginService
-          .login({ email, password })
-          .pipe(
-            map((infoLogin) => {
-              localStorage.setItem('jwt', infoLogin.jwt);
+      exhaustMap(({ email, password }) => {
+        return this.loginService.login({ email, password }).pipe(
+          map((infoLogin) => {
+            localStorage.setItem('jwt', infoLogin.jwt);
 
-              return UserActions.loginInitSuccess({ infoLogin });
-            }),
-            catchError((error) => of(UserActions.loginInitFailure({ error: error.error})))
-          );
+            return UserActions.loginInitSuccess({ infoLogin });
+          }),
+          catchError((error: AuthErrorLogin) => {
+            return of(UserActions.loginInitFailure({ error: error }));
+          })
+        );
       })
     );
   });
@@ -35,22 +36,16 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(UserActions.checkRegisterInit),
       exhaustMap((action) => {
-
         return this.registerService.isRegistered(action.id).pipe(
           map((success) => {
-
-
-              return UserActions.checkRegisterSuccess({ success });
-            }),
-            catchError((error) =>
-              of(UserActions.checkRegisterFailure({ error }))
-            )
-
+            return UserActions.checkRegisterSuccess({ success });
+          }),
+          catchError((error) => of(UserActions.checkRegisterFailure({ error })))
         );
       })
     );
   });
-//create end poing for check jwt
+  //create end poing for check jwt
   loginByJwt = createEffect(() => {
     return this.actions$.pipe(
       ofType(UserActions.loginByJwt),

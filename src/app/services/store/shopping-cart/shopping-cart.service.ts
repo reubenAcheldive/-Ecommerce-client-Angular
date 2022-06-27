@@ -8,7 +8,7 @@ import { map, Observable } from 'rxjs';
 
 import {
   API_GET_CART_BY_CART_ID,
-  URL_ADD_PRODUCT,
+  URL_ADD_ITEMS_ARRAY_TO_CART,
   URL_DELETE_ALL_PRODUCT,
   URL_DELETE_PRODUCT,
   URL_GET_CART_BY_CUSTOMER_ID,
@@ -21,7 +21,7 @@ import { AddItemsToCartByUserId } from 'src/app/Interfaces/AddItemsToCart';
 export class ShoppingCartService {
   readonly base_api_url = 'http://localhost:3000/api/store';
   readonly api_url_add_new_cart = `${this.base_api_url}/addNewCart`;
-  readonly api_url_add_Product = `${this.base_api_url}/addProduct`;
+  readonly api_URL_ADD_ITEMS_ARRAY_TO_CART = `${this.base_api_url}/addProduct`;
   readonly api_url_delete_product = `${this.base_api_url}/deleteProduct`;
   readonly api_url_delete_all_products = `${this.base_api_url}/deleteAllProducts`;
   readonly api_url_get_cart_by_customer_Id = `${this.base_api_url}/getCart`; // customerRef params
@@ -41,7 +41,7 @@ export class ShoppingCartService {
     addItemsCartByUserId: AddItemsToCartByUserId
   ): Observable<CartResponseForUser> {
     return this.http.post<CartResponseForUser>(
-      URL_ADD_PRODUCT,
+      URL_ADD_ITEMS_ARRAY_TO_CART,
       addItemsCartByUserId
     );
   }

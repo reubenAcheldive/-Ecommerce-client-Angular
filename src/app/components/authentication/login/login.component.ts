@@ -7,6 +7,14 @@ import { Store } from '@ngrx/store';
 import { loginInit } from '../../../state/actions/user.actions';
 import { AuthenticationComponent } from '../authentication.component';
 import { TogglePageService } from '../togglePage/toggle-page.service';
+import {
+  selectLoading,
+  selectError,
+  selectAuthDetails,
+  shoppingSelectorFetcher,
+} from '../../../state/selectors/auth-selectors';
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,6 +27,8 @@ export class LoginComponent implements OnInit {
     public dialogRef: MatDialogRef<AuthenticationComponent>
   ) {}
   profileLogin: FormGroup;
+
+
 
   ngOnInit(): void {
     this.profileLogin = new FormGroup({
@@ -36,7 +46,8 @@ export class LoginComponent implements OnInit {
     if (this.emailError.errors || this.passwordError.errors) return;
     const { email, password } = this.profileLogin.value;
     this.store.dispatch(loginInit({ email, password }));
-    this.dialogRef.close();
+
+    // this.dialogRef.close();
   }
   goToRegister() {
     return this.togglePageService.handleWithChangeBetweenForms();

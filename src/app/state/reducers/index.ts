@@ -9,12 +9,14 @@ import * as ShoppingActions from '../actions/shopping.actions';
 import * as UserInformation from '../actions/user.actions';
 import { IProduct } from '../../../app/Interfaces/Products';
 import { CartResponseForUser } from 'src/app/Interfaces/GetCartUser';
+import { AuthErrorLogin } from 'src/app/Interfaces/Errors/Auth/Auth.error';
 
 export interface Shopping {
   categories: Categories[] | null;
   products: IProduct[] | null;
   loading: boolean | null;
-  error: any | null;
+  authErrorLogin: AuthErrorLogin | null;
+  error:null,
   infoLogin: IUserInformation | null;
   isRegistered: boolean | null;
   citiesList: ICities[] | null;
@@ -37,7 +39,8 @@ export const initialShoppingState: Shopping | null = {
   categories: null,
   products: null,
   loading: null,
-  error: null,
+  authErrorLogin: null,
+  error:null,
   infoLogin: null,
   isRegistered: null, //check in register component if user can to continue with registration
   citiesList: null,
@@ -103,20 +106,23 @@ export const shoppingReducer = createReducer(
       errorAlert: error,
     })
   ),
-
+  on(UserInformation.loginInit, (state) => ({
+    ...state,
+    loading: true,
+  })),
   on(
     UserInformation.loginInitSuccess,
     UserInformation.registerUserSuccess,
     (state, { infoLogin }) => ({
       ...state,
       infoLogin: infoLogin,
-      loading: true,
+      loading: false,
       errorAlert: null,
     })
   ),
   on(UserInformation.loginInitFailure, (state, { error }) => ({
     ...state,
-    error: error,
+    authErrorLogin:error,
     loading: false,
   })),
 
@@ -237,5 +243,6 @@ export const shoppingReducer = createReducer(
     products: null,
     DateCreatedCart: null,
     unavailableDates: [],
+    authErrorLogin:null
   }))
 );
