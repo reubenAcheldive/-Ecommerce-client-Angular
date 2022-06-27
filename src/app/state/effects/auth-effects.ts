@@ -16,13 +16,13 @@ export class AuthEffects {
   login$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(UserActions.loginInit),
-      exhaustMap((action) => {
+      exhaustMap(({email,password}) => {
         return this.loginService
-          .login({ userEmail: action.userName, userPassword: action.password })
+          .login({ email, password })
           .pipe(
             map((infoLogin) => {
               localStorage.setItem('jwt', infoLogin.jwt);
-        
+
               return UserActions.loginInitSuccess({ infoLogin });
             }),
             catchError((error) => of(UserActions.loginInitFailure({ error: error.error})))

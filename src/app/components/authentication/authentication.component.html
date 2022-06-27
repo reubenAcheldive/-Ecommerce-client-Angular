@@ -1,1 +1,6 @@
-<p>authentication works!</p>
+<div class="row">
+  <div class="col">
+    <app-login  *ngIf="toggle"></app-login>
+    <app-register *ngIf="!toggle"></app-register>
+  </div>
+</div>

@@ -1,12 +1,19 @@
+import { CartResponseForUser } from './../../../Interfaces/GetCartUser';
 import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
 import { map, Observable } from 'rxjs';
-import { CartItemsResponse } from 'src/app/Interfaces/LastCartItemResponse';
-import { GetCartByCustomerResponse } from '../../../Interfaces/GetCartByCustomerResponse';
-import { GetCartByCartIdResponse } from 'src/app/Interfaces/GetCartByCartIdResponse';
-import { API_GET_CART_BY_CART_ID, URL_ADD_PRODUCT, URL_DELETE_ALL_PRODUCT, URL_DELETE_PRODUCT, URL_GET_CART_BY_CUSTOMER_ID } from '../../environment';
+
+
+import {
+  API_GET_CART_BY_CART_ID,
+  URL_ADD_PRODUCT,
+  URL_DELETE_ALL_PRODUCT,
+  URL_DELETE_PRODUCT,
+  URL_GET_CART_BY_CUSTOMER_ID,
+} from '../../environment';
+import { AddItemsToCartByUserId } from 'src/app/Interfaces/AddItemsToCart';
 
 @Injectable({
   providedIn: 'root',
@@ -23,27 +30,23 @@ export class ShoppingCartService {
 
   constructor(private http: HttpClient) {}
 
-  addNewCart(customerRef: string): Observable<GetCartByCustomerResponse> {
+  // addNewCart(customerRef: string): Observable<GetCartByCustomerResponse> {
 
+  //   return this.http.post<GetCartByCustomerResponse>(`${this.api_url_add_new_cart}`, {
+  //     customerRef,
+  //   });
+  // }
 
-    return this.http.post<GetCartByCustomerResponse>(`${this.api_url_add_new_cart}`, {
-      customerRef,
-    });
-  }
-
-  addProductToList(payload: {
-    cartId: string;
-    productRefId: string;
-    quantity: number;
-  }): Observable<CartItemsResponse> {
-
-
-    return this.http.post<CartItemsResponse>(URL_ADD_PRODUCT, payload);
+  addProductToList(
+    addItemsCartByUserId: AddItemsToCartByUserId
+  ): Observable<CartResponseForUser> {
+    return this.http.post<CartResponseForUser>(
+      URL_ADD_PRODUCT,
+      addItemsCartByUserId
+    );
   }
 
   deleteProduct(cartId: string, productId: string): Observable<string> {
-
-
     return this.http.post<string>(URL_DELETE_PRODUCT, {
       cartId,
       productId,
@@ -55,16 +58,13 @@ export class ShoppingCartService {
     });
   }
 
-  getCartByCustomerRef(customerRef: string): Observable<GetCartByCustomerResponse> {
+  // getCartByCustomerRef(customerRef: string): Observable<CartResponseForUser> {
 
-
-    return this.http.get<GetCartByCustomerResponse>(
-      `${URL_GET_CART_BY_CUSTOMER_ID}/${customerRef}`
-    );
+  //   return this.http.get<CartResponseForUser>(
+  //     `${URL_GET_CART_BY_CUSTOMER_ID}/${customerRef}`
+  //   );
+  // }
+  getCartByCartId(cartId: string): Observable<CartResponseForUser> {
+    return this.http.get<CartResponseForUser>(`${API_GET_CART_BY_CART_ID}/${cartId}`);
   }
-  getCartByCartId(cartId: string): Observable<GetCartByCartIdResponse> {
-    return this.http.get<GetCartByCartIdResponse>(`${API_GET_CART_BY_CART_ID}/${cartId}`);
-  }
-
 }
-

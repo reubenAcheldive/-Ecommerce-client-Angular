@@ -5,7 +5,7 @@ import { IUserInformation } from 'src/app/Interfaces/userInformation';
 
 
 export const loginInit =
- createAction('[User] before user Login', props<{userName: string, password: string}>());
+ createAction('[User] before user Login', props<{email: string, password: string}>());
 
 export const loginByJwt = createAction('[User] Login By JWT', props<{jwt: string}>());
 

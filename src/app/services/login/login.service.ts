@@ -12,8 +12,8 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
   login(payload: {
-    userEmail: string;
-    userPassword: string;
+    email: string;
+    password: string;
   }): Observable<IUserInformation> {
     return this.http.post<IUserInformation>(URL_LOGIN, { ...payload });
   }

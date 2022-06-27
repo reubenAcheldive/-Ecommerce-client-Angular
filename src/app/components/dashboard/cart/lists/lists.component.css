@@ -1,0 +1,15 @@
+.card-item {
+  width: 95%;
+
+
+  font-size: 14px;
+  font-weight: 100;
+  text-align: left;
+  box-sizing: content-box;
+  align-items: center!important;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+}

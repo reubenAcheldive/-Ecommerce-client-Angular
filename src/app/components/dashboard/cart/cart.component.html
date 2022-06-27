@@ -14,6 +14,6 @@
 </div>
 <div class="row mt-2">
   <mat-card class="col delete_outline">
-    <app-lists></app-lists>
+    <app-lists *ngIf="cartList" [cartList]="cartList|async"></app-lists>
   </mat-card>
 </div>

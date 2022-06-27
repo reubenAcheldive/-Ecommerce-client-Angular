@@ -16,13 +16,13 @@ const routes: Routes = [
       ),
   },
   {
-    path: '',
+    path: 'authentication',
     loadChildren: () =>
       import('./components/authentication/authentication.module').then(
         (m) => m.AuthenticationModule
       ),
   },
-  { path: '',   redirectTo: '/', pathMatch: 'full' },
+  { path: '',   redirectTo: '/dashboard/store', pathMatch: 'full' },
 ];
 @NgModule({
   imports: [

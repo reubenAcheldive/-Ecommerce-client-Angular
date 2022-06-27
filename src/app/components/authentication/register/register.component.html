@@ -1,1 +1,72 @@
-<p>register works!</p>
+<div class="row text-center">
+  <div class="col-lg-12">
+    <span class="title">
+      <p class="p-1">Register</p>
+      <mat-icon>person_outline</mat-icon>
+    </span>
+  </div>
+  <form [formGroup]="profileRegister" (ngSubmit)="handleSubmit()">
+    <div class="col-lg-12 mt-4">
+      <input
+        formControlName="id"
+        class="has-error"
+        placeholder="ID"
+        type="text"
+      />
+    </div>
+    <span class="has-error">have in error</span>
+    <div class="col-lg-12 form mt-4">
+      <input
+        formControlName="email"
+        class="has-error"
+        placeholder="email"
+        type="email"
+        id=""
+      />
+    </div>
+    <div class="col-lg-12 form mt-4">
+      <input
+        formControlName="password"
+        class="has-error"
+        placeholder="password"
+        type="password"
+        id=""
+      />
+    </div>
+    <div class="col-lg-12 form mt-4">
+      <input
+        formControlName="confirmPassword"
+        class="has-error"
+        placeholder="Confirm Password"
+        type="password"
+        id=""
+      />
+    </div>
+    <div class="col-lg-12 form mt-4">
+      <input
+        formControlName="firstName"
+        class="has-error"
+        placeholder="First Name"
+        type="text"
+        id=""
+      />
+    </div>
+    <div class="col-lg-12 form mt-4">
+      <input
+        formControlName="lastName"
+        class="has-error"
+        placeholder="Last Name"
+        type="text"
+        id=""
+      />
+    </div>
+    <div class="col-lg-12 mt-1">
+      <button class="btn-form" type="submit" title="submit">Sing Up</button>
+    </div>
+  </form>
+  <div class="row text-center">
+    <div class="col-lg-12 mt-1">
+      <button class="btn-form" type="button" title="button" (click)="goBackToLoginPage()">Cancel</button>
+    </div>
+  </div>
+</div>

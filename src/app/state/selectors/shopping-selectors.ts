@@ -49,7 +49,7 @@ export const selectProductEditByAdmin = createSelector(
 
 
 
-export const selectAllCartList = createSelector(
+export const selectCartList = createSelector(
   shoppingSelectorFetcher,
   (state) => state?.cartListProducts
 );

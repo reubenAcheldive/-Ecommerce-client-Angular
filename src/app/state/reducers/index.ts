@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { CartItems } from 'src/app/Interfaces/GetCartByCartIdResponse';
+
 import { IUserInformation } from 'src/app/Interfaces/userInformation';
 import { lastOrderDetail } from 'src/app/Interfaces/lastOrderDetail';
 import { Categories } from 'src/app/Interfaces/categories';
@@ -8,6 +8,7 @@ import { ICities } from 'src/app/Interfaces/Cities';
 import * as ShoppingActions from '../actions/shopping.actions';
 import * as UserInformation from '../actions/user.actions';
 import { IProduct } from '../../../app/Interfaces/Products';
+import { CartResponseForUser } from 'src/app/Interfaces/GetCartUser';
 
 export interface Shopping {
   categories: Categories[] | null;
@@ -24,7 +25,7 @@ export interface Shopping {
   lastOrderDetail: lastOrderDetail[] | null;
 
   cartId: string | null;
-  cartListProducts: CartItems[] | null;
+  cartListProducts: CartResponseForUser | null;
   cartMessage: string | null;
   getDetailsShipments: { city: string; address: string } | null;
   orderID: string | null;
@@ -47,7 +48,7 @@ export const initialShoppingState: Shopping | null = {
   errorInRegister: false,
 
   cartId: null,
-  cartListProducts: [],
+  cartListProducts: null,
   cartMessage: '',
   getDetailsShipments: null,
   lastOrderDetail: null,
@@ -164,35 +165,39 @@ export const shoppingReducer = createReducer(
   })),
   on(ShoppingActions.createNewCartSuccess, (state, { cart }) => ({
     ...state,
-    cartId: cart.cart[0]?._id,
-    DateCreatedCart: cart.cart[0]?.date,
-    cartListProducts: cart.cart[0]?.cartItems,
+    // cartId: cart.cart[0]?._id,
+    // DateCreatedCart: cart.cart[0]?.date,
+    // cartListProducts: cart.cart[0]?.cartItems,
   })),
 
-  on(ShoppingActions.addProductToListSuccess, (state, { cartItems }) => ({
+  on(ShoppingActions.addProductsToListSuccess, (state, { cartItems }) => ({
     ...state,
     cartListProducts: cartItems,
   })),
-  on(
-    ShoppingActions.DeleteSingleProductFromCartListInit,
-    (state, { cartId, productId }) => ({
-      ...state,
-      cartListProducts: state.cartListProducts.filter(
-        (item) => item._id !== productId
-      ),
-    })
-  ),
+  // on(
+  //   ShoppingActions.DeleteSingleProductFromCartListInit,
+  //   (state, { cartId, productId }) => ({
+  //     ...state,
+  //     cartListProducts: state.cartListProducts.filter(
+  //       (item) => item._id !== productId
+  //     ),
+  //   })
+  // ),
 
-  on(ShoppingActions.DeleteAllProductCartListInit, (state) => ({
-    ...state,
-    cartListProducts: [],
-  })),
+  // on(ShoppingActions.DeleteAllProductCartListInit, (state) => ({
+  //   ...state,
+  //   cartListProducts: [],
+  // })),
 
   on(ShoppingActions.getCartByCustomerIdSuccess, (state, { cart }) => ({
     ...state,
-    cartId: cart.cart[0]?._id,
-    DateCreatedCart: cart.cart[0]?.date,
-    cartListProducts: cart.cart[0]?.cartItems,
+    // cartId: cart.cart[0]?._id,
+    // DateCreatedCart: cart.cart[0]?.date,
+    // cartListProducts: cart.cart[0]?.cartItems,
+  })),
+  on(ShoppingActions.getCartByCartIdSuccess, (state, { cart }) => ({
+    ...state,
+    cartListProducts: cart,
   })),
   on(
     ShoppingActions.getUserDetailsShipmentsSuccess,

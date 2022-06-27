@@ -124,23 +124,23 @@ export class ShoppingEffects {
       })
     );
   });
-  getCartByCustomerId$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(shoppingActions.getCartByCustomerIdInit),
-      exhaustMap(({ customerRef }) => {
-        return this.shoppingCartService.getCartByCustomerRef(customerRef).pipe(
-          map((cart) => {
-            console.log('get cart by useEffect', cart.cart[0].date);
+  // getCartByCustomerId$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(shoppingActions.getCartByCustomerIdInit),
+  //     exhaustMap(({ customerRef }) => {
+  //       return this.shoppingCartService.getCartByCustomerRef(customerRef).pipe(
+  //         map((cart) => {
+  //           console.log('get cart by useEffect', cart.cart[0].date);
 
-            return shoppingActions.getCartByCustomerIdSuccess({ cart });
-          }),
-          catchError((error) =>
-            of(shoppingActions.getCartByCustomerFail({ error }))
-          )
-        );
-      })
-    );
-  });
+  //           return shoppingActions.getCartByCustomerIdSuccess({ cart });
+  //         }),
+  //         catchError((error) =>
+  //           of(shoppingActions.getCartByCustomerFail({ error }))
+  //         )
+  //       );
+  //     })
+  //   );
+  // });
   DeleteAllProductCartList$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(shoppingActions.DeleteAllProductCartListInit),
@@ -174,45 +174,47 @@ export class ShoppingEffects {
   });
   addProductToList$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(shoppingActions.addProductToListInit),
-      exhaustMap(({ product }) => {
-        return this.shoppingCartService.addProductToList(product).pipe(
-          map((action) => {
-            console.log(action.cartItems, 'result  addProductToList$');
+      ofType(shoppingActions.addProductsToListInit),
+      exhaustMap(({ addItemsCartByUserId }) => {
+        return this.shoppingCartService
+          .addProductToList(addItemsCartByUserId)
+          .pipe(
+            map((action) => {
+              console.log(action, 'result  addProductToList$');
 
-            return shoppingActions.addProductToListSuccess({
-              cartItems: action.cartItems,
-            });
-          }),
-          catchError((error) =>
-            of(shoppingActions.addProductToListFail({ error }))
-          )
-        );
+              return shoppingActions.addProductsToListSuccess({
+                cartItems: action,
+              });
+            }),
+            catchError((error) =>
+              of(shoppingActions.addProductsToListFail({ error }))
+            )
+          );
       })
     );
   });
 
-  createNewCart$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(shoppingActions.createNewCartInit),
-      exhaustMap(({ customerRef }) => {
-        return this.shoppingCartService.addNewCart(customerRef).pipe(
-          map((cart) => {
-            console.log(
-              { cart },
-              'register created new Cart',
-              cart.cart[0]._id
-            );
+  // createNewCart$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(shoppingActions.createNewCartInit),
+  //     exhaustMap(({ customerRef }) => {
+  //       return this.shoppingCartService.addNewCart(customerRef).pipe(
+  //         map((cart) => {
+  //           console.log(
+  //             { cart },
+  //             'register created new Cart',
+  //             cart.cart[0]._id
+  //           );
 
-            return shoppingActions.createNewCartSuccess({ cart: cart });
-          }),
-          catchError((error) =>
-            of(shoppingActions.createNewCartFail({ error }))
-          )
-        );
-      })
-    );
-  });
+  //           return shoppingActions.createNewCartSuccess({ cart: cart });
+  //         }),
+  //         catchError((error) =>
+  //           of(shoppingActions.createNewCartFail({ error }))
+  //         )
+  //       );
+  //     })
+  //   );
+  // });
 
   getUserDetailsShipmentsInit$ = createEffect(() => {
     return this.actions$.pipe(

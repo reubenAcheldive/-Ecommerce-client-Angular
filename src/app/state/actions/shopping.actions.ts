@@ -1,16 +1,13 @@
+import { CartResponseForUser } from './../../Interfaces/GetCartUser';
 import { createAction, props } from '@ngrx/store';
 import { IProduct } from '../../../app/Interfaces/Products';
 
-import {
-  CartItems,
-  GetCartByCartIdResponse,
-} from 'src/app/Interfaces/GetCartByCartIdResponse';
-import { GetCartByCustomerResponse } from 'src/app/Interfaces/GetCartByCustomerResponse';
 import { createNewOrder } from 'src/app/Interfaces/createNewOrder';
 import { CreateNewProduct } from 'src/app/Interfaces/CreateNewProduct';
 import { Categories } from 'src/app/Interfaces/categories';
 import { lastOrderDetail } from 'src/app/Interfaces/lastOrderDetail';
 import { ICities } from 'src/app/Interfaces/Cities';
+import { AddItemsToCartByUserId } from 'src/app/Interfaces/AddItemsToCart';
 
 export const fetchCategories = createAction('[Categories] fetch Categories');
 
@@ -79,7 +76,7 @@ export const getCartByCartIdInit = createAction(
 //---------------------------------------------------------------
 export const getCartByCartIdSuccess = createAction(
   `[Success fetch all cart details ]`,
-  props<{ cart: GetCartByCartIdResponse }>()
+  props<{ cart: CartResponseForUser }>()
 );
 export const getCartByCartIdFail = createAction(
   `[Fail  fetch all cart details ]`,
@@ -95,7 +92,7 @@ export const getCartByCustomerIdInit = createAction(
 //---------------------------------------------------------------
 export const getCartByCustomerIdSuccess = createAction(
   '[ Success cart by customer  id]',
-  props<{ cart: GetCartByCustomerResponse }>()
+  props<{ cart: null }>()
 );
 export const getCartByCustomerFail = createAction(
   `[Fail fetch cart by customer  id ]`,
@@ -134,19 +131,19 @@ export const DeleteSingleProductFromCartListFail = createAction(
 );
 // ----------------------------------------------------------
 //---------------------------------------------------------------
-export const addProductToListInit = createAction(
+export const addProductsToListInit = createAction(
   '[init add Product to list]',
   props<{
-    product: { cartId: string; productRefId: string; quantity: number };
+    addItemsCartByUserId: AddItemsToCartByUserId;
   }>()
 );
 // ----------------------------------------------------------
 //---------------------------------------------------------------
-export const addProductToListSuccess = createAction(
+export const addProductsToListSuccess = createAction(
   '[success add single product by cart id]',
-  props<{ cartItems: CartItems[] }>()
+  props<{ cartItems: CartResponseForUser }>()
 );
-export const addProductToListFail = createAction(
+export const addProductsToListFail = createAction(
   '[Fail add single product by cart id]',
   props<{ error: any }>()
 );
@@ -160,7 +157,7 @@ export const createNewCartInit = createAction(
 //---------------------------------------------------------------
 export const createNewCartSuccess = createAction(
   '[success create new cart for customer]',
-  props<{ cart: GetCartByCustomerResponse }>()
+  props<{ cart: null }>()
 );
 export const createNewCartFail = createAction(
   '[fail create new cart for customer]',
@@ -236,5 +233,5 @@ export const fetchUnavailableDatesSuccess = createAction(
 
 export const fetchUnavailableDatesFail = createAction(
   'fail fetch all blocked date ',
-  props<{ error: any}>()
+  props<{ error: any }>()
 );
