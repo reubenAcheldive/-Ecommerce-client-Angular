@@ -23,6 +23,6 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatInputModule,
     MatDialogModule
   ],
-  exports:[AuthenticationModule]
+  exports:[AuthenticationComponent]
 })
 export class AuthenticationModule {}

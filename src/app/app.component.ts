@@ -14,10 +14,10 @@ export class AppComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private router: Router,
-    private store: Store //*3
+    private store: Store 
   ) {}
   ngOnInit(): void {
-    this.auth.AutoCheckJwt();
+    // this.auth.AutoCheckJwt();
 
     // this.router.navigateByUrl("/register")
   }
