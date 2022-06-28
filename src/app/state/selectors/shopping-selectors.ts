@@ -29,10 +29,7 @@ export const selectCities = createSelector(
 
 
 
-export const selectProductEditByAdmin = createSelector(
-  shoppingSelectorFetcher,
-  (state) => state.editProduct
-);
+
 
 
 
@@ -48,10 +45,7 @@ export const selectIdCart = createSelector(
   shoppingSelectorFetcher,
   (state) => state?.cartId
 );
-export const selectCartMessage = createSelector(
-  shoppingSelectorFetcher,
-  (state) => state?.cartMessage
-);
+
 export const selectDetailShipment = createSelector(
   shoppingSelectorFetcher,
   (state) => state?.getDetailsShipments
@@ -60,10 +54,7 @@ export const returnNewOrderId = createSelector(
 shoppingSelectorFetcher,
 (state) => state?.orderID
 )
-export const lastOrderDetail = createSelector(
-  shoppingSelectorFetcher,
-  (state) => state?.lastOrderDetail
-)
+
 export const fetchUnavailableDates = createSelector(
   shoppingSelectorFetcher,
   (state) => state?.unavailableDates

@@ -165,10 +165,10 @@ export const shoppingReducer = createReducer(
   })),
 
 
-  on(ShoppingActions.addProductsToListSuccess, (state, { cartItems }) => ({
-    ...state,
-    cartListProducts: cartItems,
-  })),
+  // on(ShoppingActions.addProductsToListSuccess, (state, { cartItems }) => ({
+  //   ...state,
+  //   cartListProducts: cartItems,
+  // })),
 
 
 
