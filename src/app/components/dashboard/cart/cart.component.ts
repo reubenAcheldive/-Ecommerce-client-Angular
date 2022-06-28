@@ -19,11 +19,11 @@ export class CartComponent implements OnInit {
       .select(selectAuthDetails)
       .subscribe((l) => (this.getUserId = l.userId));
 
-    if (this.getUserId) {
+    
       this.store.dispatch(
-        getCartByCartIdInit({ cartId: '62b882d975914674d3d55b02' })
+        getCartByCartIdInit({ cartId: '62baf5901d73c7a1aaad5bbe' })
       );
-    }
+  
     this.store.select(selectCartList).subscribe((cartList =>  this.cartList =cartList));
   }
 }

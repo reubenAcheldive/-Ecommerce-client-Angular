@@ -8,6 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { CartModule } from './cart/cart.module';
 
+
 @NgModule({
   declarations: [DashboardComponent],
   imports: [CommonModule, DashboardRoutingModule, MatToolbarModule,MatSidenavModule,CartModule],
