@@ -8,6 +8,7 @@ import { Categories } from 'src/app/Interfaces/categories';
 import { lastOrderDetail } from 'src/app/Interfaces/lastOrderDetail';
 import { ICities } from 'src/app/Interfaces/Cities';
 import { AddItemsToCartByUserId } from 'src/app/Interfaces/AddItemsToCart';
+import { IUpdateItemInCart } from 'src/app/Interfaces/UpdateItemInCart';
 
 export const fetchCategories = createAction('[Categories] fetch Categories');
 
@@ -233,5 +234,17 @@ export const fetchUnavailableDatesSuccess = createAction(
 
 export const fetchUnavailableDatesFail = createAction(
   'fail fetch all blocked date ',
+  props<{ error: any }>()
+);
+export const initUpdateQuantity = createAction(
+  '[Init Update Cart item]',
+  props<{ itemUpdate: IUpdateItemInCart }>()
+);
+export const successUpdateQuantity = createAction(
+  '[success Update Cart item]',
+  props<{ cartList: CartResponseForUser }>()
+);
+export const failUpdateQuantity= createAction(
+  '[fail Update Cart item] ',
   props<{ error: any }>()
 );

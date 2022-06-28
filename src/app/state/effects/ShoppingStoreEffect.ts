@@ -301,4 +301,18 @@ export class ShoppingEffects {
       })
     );
   });
+
+  updateItemOnCart$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(shoppingActions.initUpdateQuantity),
+      exhaustMap(({ itemUpdate }) => {
+        return this.shoppingCartService.updateItemOnCart(itemUpdate).pipe(
+          map((cartList) => {
+            return shoppingActions.successUpdateQuantity({ cartList });
+          }),
+          catchError((err)=> of(shoppingActions.failUpdateQuantity(err)))
+        );
+      })
+    );
+  });
 }

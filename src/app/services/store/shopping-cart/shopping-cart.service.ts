@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 
 import { map, Observable } from 'rxjs';
 
-
 import {
   API_GET_CART_BY_CART_ID,
   URL_ADD_ITEMS_ARRAY_TO_CART,
@@ -14,6 +13,7 @@ import {
   URL_GET_CART_BY_CUSTOMER_ID,
 } from '../../environment';
 import { AddItemsToCartByUserId } from 'src/app/Interfaces/AddItemsToCart';
+import { IUpdateItemInCart } from 'src/app/Interfaces/UpdateItemInCart';
 
 @Injectable({
   providedIn: 'root',
@@ -65,6 +65,19 @@ export class ShoppingCartService {
   //   );
   // }
   getCartByCartId(cartId: string): Observable<CartResponseForUser> {
-    return this.http.get<CartResponseForUser>(`${API_GET_CART_BY_CART_ID}/${cartId}`);
+    return this.http.get<CartResponseForUser>(
+      `${API_GET_CART_BY_CART_ID}/${cartId}`
+    );
+  }
+
+  updateItemOnCart({
+    idCart,
+    productRefId,
+    quantity,
+  }: IUpdateItemInCart): Observable<CartResponseForUser> {
+    return this.http.post<CartResponseForUser>(
+      `${this.api_url_change_quantity}`,
+      { idCart, productRefId, quantity }
+    );
   }
 }

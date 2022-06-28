@@ -22,13 +22,11 @@ export interface Shopping {
   citiesList: ICities[] | null;
   errorAlert: any;
 
-  editProduct: IProduct | null;
-  errorInRegister: boolean | null;
-  lastOrderDetail: lastOrderDetail[] | null;
+
 
   cartId: string | null;
   cartListProducts: CartResponseForUser | null;
-  cartMessage: string | null;
+
   getDetailsShipments: { city: string; address: string } | null;
   orderID: string | null;
   DateCreatedCart: number | Date | null;
@@ -46,15 +44,11 @@ export const initialShoppingState: Shopping | null = {
   citiesList: null,
   errorAlert: null,
 
-  editProduct: null,
 
-  errorInRegister: false,
 
   cartId: null,
   cartListProducts: null,
-  cartMessage: '',
   getDetailsShipments: null,
-  lastOrderDetail: null,
   orderID: '',
   DateCreatedCart: null,
   unavailableDates: null,
@@ -169,38 +163,15 @@ export const shoppingReducer = createReducer(
     }),
     loading: false,
   })),
-  on(ShoppingActions.createNewCartSuccess, (state, { cart }) => ({
-    ...state,
-    // cartId: cart.cart[0]?._id,
-    // DateCreatedCart: cart.cart[0]?.date,
-    // cartListProducts: cart.cart[0]?.cartItems,
-  })),
+
 
   on(ShoppingActions.addProductsToListSuccess, (state, { cartItems }) => ({
     ...state,
     cartListProducts: cartItems,
   })),
-  // on(
-  //   ShoppingActions.DeleteSingleProductFromCartListInit,
-  //   (state, { cartId, productId }) => ({
-  //     ...state,
-  //     cartListProducts: state.cartListProducts.filter(
-  //       (item) => item._id !== productId
-  //     ),
-  //   })
-  // ),
 
-  // on(ShoppingActions.DeleteAllProductCartListInit, (state) => ({
-  //   ...state,
-  //   cartListProducts: [],
-  // })),
 
-  on(ShoppingActions.getCartByCustomerIdSuccess, (state, { cart }) => ({
-    ...state,
-    // cartId: cart.cart[0]?._id,
-    // DateCreatedCart: cart.cart[0]?.date,
-    // cartListProducts: cart.cart[0]?.cartItems,
-  })),
+
   on(ShoppingActions.getCartByCartIdSuccess, (state, { cart }) => ({
     ...state,
     cartListProducts: cart,
