@@ -16,13 +16,13 @@ export class StoreComponent implements OnInit {
 
     constructor(private store : Store < Shopping>) {}
 
-    fetchCategories$ : Categories[];
+    fetchCategories$ : Observable<Categories[]> =this.store.select(selectCategories);
 
     ngOnInit(): void {
         this.store.dispatch(fetchCategories())
-        this.store.select(selectCategories).subscribe((categories) => this.fetchCategories$ = categories);
 
-      
+
+
     }
 
 }
