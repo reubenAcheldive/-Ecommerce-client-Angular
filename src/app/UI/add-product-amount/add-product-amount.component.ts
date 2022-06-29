@@ -1,12 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Item } from 'src/app/Interfaces/GetCartUser';
 import { IProduct } from 'src/app/Interfaces/Products';
-import { initUpdateItemQuantityInCart, } from 'src/app/state/actions/shopping.actions';
+import { initUpdateItemQuantityInCart } from 'src/app/state/actions/shopping.actions';
 
 @Component({
   selector: 'app-add-product-amount',
   templateUrl: './add-product-amount.component.html',
   styleUrls: ['./add-product-amount.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddProductAmountComponent implements OnInit {
   public amount: number = 0;
@@ -14,6 +21,10 @@ export class AddProductAmountComponent implements OnInit {
   @Input() set item(value: IProduct) {
     this._item = value;
     this.amount = this._item.quantity;
+  }
+  @Input() set item2(value: Item) {
+    this._item = value.productRefId;
+    this.amount = value.quantity;
   }
 
   constructor(private store: Store) {}
@@ -24,6 +35,8 @@ export class AddProductAmountComponent implements OnInit {
 
   public increment(): void {
     this.amount += 1;
+    console.log({ item: this._item.quantity });
+
     this.dispatchUpdateAction(this._item);
   }
 

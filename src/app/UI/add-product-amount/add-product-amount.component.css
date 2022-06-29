@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
 
-  position: absolute;
+
   z-index: 2;
   top: -133px;
   left: calc(50% - -93px);
@@ -26,19 +26,9 @@
   color: #615f5f;
 }
 
-.Ibtn .decrement {
-  font-size: 75px;
-}
 
-.amount {
-  font-size: 80px;
-  font-weight: 300;
-  color: #0c0c0ca3;
-  position: relative;
-  animation: mymove;
-  animation-duration: 0.5s;
-  display: block;
-}
+
+
 
 @keyframes mymove {
   from {

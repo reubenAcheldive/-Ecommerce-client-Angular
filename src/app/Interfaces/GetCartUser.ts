@@ -10,7 +10,7 @@
       __v: number;
   }
 
-  export interface Item {
+  export type Item =  {
       quantity: number;
       productRefId: ProductRefId;
       _id: string;
