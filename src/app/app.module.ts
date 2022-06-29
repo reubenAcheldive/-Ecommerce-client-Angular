@@ -25,6 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AuthenticationModule } from './components/authentication/authentication.module';
 import { MatButtonModule } from '@angular/material/button';
 
+
 @NgModule({
   declarations: [AppComponent, NavBarComponent],
 
@@ -42,9 +43,10 @@ import { MatButtonModule } from '@angular/material/button';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     MatToolbarModule,
     MatDialogModule,
-   
+
     AuthenticationModule,
     MatButtonModule,
+ 
   ],
   providers: [
     {

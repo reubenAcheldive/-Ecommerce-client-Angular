@@ -16,5 +16,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     AddProductAmountComponent,
   ],
   imports: [CommonModule, StoreRoutingModule, MatCardModule, MatToolbarModule],
+  exports:[AddProductAmountComponent]
 })
 export class StoreModule {}

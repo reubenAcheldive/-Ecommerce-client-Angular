@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IProduct } from 'src/app/Interfaces/Products';
-import { initUpdateItemQuantityInCart } from 'src/app/state/actions/shopping.actions';
+import { initUpdateItemQuantityInCart, } from 'src/app/state/actions/shopping.actions';
 
 @Component({
   selector: 'app-add-product-amount',
@@ -18,7 +18,9 @@ export class AddProductAmountComponent implements OnInit {
 
   constructor(private store: Store) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.store.select()
+  }
 
   public increment(): void {
     this.amount += 1;
@@ -38,7 +40,7 @@ export class AddProductAmountComponent implements OnInit {
         itemUpdate: {
           productRefId: product._id,
           quantity: this.amount,
-          idCart: '62baf5901d73c7a1aaad5bbe',
+          idCart: '62bc60407a0a29c9f3c77b31',
         },
       })
     );

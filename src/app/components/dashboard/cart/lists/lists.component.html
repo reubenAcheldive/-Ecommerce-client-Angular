@@ -6,6 +6,7 @@
           <small class="">₪</small>
           {{ item.quantity * item.productRefId.price | number: "1.0-1" }}
         </span>
+
         <span class="col-md-4  ">{{ item.productRefId.name }}</span>
         <span class="col-md-3">
           <img alt="" src="{{ item.productRefId.imgUrl }}" />

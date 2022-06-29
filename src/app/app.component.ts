@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(
-      getCartByCartIdInit({ cartId: '62baf5901d73c7a1aaad5bbe' })
+      getCartByCartIdInit({ cartId: '62bc60407a0a29c9f3c77b31' })
     );
   }
 
