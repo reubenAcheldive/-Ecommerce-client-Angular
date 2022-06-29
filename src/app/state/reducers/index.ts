@@ -179,6 +179,13 @@ export const shoppingReducer = createReducer(
       },
     })
   ),
+  on(ShoppingActions.deleteAllItemsInCartSuccess, (state, {}) => ({
+    ...state,
+    cartListProducts: {
+      ...state.cartListProducts,
+      items: [],
+    },
+  })),
 
   on(ShoppingActions.getCartByCartIdSuccess, (state, { cart }) => ({
     ...state,

@@ -37,17 +37,17 @@ export class ShoppingCartService {
   //   });
   // }
 
-
-  deleteProduct(cartId: string, itemId: string): Observable<{idItem:string}> {
-    return this.http.post<{idItem:string}>(URL_DELETE_PRODUCT, {
+  deleteProduct(
+    cartId: string,
+    itemId: string
+  ): Observable<{ idItem: string }> {
+    return this.http.post<{ idItem: string }>(URL_DELETE_PRODUCT, {
       cartId,
       itemId,
     });
   }
-  deleteAllProducts(cartId: string): Observable<string> {
-    return this.http.post<string>(URL_DELETE_ALL_PRODUCT, {
-      cartId,
-    });
+  deleteAllProducts(cartId: string): Observable<any> {
+    return this.http.post(URL_DELETE_ALL_PRODUCT, { cartId });
   }
 
   // getCartByCustomerRef(customerRef: string): Observable<CartResponseForUser> {
