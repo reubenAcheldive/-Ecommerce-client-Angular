@@ -1,29 +1,30 @@
 import { Store } from '@ngrx/store';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { selectAuthDetails } from 'src/app/state/selectors/auth-selectors';
-import { getCartByCartIdInit } from '../../../state/actions/shopping.actions';
 import { selectCartList } from '../../../state/selectors/shopping-selectors';
 import { CartResponseForUser } from 'src/app/Interfaces/GetCartUser';
-import { Observable } from 'rxjs';
+import { filter, Observable } from 'rxjs';
+import { IUserInformation } from './../../../Interfaces/userInformation';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CartComponent implements OnInit {
   constructor(private store: Store) {}
   getUserId: string;
   cartList: CartResponseForUser;
+
+  public cartData$: Observable<CartResponseForUser>;
+
   ngOnInit(): void {
     this.store
-      .select(selectAuthDetails)
-      .subscribe((l) => (this.getUserId = l.userId));
-
-    
-      this.store.dispatch(
-        getCartByCartIdInit({ cartId: '62baf5901d73c7a1aaad5bbe' })
-      );
-  
-    this.store.select(selectCartList).subscribe((cartList =>  this.cartList =cartList));
+      .select(selectAuthDetails).pipe(
+        filter((user: IUserInformation) => !!user)
+      )
+      .subscribe((user: IUserInformation) => (this.getUserId = user.userId));
+    this.cartData$ = this.store.select(selectCartList);
   }
 }

@@ -1,23 +1,19 @@
-<div class="row text-center mt-3">
+<div *ngIf="cartData$ | async as cartData" class="row text-center mt-3">
   <mat-card class="col">
     <app-icon-info icon="shopping_basket"></app-icon-info>
   </mat-card>
 
   <mat-card class="col">
-
-    <span  matBadge="{{cartList.items.length}}" matBadgeOverlap="false">
+    <span matBadge="{{ cartData.items?.length }}" matBadgeOverlap="false">
       <app-icon-info icon="shopping_cart"></app-icon-info
     ></span>
   </mat-card>
+  <div class="row mt-2">
+    <mat-card class="col delete_outline">
+      <app-icon-info icon="delete_outline"></app-icon-info>
+    </mat-card>
+  </div>
+  <div class="row mt-2">
+    <app-lists [cartList]="cartData"></app-lists>
+  </div>
 </div>
-<div class="row mt-2">
-  <mat-card class="col delete_outline">
-    <app-icon-info icon="delete_outline"></app-icon-info>
-  </mat-card>
-</div>
-<div class="row mt-2">
-
-    <app-lists *ngIf="cartList" [cartList]="cartList "></app-lists>
-
-</div>
-<p></p>

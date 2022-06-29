@@ -1,27 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { switchMap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { fetchProductsInit } from '../../../../state/actions/shopping.actions';
 import { selectProducts } from '../../../../state/selectors/shopping-selectors';
+import { IProduct } from './../../../../Interfaces/Products';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsComponent implements OnInit {
   categoryId: string;
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private store: Store
   ) {}
-  fetchProducts$ = this.store.select(selectProducts);
+
+  public fetchProducts$: Observable<IProduct[]> = this.store.select(selectProducts);
+
   ngOnInit() {
-    this.route.params.subscribe((p: Params) => {
-      if (!p) return;
-      this.categoryId = p['category'];
-      this.store.dispatch(fetchProductsInit({ categoryId: this.categoryId }));
+    this.route.params.subscribe((params: Params) => {
+      if (!!params) {
+        this.categoryId = params['category'];
+        this.store.dispatch(fetchProductsInit({ categoryId: this.categoryId }));
+      }
     });
   }
 }

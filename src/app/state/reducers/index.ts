@@ -159,17 +159,16 @@ export const shoppingReducer = createReducer(
   on(ShoppingActions.productEditByAdminSuccess, (state, { product }) => ({
     ...state,
     products: state.products.map((item) => {
-      return item.id == product.id ? product : item;
+      return item._id == product._id ? product : item;
     }),
     loading: false,
   })),
 
 
-  // on(ShoppingActions.addProductsToListSuccess, (state, { cartItems }) => ({
-  //   ...state,
-  //   cartListProducts: cartItems,
-  // })),
-
+   on(ShoppingActions.successUpdateItemQuantityInCart, (state, { cartList }) => ({
+     ...state,
+     cartListProducts: cartList,
+   })),
 
 
   on(ShoppingActions.getCartByCartIdSuccess, (state, { cart }) => ({

@@ -26,13 +26,6 @@ export const selectCities = createSelector(
 );
 
 
-
-
-
-
-
-
-
 export const selectCartList = createSelector(
   shoppingSelectorFetcher,
   (state) => state?.cartListProducts

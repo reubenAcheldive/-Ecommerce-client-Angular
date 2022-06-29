@@ -26,7 +26,7 @@ export class ShoppingCartService {
   readonly api_url_delete_all_products = `${this.base_api_url}/deleteAllProducts`;
   readonly api_url_get_cart_by_customer_Id = `${this.base_api_url}/getCart`; // customerRef params
   readonly api_url_get_cart_by_cart_Id = `${this.base_api_url}/getByCartId`; // cartId params
-  readonly api_url_change_quantity = `${this.base_api_url}/updateQuantity`;
+  readonly api_url_change_quantity = `${this.base_api_url}/update-one-item-cart`;
 
   constructor(private http: HttpClient) {}
 
@@ -37,14 +37,6 @@ export class ShoppingCartService {
   //   });
   // }
 
-  addProductToList(
-    addItemsCartByUserId: AddItemsToCartByUserId
-  ): Observable<CartResponseForUser> {
-    return this.http.post<CartResponseForUser>(
-      URL_ADD_ITEMS_ARRAY_TO_CART,
-      addItemsCartByUserId
-    );
-  }
 
   deleteProduct(cartId: string, productId: string): Observable<string> {
     return this.http.post<string>(URL_DELETE_PRODUCT, {

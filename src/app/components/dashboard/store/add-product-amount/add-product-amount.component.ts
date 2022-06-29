@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { IProduct } from 'src/app/Interfaces/Products';
+import { initUpdateItemQuantityInCart } from 'src/app/state/actions/shopping.actions';
 
 @Component({
   selector: 'app-add-product-amount',
@@ -6,16 +9,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-product-amount.component.css'],
 })
 export class AddProductAmountComponent implements OnInit {
-  amount: number = 0;
-  constructor() {}
+  public amount: number = 0;
+  private _item: IProduct;
+  @Input() set item(value: IProduct) {
+    this._item = value;
+    this.amount = this._item.quantity;
+  }
+
+  constructor(private store: Store) {}
 
   ngOnInit(): void {}
 
-  increment() {
-    this.amount++;
+  public increment(): void {
+    this.amount += 1;
+    this.dispatchUpdateAction(this._item);
   }
-  decrement() {
-    if (this.amount <1 )  return;
-     this.amount--;
+
+  public decrement() {
+    if (this.amount > 0) {
+      this.amount -= 1;
+      this.dispatchUpdateAction(this._item);
+    }
+  }
+
+  private dispatchUpdateAction(product: IProduct): void {
+    this.store.dispatch(
+      initUpdateItemQuantityInCart({
+        itemUpdate: {
+          productRefId: product._id,
+          quantity: this.amount,
+          idCart: '62baf5901d73c7a1aaad5bbe',
+        },
+      })
+    );
   }
 }

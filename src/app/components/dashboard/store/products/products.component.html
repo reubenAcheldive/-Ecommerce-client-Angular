@@ -5,7 +5,7 @@
       <img class="col-md-12" mat-card-image src="{{product.imgUrl}}"
         alt="{{product.imgUrl}}">
       <span class="showme" >
-        <app-add-product-amount ></app-add-product-amount>
+        <app-add-product-amount [item]="product"></app-add-product-amount>
       </span>
       <mat-card-footer>"{{product.name}}" <br/> {{product.description}}</mat-card-footer>
     </div>

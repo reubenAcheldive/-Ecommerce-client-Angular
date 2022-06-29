@@ -1,5 +1,5 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, exhaustMap, map, of } from 'rxjs';
+import { catchError, EMPTY, exhaustMap, map, of, withLatestFrom } from 'rxjs';
 import { LoginService } from '../../services/login/login.service';
 import { Injectable } from '@angular/core';
 import { ProductService } from 'src/app/services/store/product/product.service';
@@ -9,6 +9,11 @@ import { ShoppingCartService } from '../../services/store/shopping-cart/shopping
 
 import { CitiesService } from '../../services/store/cities/cities.service';
 import { OrderService } from 'src/app/services/store/order/order.service';
+import { selectCartList } from '../selectors/shopping-selectors';
+import { CartResponseForUser, Item } from './../../Interfaces/GetCartUser';
+import { Store } from '@ngrx/store';
+import { IProduct } from 'src/app/Interfaces/Products';
+import { ProductStyleDirective } from './../../directives/product-style.directive';
 
 @Injectable()
 export class ShoppingEffects {
@@ -19,11 +24,11 @@ export class ShoppingEffects {
     private readonly categoryService: ProductService,
     private readonly productEditService: ProductEditService,
     private readonly shoppingCartService: ShoppingCartService,
-
+    private readonly store: Store,
     private readonly orderService: OrderService
   ) {}
 
-  category$ = createEffect(() => {
+  categories$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(shoppingActions.fetchCategories),
       exhaustMap(() => {
@@ -58,15 +63,26 @@ export class ShoppingEffects {
   productByCategoryId$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(shoppingActions.fetchProductsInit),
-      exhaustMap((action) => {
-        console.log(action.categoryId);
-
+      withLatestFrom(this.store.select(selectCartList)),
+      exhaustMap(([action, cartResponse]) => {
         return this.categoryService
           .getAllProductByCategoryId(action.categoryId)
           .pipe(
-            map((products) => {
-              console.log(products);
+            map((products: IProduct[]) => {
 
+              if (cartResponse?.items?.length) {
+                const itemsDictionary: Record<string, number> = {};
+                cartResponse.items.forEach((item: Item) => {
+                  itemsDictionary[item.productRefId._id] = item.quantity
+                });
+                products.forEach((product: IProduct) => {
+                  product.quantity = itemsDictionary[product._id] || 0;
+                });
+              }else{
+                products.forEach((product: IProduct) => {
+                  product.quantity = 0;
+                });
+              }
               return shoppingActions.fetchProductsSuccess({ products });
             }),
             catchError((error) =>
@@ -143,11 +159,11 @@ export class ShoppingEffects {
   // });
   DeleteAllProductCartList$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(shoppingActions.DeleteAllProductCartListInit),
+      ofType(shoppingActions.deleteAllItemsInCartInit),
       exhaustMap(({ cartId }) => {
         return this.shoppingCartService.deleteAllProducts(cartId).pipe(
           map(() => {
-            return shoppingActions.DeleteAllProductCartListSuccess();
+            return shoppingActions.deleteAllItemsInCartSuccess();
           }),
           catchError((error) =>
             of(shoppingActions.getCartByCustomerFail({ error }))
@@ -169,27 +185,6 @@ export class ShoppingEffects {
             of(shoppingActions.DeleteSingleProductFromCartListFail({ error }))
           )
         );
-      })
-    );
-  });
-  addProductToList$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(shoppingActions.addProductsToListInit),
-      exhaustMap(({ addItemsCartByUserId }) => {
-        return this.shoppingCartService
-          .addProductToList(addItemsCartByUserId)
-          .pipe(
-            map((action) => {
-              console.log(action, 'result  addProductToList$');
-
-              return shoppingActions.addProductsToListSuccess({
-                cartItems: action,
-              });
-            }),
-            catchError((error) =>
-              of(shoppingActions.addProductsToListFail({ error }))
-            )
-          );
       })
     );
   });
@@ -304,15 +299,16 @@ export class ShoppingEffects {
 
   updateItemOnCart$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(shoppingActions.initUpdateQuantity),
+      ofType(shoppingActions.initUpdateItemQuantityInCart),
       exhaustMap(({ itemUpdate }) => {
         return this.shoppingCartService.updateItemOnCart(itemUpdate).pipe(
           map((cartList) => {
-            return shoppingActions.successUpdateQuantity({ cartList });
+            return shoppingActions.successUpdateItemQuantityInCart({ cartList });
           }),
-          catchError((err)=> of(shoppingActions.failUpdateQuantity(err)))
+          catchError((err) => of(shoppingActions.failUpdateItemQuantityInCart(err)))
         );
       })
     );
   });
 }
+"feature"

@@ -9,242 +9,276 @@ import { lastOrderDetail } from 'src/app/Interfaces/lastOrderDetail';
 import { ICities } from 'src/app/Interfaces/Cities';
 import { AddItemsToCartByUserId } from 'src/app/Interfaces/AddItemsToCart';
 import { IUpdateItemInCart } from 'src/app/Interfaces/UpdateItemInCart';
+import {
+  CategoriesTypes,
+  CitiesTypes,
+  FetchSingleProductsBySearchTypes,
+  ProductsTypes,
+  EditProductByAdminTypes,
+  GetCartByIdTypes,
+  getCartByCustomerIdTypes,
+  DeleteAllCartItemsTypes,
+  DeleteSingleItemInCartTypes,
+  AddProductToCartListTypes,
+  CreateNewCartTypes,
+  GetUserDetailsShipmentsTypes,
+  CreateNewOrderTypes,
+  AddNewProductByAdminTypes,
+  LastOrderTypes,
+  DownloadRecipeTypes,
+  FetchUnavailableDatesTypes,
+  UpdateItemQuantityInCart,
 
-export const fetchCategories = createAction('[Categories] fetch Categories');
+} from './acationTypes';
+
+export const fetchCategories = createAction(CategoriesTypes.init);
 
 export const fetchCategoriesSuccess = createAction(
-  '[Categories] fetch Categories Success',
+  CategoriesTypes.success,
   props<{ categories: Categories[] }>()
 );
 
 export const fetchCategoriesFailure = createAction(
-  '[Categories] fetch Categories Failure',
+  CategoriesTypes.failure,
   props<{ error: any }>()
 );
+
 export const fetchProductsInit = createAction(
-  '[Products]  fetch Products',
+  ProductsTypes.init,
   props<{ categoryId: string }>()
 );
 export const fetchProductsSuccess = createAction(
-  '[Products]  fetch Products Success',
+  ProductsTypes.success,
   props<{ products: IProduct[] }>()
 );
 export const fetchProductsFailure = createAction(
-  '[Products]  fetch Products Failure',
+  ProductsTypes.failure,
   props<{ error: any }>()
 );
 
-export const fetchCities = createAction('[Categories] fetch Categories');
+export const fetchCities = createAction(CitiesTypes.init);
 
 export const fetchCitiesSuccess = createAction(
-  '[Categories] fetch Cities Success',
+  CitiesTypes.success,
   props<{ cities: ICities[] }>()
 );
 export const fetchCitiesFailure = createAction(
-  '[Categories] fetch Categories Failure',
+  CitiesTypes.success,
   props<{ error: any }>()
 );
 
 export const fetchSingleProductsBySearch = createAction(
-  '[Products]  fetch single product by Search ',
+  FetchSingleProductsBySearchTypes.init,
   props<{ str: string }>()
 );
 export const fetchSingleProductsBySearchSuccess = createAction(
-  '[Products] fetch single product by Search Success',
+  FetchSingleProductsBySearchTypes.success,
   props<{ products: IProduct[] }>()
 );
 export const fetchSingleProductsBySearchFailure = createAction(
-  '[Products]  fetch single product by Search  Failure',
+  FetchSingleProductsBySearchTypes.failure,
   props<{ error: any }>()
 );
 
 export const productEditByAdminInit = createAction(
-  '[Edit product] lode product edit by admin',
+  EditProductByAdminTypes.init,
   props<{ product: IProduct }>()
 );
 export const productEditByAdminSuccess = createAction(
-  '[Edit product] Success product edit by admin',
+  EditProductByAdminTypes.success,
   props<{ product: IProduct }>()
+);
+export const productEditByAdminFailure = createAction(
+  EditProductByAdminTypes.failure,
+  props<{ error: any }>()
 );
 
 // ----------------------------------------------------------
 //---------------------------------------------------------------
 export const getCartByCartIdInit = createAction(
-  `[ init cart by Cart id]`,
+  GetCartByIdTypes.init,
   props<{ cartId: string }>()
 );
 // ----------------------------------------------------------
 //---------------------------------------------------------------
 export const getCartByCartIdSuccess = createAction(
-  `[Success fetch all cart details ]`,
+  GetCartByIdTypes.success,
   props<{ cart: CartResponseForUser }>()
 );
 export const getCartByCartIdFail = createAction(
-  `[Fail  fetch all cart details ]`,
+  GetCartByIdTypes.failure,
   props<{ error: any }>()
 );
 // ----------------------------------------------------------
 //---------------------------------------------------------------
+
 export const getCartByCustomerIdInit = createAction(
-  '[ init cart by customer  id]',
+  getCartByCustomerIdTypes.init,
   props<{ customerRef: string }>()
 );
 // ----------------------------------------------------------
 //---------------------------------------------------------------
 export const getCartByCustomerIdSuccess = createAction(
-  '[ Success cart by customer  id]',
+  getCartByCustomerIdTypes.success,
   props<{ cart: null }>()
 );
 export const getCartByCustomerFail = createAction(
-  `[Fail fetch cart by customer  id ]`,
+  getCartByCustomerIdTypes.failure,
   props<{ error: any }>()
 );
 // ----------------------------------------------------------
 //---------------------------------------------------------------
-export const DeleteAllProductCartListInit = createAction(
-  '[init delete all product by cart id]',
+
+export const deleteAllItemsInCartInit = createAction(
+  DeleteAllCartItemsTypes.init,
   props<{ cartId: string }>()
 );
 // ----------------------------------------------------------
 //---------------------------------------------------------------
-export const DeleteAllProductCartListSuccess = createAction(
-  '[init delete all product by cart id]'
+export const deleteAllItemsInCartSuccess = createAction(
+  DeleteAllCartItemsTypes.success
 );
-export const DeleteAllProductCartListFail = createAction(
-  `[Fail delete all product by cart id]`,
+export const deleteAllItemsInCartFail = createAction(
+  DeleteAllCartItemsTypes.failure,
   props<{ error: any }>()
 );
 // ----------------------------------------------------------
 //---------------------------------------------------------------
+
 export const DeleteSingleProductFromCartListInit = createAction(
-  '[init delete single product by cart id]',
+  DeleteSingleItemInCartTypes.init,
   props<{ cartId: string; productId: string }>()
 );
 // ----------------------------------------------------------
 //---------------------------------------------------------------
 export const DeleteSingleProductFromCartListSuccess = createAction(
-  '[success delete single product by cart id]'
+  DeleteSingleItemInCartTypes.success
 );
 
 export const DeleteSingleProductFromCartListFail = createAction(
-  `[Fail delete all product by cart id]`,
+  DeleteSingleItemInCartTypes.failure,
   props<{ error: any }>()
 );
 // ----------------------------------------------------------
 //---------------------------------------------------------------
-export const addProductsToListInit = createAction(
-  '[init add Product to list]',
+
+export const addSingleProductToListCartInit = createAction(
+  AddProductToCartListTypes.init,
   props<{
     addItemsCartByUserId: AddItemsToCartByUserId;
   }>()
 );
 // ----------------------------------------------------------
 //---------------------------------------------------------------
-export const addProductsToListSuccess = createAction(
-  '[success add single product by cart id]',
+export const addSingleProductToListCartSuccess = createAction(
+  AddProductToCartListTypes.success,
   props<{ cartItems: CartResponseForUser }>()
 );
-export const addProductsToListFail = createAction(
-  '[Fail add single product by cart id]',
+export const addSingleProductToListCartFail = createAction(
+  AddProductToCartListTypes.failure,
   props<{ error: any }>()
 );
 // ----------------------------------------------------------
 //---------------------------------------------------------------
+
 export const createNewCartInit = createAction(
-  '[init create new cart for customer]',
+  CreateNewCartTypes.init,
   props<{ customerRef: string }>()
 );
 // ----------------------------------------------------------
 //---------------------------------------------------------------
+
 export const createNewCartSuccess = createAction(
-  '[success create new cart for customer]',
+  CreateNewCartTypes.success,
   props<{ cart: null }>()
 );
 export const createNewCartFail = createAction(
-  '[fail create new cart for customer]',
+  CreateNewCartTypes.failure,
   props<{ error: any }>()
 );
 
 export const getUserDetailsShipmentsInit = createAction(
-  '[init User details] get city and address for Order ',
+  GetUserDetailsShipmentsTypes.init,
   props<{ customerRef: string }>()
 );
 export const getUserDetailsShipmentsSuccess = createAction(
-  '[init User details] get city and address for Order ',
+  GetUserDetailsShipmentsTypes.success,
   props<{ city: string; address: string }>()
 );
 export const getUserDetailsShipmentsError = createAction(
-  '[init User details] get city and address for Order ',
+  GetUserDetailsShipmentsTypes.failure,
   props<{ error: any }>()
 );
 
 export const createNewOrderInit = createAction(
-  `[init create new order for Customer ]`,
+  CreateNewOrderTypes.init,
   props<{ payload: createNewOrder }>()
 );
 export const createNewOrderSuccess = createAction(
-  `[Success create new order for Customer ]`,
+  CreateNewOrderTypes.success,
   props<{ _id: string }>()
 );
 export const createNewOrderFailed = createAction(
-  `[failed create new order for Customer ]`,
+  CreateNewOrderTypes.failure,
   props<{ error: any }>()
 );
 
 export const AddNewProductByAdminInit = createAction(
-  `[init create and add  new PRoduct by Admin ]`,
+  AddNewProductByAdminTypes.init,
   props<{ payload: CreateNewProduct }>()
 );
 export const AddNewProductByAdminSuccess = createAction(
-  `[Success create and add  new PRoduct by Admin ]`,
+  AddNewProductByAdminTypes.success,
   props<{ response: IProduct }>()
 );
 export const AddNewProductByAdminFailed = createAction(
-  `[failed create and add  new PRoduct by Admin ]`,
+  AddNewProductByAdminTypes.failure,
   props<{ error: any }>()
 );
+
 export const lastOrderInit = createAction(
-  `fetch last order Init `,
+  LastOrderTypes.init,
   props<{ _id: string }>()
 );
 export const lastOrderSuccess = createAction(
-  `fetch last order  Success`,
+  LastOrderTypes.success,
   props<{ lastOrderDetail: lastOrderDetail[] }>()
 );
 export const lastOrderFail = createAction(
-  `fetch last order  Fail`,
+  LastOrderTypes.failure,
   props<{ error: any }>()
 );
+
 export const logOut = createAction('log out');
 
 export const downloadRecipeInit = createAction(
-  'init download',
+  DownloadRecipeTypes.init,
   props<{ cartId: string; OrderId: string }>()
 );
-export const downloadRecipeSuccess = createAction('Success Download Recipe');
-export const downloadRecipeFail = createAction('Fail Download Recipe');
+export const downloadRecipeSuccess = createAction(DownloadRecipeTypes.success);
+export const downloadRecipeFail = createAction(DownloadRecipeTypes.failure);
 
 export const fetchUnavailableDatesInit = createAction(
-  'init fetch all blocked date'
+  FetchUnavailableDatesTypes.init
 );
 export const fetchUnavailableDatesSuccess = createAction(
-  'Success fetch all blocked date successfully',
+  FetchUnavailableDatesTypes.success,
   props<{ date: string[] }>()
 );
 
 export const fetchUnavailableDatesFail = createAction(
-  'fail fetch all blocked date ',
+  FetchUnavailableDatesTypes.failure,
   props<{ error: any }>()
 );
-export const initUpdateQuantity = createAction(
-  '[Init Update Cart item]',
+export const initUpdateItemQuantityInCart = createAction(
+  UpdateItemQuantityInCart.init,
   props<{ itemUpdate: IUpdateItemInCart }>()
 );
-export const successUpdateQuantity = createAction(
-  '[success Update Cart item]',
+export const successUpdateItemQuantityInCart = createAction(
+  UpdateItemQuantityInCart.success,
   props<{ cartList: CartResponseForUser }>()
 );
-export const failUpdateQuantity= createAction(
-  '[fail Update Cart item] ',
+export const failUpdateItemQuantityInCart = createAction(
+  UpdateItemQuantityInCart.failure,
   props<{ error: any }>()
 );
