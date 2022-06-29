@@ -11,7 +11,7 @@
           <app-add-product-amount [item2]="item"></app-add-product-amount
         >
       </span>
-
+        <button (click)="deleteOnItem(cartList._id,item._id)">X</button>
         <span class="col-md-4">{{ item.productRefId.name }}</span>
         <span class="col-md-3">
           <img alt="" src="{{ item.productRefId.imgUrl }}" />

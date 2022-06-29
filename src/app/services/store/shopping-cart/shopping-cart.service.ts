@@ -38,10 +38,10 @@ export class ShoppingCartService {
   // }
 
 
-  deleteProduct(cartId: string, productId: string): Observable<string> {
-    return this.http.post<string>(URL_DELETE_PRODUCT, {
+  deleteProduct(cartId: string, itemId: string): Observable<{idItem:string}> {
+    return this.http.post<{idItem:string}>(URL_DELETE_PRODUCT, {
       cartId,
-      productId,
+      itemId,
     });
   }
   deleteAllProducts(cartId: string): Observable<string> {

@@ -16,13 +16,11 @@ export interface Shopping {
   products: IProduct[] | null;
   loading: boolean | null;
   authErrorLogin: AuthErrorLogin | null;
-  error:null,
+  error: null;
   infoLogin: IUserInformation | null;
   isRegistered: boolean | null;
   citiesList: ICities[] | null;
   errorAlert: any;
-
-
 
   cartId: string | null;
   cartListProducts: CartResponseForUser | null;
@@ -38,13 +36,11 @@ export const initialShoppingState: Shopping | null = {
   products: null,
   loading: null,
   authErrorLogin: null,
-  error:null,
+  error: null,
   infoLogin: null,
   isRegistered: null, //check in register component if user can to continue with registration
   citiesList: null,
   errorAlert: null,
-
-
 
   cartId: null,
   cartListProducts: null,
@@ -116,7 +112,7 @@ export const shoppingReducer = createReducer(
   ),
   on(UserInformation.loginInitFailure, (state, { error }) => ({
     ...state,
-    authErrorLogin:error,
+    authErrorLogin: error,
     loading: false,
   })),
 
@@ -164,12 +160,25 @@ export const shoppingReducer = createReducer(
     loading: false,
   })),
 
-
-   on(ShoppingActions.successUpdateItemQuantityInCart, (state, { cartList }) => ({
-     ...state,
-     cartListProducts: cartList,
-   })),
-
+  on(
+    ShoppingActions.successUpdateItemQuantityInCart,
+    (state, { cartList }) => ({
+      ...state,
+      cartListProducts: cartList,
+    })
+  ),
+  on(
+    ShoppingActions.DeleteSingleProductFromCartListSuccess,
+    (state, { idItem }) => ({
+      ...state,
+      cartListProducts: {
+        ...state.cartListProducts,
+        items: state.cartListProducts.items.filter(
+          (item) => item._id !== idItem
+        ),
+      },
+    })
+  ),
 
   on(ShoppingActions.getCartByCartIdSuccess, (state, { cart }) => ({
     ...state,
@@ -213,6 +222,6 @@ export const shoppingReducer = createReducer(
     products: null,
     DateCreatedCart: null,
     unavailableDates: [],
-    authErrorLogin:null
+    authErrorLogin: null,
   }))
 );

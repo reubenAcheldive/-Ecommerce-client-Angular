@@ -176,10 +176,10 @@ export class ShoppingEffects {
   DeleteSingleProductCartList$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(shoppingActions.DeleteSingleProductFromCartListInit),
-      exhaustMap(({ cartId, productId }) => {
-        return this.shoppingCartService.deleteProduct(cartId, productId).pipe(
-          map(() => {
-            return shoppingActions.DeleteSingleProductFromCartListSuccess();
+      exhaustMap(({ cartId, itemId }) => {
+        return this.shoppingCartService.deleteProduct(cartId, itemId).pipe(
+          map(({idItem}) => {
+            return shoppingActions.DeleteSingleProductFromCartListSuccess({idItem});
           }),
           catchError((error) =>
             of(shoppingActions.DeleteSingleProductFromCartListFail({ error }))
