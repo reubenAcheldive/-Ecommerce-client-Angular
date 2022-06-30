@@ -1,11 +1,15 @@
-<div class="categories-nav-bar">
 
-  <ul class="row justify-content-lg">
-    <li class="col-md-1 " *ngFor="let category of categories">
-      <a class="col-lg-12" routerLink="{{category._id}}"><img width="48"  height="48"
-          src="../../../../../assets/icons/{{category.nameCategory}}.png" alt="" /></a>
-          <small class="col-lg-12">{{category.nameCategory}}</small>
+  <ul class="row justify-content-md-lg-sm">
+    <li class="col-lg-1 categories" *ngFor="let category of categories" routerLink="{{ category._id }}">
+      <a class="col-lg-1 category-link text-center"
+        ><img
+          width="48"
+          height="48"
+          src="../../../../../assets/icons/{{ category.nameCategory }}.png"
+          alt=""
+      /></a>
+      <br/>
+      <small class="text-center">{{ category.nameCategory }}</small>
     </li>
-
   </ul>
-</div>
+

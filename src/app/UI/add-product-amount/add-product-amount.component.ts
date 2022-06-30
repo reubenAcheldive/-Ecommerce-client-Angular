@@ -26,6 +26,9 @@ export class AddProductAmountComponent implements OnInit {
     this._item = value.productRefId;
     this.amount = value.quantity;
   }
+  @Input() set quantity(value: number) {
+    this.amount = value;
+  }
 
   constructor(private store: Store) {}
 
@@ -35,7 +38,7 @@ export class AddProductAmountComponent implements OnInit {
 
   public increment(): void {
     this.amount += 1;
-    console.log({ item: this._item.quantity });
+
 
     this.dispatchUpdateAction(this._item);
   }

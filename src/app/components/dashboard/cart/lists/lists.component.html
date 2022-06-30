@@ -6,15 +6,18 @@
           <small class="">₪</small>
           {{ item.quantity * item.productRefId.price | number: "1.0-1" }}
         </span>
-        <!-- <app-button-quantity [item]="item"></app-button-quantity> -->
-        <span class="a">
-          <app-add-product-amount [item2]="item"></app-add-product-amount
+
+        <span class="amount"> </span>
+        <button
+          class="deleteItem"
+          (click)="deleteOnItem(cartList._id, item._id)"
         >
-      </span>
-        <button (click)="deleteOnItem(cartList._id,item._id)">X</button>
+          X
+        </button>
         <span class="col-md-4">{{ item.productRefId.name }}</span>
         <span class="col-md-3">
           <img alt="" src="{{ item.productRefId.imgUrl }}" />
+          <app-add-product-amount  [item2]="item"></app-add-product-amount>
         </span>
       </div>
     </mat-card>
