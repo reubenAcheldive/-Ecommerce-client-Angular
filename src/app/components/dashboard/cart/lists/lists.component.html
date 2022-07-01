@@ -17,7 +17,7 @@
         <span class="col-md-4">{{ item.productRefId.name }}</span>
         <span class="col-md-3">
           <img alt="" src="{{ item.productRefId.imgUrl }}" />
-          <app-add-product-amount  [item2]="item"></app-add-product-amount>
+          <app-add-product-amount [amount]="item.quantity" (quantityChange)="onQuantityChange($event, item)"></app-add-product-amount>
         </span>
       </div>
     </mat-card>

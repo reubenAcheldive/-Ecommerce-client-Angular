@@ -69,20 +69,6 @@ export class ShoppingEffects {
           .getAllProductByCategoryId(action.categoryId)
           .pipe(
             map((products: IProduct[]) => {
-
-              if (cartResponse?.items?.length) {
-                const itemsDictionary: Record<string, number> = {};
-                cartResponse.items.forEach((item: Item) => {
-                  itemsDictionary[item.productRefId._id] = item.quantity
-                });
-                products.forEach((product: IProduct) => {
-                  product.quantity = itemsDictionary[product._id] || 0;
-                });
-              }else{
-                products.forEach((product: IProduct) => {
-                  product.quantity = 0;
-                });
-              }
               return shoppingActions.fetchProductsSuccess({ products });
             }),
             catchError((error) =>
@@ -178,8 +164,10 @@ export class ShoppingEffects {
       ofType(shoppingActions.DeleteSingleProductFromCartListInit),
       exhaustMap(({ cartId, itemId }) => {
         return this.shoppingCartService.deleteProduct(cartId, itemId).pipe(
-          map(({idItem}) => {
-            return shoppingActions.DeleteSingleProductFromCartListSuccess({idItem});
+          map(({ idItem }) => {
+            return shoppingActions.DeleteSingleProductFromCartListSuccess({
+              idItem,
+            });
           }),
           catchError((error) =>
             of(shoppingActions.DeleteSingleProductFromCartListFail({ error }))
@@ -303,12 +291,16 @@ export class ShoppingEffects {
       exhaustMap(({ itemUpdate }) => {
         return this.shoppingCartService.updateItemOnCart(itemUpdate).pipe(
           map((cartList) => {
-            return shoppingActions.successUpdateItemQuantityInCart({ cartList });
+            return shoppingActions.successUpdateItemQuantityInCart({
+              cartList,
+            });
           }),
-          catchError((err) => of(shoppingActions.failUpdateItemQuantityInCart(err)))
+          catchError((err) =>
+            of(shoppingActions.failUpdateItemQuantityInCart(err))
+          )
         );
       })
     );
   });
 }
-"feature"
+('feature');

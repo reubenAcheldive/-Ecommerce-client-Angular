@@ -1,18 +1,18 @@
 import { createReducer, on } from '@ngrx/store';
 
 import { IUserInformation } from 'src/app/Interfaces/userInformation';
-import { lastOrderDetail } from 'src/app/Interfaces/lastOrderDetail';
 import { Categories } from 'src/app/Interfaces/categories';
 import { ICities } from 'src/app/Interfaces/Cities';
 
 import * as ShoppingActions from '../actions/shopping.actions';
 import * as UserInformation from '../actions/user.actions';
 import { IProduct } from '../../../app/Interfaces/Products';
-import { CartResponseForUser } from 'src/app/Interfaces/GetCartUser';
+import { CartResponseForUser, Item } from 'src/app/Interfaces/GetCartUser';
 import { AuthErrorLogin } from 'src/app/Interfaces/Errors/Auth/Auth.error';
 
 export interface Shopping {
   categories: Categories[] | null;
+  currentCategory?: string;
   products: IProduct[] | null;
   loading: boolean | null;
   authErrorLogin: AuthErrorLogin | null;
@@ -52,14 +52,15 @@ export const initialShoppingState: Shopping | null = {
 
 export const shoppingReducer = createReducer(
   initialShoppingState,
-  on(
-    ShoppingActions.fetchCategories,
-    ShoppingActions.fetchProductsInit,
-    (state) => ({
-      ...state,
-      loading: true,
-    })
-  ),
+  on(ShoppingActions.fetchProductsInit, (state, payload) => ({
+    ...state,
+    currentCategory: payload.categoryId,
+    loading: true,
+  })),
+  on(ShoppingActions.fetchCategories, (state) => ({
+    ...state,
+    loading: true,
+  })),
   on(ShoppingActions.fetchCategoriesSuccess, (state, { categories }) => ({
     ...state,
     categories,
@@ -165,6 +166,7 @@ export const shoppingReducer = createReducer(
     (state, { cartList }) => ({
       ...state,
       cartListProducts: cartList,
+      products: updateProducts(state.products, cartList.items),
     })
   ),
   on(
@@ -232,3 +234,16 @@ export const shoppingReducer = createReducer(
     authErrorLogin: null,
   }))
 );
+
+const updateProducts = (products: IProduct[], items: Item[]): IProduct[] => {
+  const updateProducts: IProduct[] = [ ...products ];
+  items.forEach((item: Item) => {
+    const productId: string = item.productRefId._id;
+    let index: number = updateProducts.findIndex((p) => p._id === productId);
+    if (index > -1) {
+      const product: IProduct = updateProducts[index];
+      updateProducts.splice(index, 1, {...product, quantity: item.quantity});
+    }
+  });
+  return updateProducts;
+};

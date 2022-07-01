@@ -8,7 +8,7 @@ const routes: Routes = [
     component: StoreComponent,
   },
   {
-    path: ':category',
+    path: '',
     component: StoreComponent,
     children: [
       {

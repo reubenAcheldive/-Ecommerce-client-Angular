@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Item } from 'src/app/Interfaces/GetCartUser';
@@ -15,38 +17,27 @@ import { initUpdateItemQuantityInCart } from 'src/app/state/actions/shopping.act
   styleUrls: ['./add-product-amount.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddProductAmountComponent implements OnInit {
+export class AddProductAmountComponent {
+  @Input()
   public amount: number = 0;
-  private _item: IProduct;
-  @Input() set item(value: IProduct) {
-    this._item = value;
-    this.amount = this._item.quantity;
-  }
-  @Input() set item2(value: Item) {
-    this._item = value.productRefId;
-    this.amount = value.quantity;
-  }
-  @Input() set quantity(value: number) {
-    this.amount = value;
-  }
+
+  @Output()
+  public quantityChange: EventEmitter<number> = new EventEmitter
 
   constructor(private store: Store) {}
 
-  ngOnInit(): void {
-    // this.store.select()
-  }
-
   public increment(): void {
     this.amount += 1;
+    this.quantityChange.emit(this.amount);
 
-
-    this.dispatchUpdateAction(this._item);
+    //this.dispatchUpdateAction(this._item);
   }
 
   public decrement() {
     if (this.amount > 0) {
       this.amount -= 1;
-      this.dispatchUpdateAction(this._item);
+      this.quantityChange.emit(this.amount);
+      //this.dispatchUpdateAction(this._item);
     }
   }
 

@@ -4,9 +4,11 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Categories } from 'src/app/Interfaces/categories';
 import { IProduct } from 'src/app/Interfaces/Products';
-import { ALL_PRODUCT_QUN, GET_CATEGORY, SEARCH_PRODUCT_BY_NAME } from '../../environment';
-
-
+import {
+  ALL_PRODUCT_QUN,
+  GET_CATEGORY,
+  SEARCH_PRODUCT_BY_NAME,
+} from '../../environment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,18 +18,16 @@ export class ProductService {
   constructor(private http: HttpClient, private store: Store) {}
 
   fetchAllCategory(): Observable<Categories[]> {
-    return this.http.get<Categories[]>(
-      GET_CATEGORY
-    );
+    return this.http.get<Categories[]>(GET_CATEGORY);
   }
 
-  getAllProductByCategoryId(categoryId: string): Observable<IProduct[]> {
-
-
-    return this.http.post<IProduct[]>(
-      `${GET_CATEGORY}/${categoryId}`,
-      {}
-    );
+  getAllProductByCategoryId(
+    categoryId: string,
+    cartId?: string
+  ): Observable<IProduct[]> {
+    return this.http.post<IProduct[]>(`${GET_CATEGORY}/${categoryId}`, {
+      cartId: '62bc60407a0a29c9f3c77b31',
+    });
   }
 
   getProductsByName(str: string): Observable<IProduct[]> {
@@ -36,8 +36,6 @@ export class ProductService {
     });
   }
   totalOfProductInDB(): Observable<{ quantityOfProducts: number }> {
-    return this.http.get<{ quantityOfProducts: number }>(
-      ALL_PRODUCT_QUN
-    );
+    return this.http.get<{ quantityOfProducts: number }>(ALL_PRODUCT_QUN);
   }
 }

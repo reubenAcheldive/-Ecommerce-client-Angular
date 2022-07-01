@@ -3,9 +3,7 @@ export interface IProduct {
   quantity?: number;
   name: string;
   categoryRef: string;
-
   price: number;
   imgUrl: string;
   description: string;
-
 }
