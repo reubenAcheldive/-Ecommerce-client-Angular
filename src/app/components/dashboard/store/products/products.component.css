@@ -28,3 +28,6 @@ img {
   position: absolute;
   display: block;
 }
+.btn-position{
+  background-color: red;
+}

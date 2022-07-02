@@ -1,3 +1,8 @@
+
+.hi{
+
+  overflow: visible ;
+}
 .card-items {
   width: auto;
   margin-top: 5px;

@@ -10,13 +10,20 @@
   </mat-card>
   <div class="row mt-2">
     <mat-card class="col delete_outline">
-      <app-icon-info icon="delete_outline" (click)="deleteAllItems(cartData._id)"></app-icon-info>
-   
+      <app-icon-info
+        icon="delete_outline"
+        (click)="deleteAllItems(cartData._id)"
+      ></app-icon-info>
     </mat-card>
   </div>
   <div class="row mt-2">
     <div class="col cartList">
       <app-lists [cartList]="cartData"></app-lists>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col cartList">
+    <button mat-raised-button>Go To Payment</button>
     </div>
   </div>
 </div>

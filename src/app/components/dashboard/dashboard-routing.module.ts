@@ -13,10 +13,15 @@ const routes: Routes = [
         loadChildren: () =>
           import('../dashboard/store/store.module').then((m) => m.StoreModule),
       },
+      {
+        path: 'order',
+        loadChildren: () =>
+          import('../../components/dashboard/order/order.module').then(
+            (m) => m.OrderModule
+          ),
+      },
     ],
   },
-
-
 ];
 
 @NgModule({
