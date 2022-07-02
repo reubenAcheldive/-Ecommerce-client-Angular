@@ -15,14 +15,14 @@ export class AppComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private router: Router,
-    private store: Store
+    private store: Store,
+    private AuthService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.store.dispatch(
       getCartByCartIdInit({ cartId: '62bc60407a0a29c9f3c77b31' })
     );
+    this.AuthService.AutoCheckJwt()
   }
-
-
 }

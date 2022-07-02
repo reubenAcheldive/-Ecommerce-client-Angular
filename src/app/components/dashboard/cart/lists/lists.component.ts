@@ -5,12 +5,18 @@ import {
   OnInit,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { DeleteSingleProductFromCartListInit, initUpdateItemQuantityInCart } from './../../../../state/actions/shopping.actions';
+import {
+  DeleteSingleProductFromCartListInit,
+  initUpdateItemQuantityInCart,
+} from './../../../../state/actions/shopping.actions';
 import { Store } from '@ngrx/store';
 import { selectProducts } from 'src/app/state/selectors/shopping-selectors';
 import { IProduct } from 'src/app/Interfaces/Products';
 import { Cart, Item } from 'src/app/Interfaces/cart/GetCartUser';
 
+import { selectAuthDetails } from './../../../../state/selectors/auth-selectors';
+import { IUser } from 'src/app/Interfaces/auth/userInformation';
+// import svg from "../../../../../assets/shopping-bag-svgrepo-com.svg";
 @Component({
   selector: 'app-lists',
   templateUrl: './lists.component.html',
@@ -18,9 +24,8 @@ import { Cart, Item } from 'src/app/Interfaces/cart/GetCartUser';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListsComponent implements OnInit {
-
   @Input() cartList: Cart;
-
+  // haveUser: Observable<IUser> = this.store.select(selectAuthDetails);
   public fetchProducts$: Observable<IProduct[]> =
     this.store.select(selectProducts);
   constructor(private store: Store) {}
@@ -29,7 +34,7 @@ export class ListsComponent implements OnInit {
     console.log({ cartList: this.cartList });
   }
 
-  public onQuantityChange(quantity: number, item: Item): void{
+  public onQuantityChange(quantity: number, item: Item): void {
     this.store.dispatch(
       initUpdateItemQuantityInCart({
         itemUpdate: {

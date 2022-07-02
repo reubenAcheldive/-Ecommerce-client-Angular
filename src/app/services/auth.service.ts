@@ -3,11 +3,9 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as UserAction from '../../../src/app/state/actions/user.actions';
 import { logOut } from '../../../src/app/state/actions/shopping.actions';
-import {
-
-  selectCartList,
-} from '../state/selectors/shopping-selectors';
+import { selectCartList } from '../state/selectors/shopping-selectors';
 import { Subject, takeUntil } from 'rxjs';
+import { selectAuthDetails } from './../state/selectors/auth-selectors';
 
 @Injectable({
   providedIn: 'root',
@@ -30,30 +28,17 @@ export class AuthService {
   AutoCheckJwt() {
     // for now need to remove
 
-    this.store.dispatch(
-      UserAction.loginByJwt({
-        jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvdmVuMTIxQGdtYWlsLmNvbSIsInJvbGVzIjpmYWxzZSwiaWF0IjoxNjU2MjU4Nzg2fQ.5CmWhqoY-PW0TKhJrclzmAN78Mc2hVxO0ydCCXZb2OU',
-      })
-    );
-
-    // const jwt = localStorage.getItem('jwt');
-    // if (!jwt) return;
-    // this.store.dispatch(UserAction.loginByJwt({ jwt }));
-    // this.store.select(selectLoginInformation).subscribe((loginInformation) => {
-    //   if (loginInformation) {
-    //     if (loginInformation.isAdmin) {
-    //       this.router.navigateByUrl('/store');
-    //     }
-
-    //   } else if(this.haveListCart$)  {
-    //     this.router.navigateByUrl('/home-page/front-door');
-    //   }
-    //   else{
-    //     this.router.navigateByUrl('/store');
-    //   }
-    // });
+    const jwt = localStorage.getItem('jwt');
+    if (!jwt) return;
+    this.store.dispatch(UserAction.loginByJwt({ jwt }));
+    this.store.select(selectAuthDetails).subscribe((loginInformation) => {
+      if (loginInformation) {
+        if (loginInformation.isAdmin) {
+          this.router.navigateByUrl('/dashboard/store');
+        }
+      }
+    });
   }
-
   logOut() {
     this.router.navigateByUrl('/home-page');
     this.store.dispatch(logOut());

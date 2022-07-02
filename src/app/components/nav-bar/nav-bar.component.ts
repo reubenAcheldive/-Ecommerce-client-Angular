@@ -13,7 +13,7 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {}
   openDialog() {
     let dialogRef = this.dialog.open(AuthenticationComponent, {
-
+     height:"500px"
     });
   }
 }

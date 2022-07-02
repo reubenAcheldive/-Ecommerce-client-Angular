@@ -1,10 +1,10 @@
-<div class="btn-position {{ class }} ">
+<div class="btn-position ">
   <div class="btn-position-item">
     <button class="Ibtn increment" type="button" (click)="increment()">
       +
     </button>
     <p class="amount">{{ amount }}</p>
-    <button class="Ibtn decrement" type="button" (click)="decrement()">
+    <button *ngIf="amount > 0" class="Ibtn decrement" type="button" (click)="decrement()">
       -
     </button>
   </div>

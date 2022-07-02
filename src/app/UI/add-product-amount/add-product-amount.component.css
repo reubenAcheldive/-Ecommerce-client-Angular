@@ -1,41 +1,33 @@
-/* .btn-position .btn-position-item {
+.btn-position .btn-position-item {
   display: flex;
   justify-content: center;
-
-
-  z-index: 2;
-  top: -133px;
-  left: calc(50% - -93px);
-  top: calc(50% - 127px);
+  flex-direction: row;
 
 }
 
-.btn-position-item {
-  align-items: baseline;
-  align-content: center;
 
-}
-
-.Ibtn {
-  margin: auto;
-  padding: 11px;
-  background-color: rgb(255 255 255 / 0%);
+.Ibtn,
+p {
   border: none;
-  font-size: 55px;
-  font-weight: 100;
-  color: #615f5f;
+  display: flex;
+  font-size: 20px;
+  padding: 5px;
+  margin: 0 0.2rem;
+  width: 1rem;
 }
 
+.increment,
+.decrement {
 
+  border: none;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+}
 
+.increment:hover,
+.decrement:hover {
 
-
-@keyframes mymove {
-  from {
-    top: 200px;
-  }
-
-  to {
-    top: 0;
-  }
-} */
+  background-color: rgb(206, 203, 203);
+  border-radius: 2rem;
+}

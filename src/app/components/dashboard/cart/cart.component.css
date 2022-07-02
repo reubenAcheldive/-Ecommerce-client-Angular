@@ -1,4 +1,7 @@
-.delete_outline {
-  text-align: right;
-
+.delete_outline ,app-icon-info {
+  text-align: center;
+  cursor: pointer;
+}
+.test-2{
+ 
 }

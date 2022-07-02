@@ -2,13 +2,13 @@ ul {
 
   transition: opacity .4s ease-in-out;
   opacity: 1;
-background: rgba(90, 87, 87, 0);
+  background: rgba(90, 87, 87, 0);
   border-radius: 1rem;
 
   list-style-type: none;
   display: flex;
   justify-content: left;
-  border-bottom: 1px solid rgb(38, 37, 37) ;
+  border-bottom: 1px solid rgb(38, 37, 37);
 }
 
 ul>li {
@@ -16,14 +16,14 @@ ul>li {
   text-align: center;
   padding: 2px;
   margin: 0.5px 0.5px;
-  border-radius: 0.5rem;
-  cursor: pointer;
  
+  cursor: pointer;
+text-align: center;
 }
 
 ul>li:hover {
 
   opacity: 1;
-  border: 2px rgba(119, 119, 119, 0.699) solid;
-  background-color:rgba(234, 228, 228, 0.699) ;
+  border: 2px solid rgba(119, 119, 119, 0.699) solid;
+  background-color: rgba(234, 228, 228, 0.699);
 }

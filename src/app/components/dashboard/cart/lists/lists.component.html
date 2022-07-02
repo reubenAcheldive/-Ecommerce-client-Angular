@@ -1,25 +1,33 @@
 <div class="row hi">
-  <div *ngIf="cartList" class="col-lg-12 col-md-12 col-sm-12">
+  <div *ngIf="cartList; else empty" class="col-lg-12 col-md-12 col-sm-12">
     <mat-card class="col card-items" *ngFor="let item of cartList.items">
-      <div class="row card-item justify-content-md-between">
-        <span class="col-md-4">
+      <div class="row justify-content-between">
+        <div class="col-lg-1 text">
+          <button
+            class="deleteItem"
+            (click)="deleteOnItem(cartList._id, item._id)"
+          >
+            X
+          </button>
+        </div>
+        <span class="col text">
           <small class="">₪</small>
           {{ item.quantity * item.productRefId.price | number: "1.0-1" }}
         </span>
 
-        <span class="amount"> </span>
-        <button
-          class="deleteItem"
-          (click)="deleteOnItem(cartList._id, item._id)"
-        >
-          X
-        </button>
-        <span class="col-md-4">{{ item.productRefId.name }}</span>
-        <span class="col-md-3">
+        <span class="col ">{{ item.productRefId.name }}</span>
+        <span class="col-lg-4 text" >
           <img alt="" src="{{ item.productRefId.imgUrl }}" />
-          <app-add-product-amount [amount]="item.quantity" (quantityChange)="onQuantityChange($event, item)"></app-add-product-amount>
+          <app-add-product-amount
+            [amount]="item.quantity"
+            (quantityChange)="onQuantityChange($event, item)"
+          ></app-add-product-amount>
         </span>
       </div>
     </mat-card>
   </div>
+  <ng-template #empty>
+    <img class="svg" src="../../../../../assets/shopping-bag-svgrepo-com.svg" />
+    <h1>Your bag is empty... <br />Go shopping!</h1>
+  </ng-template>
 </div>
