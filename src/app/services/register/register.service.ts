@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Iuser } from 'src/app/Interfaces/user';
-import { IUserInformation } from 'src/app/Interfaces/userInformation';
+
+import { IUser } from 'src/app/Interfaces/auth/userInformation';
 
 import { URL_FIRST_STEP_REGISTER, URL_STEP_TWO_REGISTER } from '../environment';
 let headers = new HttpHeaders();
@@ -19,8 +19,8 @@ export class RegisterService {
       id,
     });
   }
-  fullRegister(data: Iuser): Observable<IUserInformation> {
-    return this.http.post<IUserInformation>(URL_STEP_TWO_REGISTER, data, {
+  fullRegister(data: IUser): Observable<IUser> {
+    return this.http.post<IUser>(URL_STEP_TWO_REGISTER, data, {
       headers,
     });
   }

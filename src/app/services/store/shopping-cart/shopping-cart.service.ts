@@ -1,4 +1,3 @@
-import { CartResponseForUser } from './../../../Interfaces/GetCartUser';
 import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
@@ -12,8 +11,10 @@ import {
   URL_DELETE_PRODUCT,
   URL_GET_CART_BY_CUSTOMER_ID,
 } from '../../environment';
-import { AddItemsToCartByUserId } from 'src/app/Interfaces/AddItemsToCart';
-import { IUpdateItemInCart } from 'src/app/Interfaces/UpdateItemInCart';
+import { AddItem } from 'src/app/Interfaces/cart/UpdateItemInCart';
+import { Cart } from 'src/app/Interfaces/cart/GetCartUser';
+
+
 
 @Injectable({
   providedIn: 'root',
@@ -50,14 +51,14 @@ export class ShoppingCartService {
     return this.http.post(URL_DELETE_ALL_PRODUCT, { cartId });
   }
 
-  // getCartByCustomerRef(customerRef: string): Observable<CartResponseForUser> {
+  // getCartByCustomerRef(customerRef: string): Observable<Cart> {
 
-  //   return this.http.get<CartResponseForUser>(
+  //   return this.http.get<Cart>(
   //     `${URL_GET_CART_BY_CUSTOMER_ID}/${customerRef}`
   //   );
   // }
-  getCartByCartId(cartId: string): Observable<CartResponseForUser> {
-    return this.http.get<CartResponseForUser>(
+  getCartByCartId(cartId: string): Observable<Cart> {
+    return this.http.get<Cart>(
       `${API_GET_CART_BY_CART_ID}/${cartId}`
     );
   }
@@ -66,8 +67,8 @@ export class ShoppingCartService {
     idCart,
     productRefId,
     quantity,
-  }: IUpdateItemInCart): Observable<CartResponseForUser> {
-    return this.http.post<CartResponseForUser>(
+  }: AddItem): Observable<Cart> {
+    return this.http.post<Cart>(
       `${this.api_url_change_quantity}`,
       { idCart, productRefId, quantity }
     );

@@ -1,4 +1,3 @@
-import { CartResponseForUser, Item } from './../../../../Interfaces/GetCartUser';
 import { Observable } from 'rxjs';
 import {
   Component,
@@ -10,6 +9,7 @@ import { DeleteSingleProductFromCartListInit, initUpdateItemQuantityInCart } fro
 import { Store } from '@ngrx/store';
 import { selectProducts } from 'src/app/state/selectors/shopping-selectors';
 import { IProduct } from 'src/app/Interfaces/Products';
+import { Cart, Item } from 'src/app/Interfaces/cart/GetCartUser';
 
 @Component({
   selector: 'app-lists',
@@ -19,8 +19,8 @@ import { IProduct } from 'src/app/Interfaces/Products';
 })
 export class ListsComponent implements OnInit {
 
-  @Input() cartList: CartResponseForUser;
-  
+  @Input() cartList: Cart;
+
   public fetchProducts$: Observable<IProduct[]> =
     this.store.select(selectProducts);
   constructor(private store: Store) {}

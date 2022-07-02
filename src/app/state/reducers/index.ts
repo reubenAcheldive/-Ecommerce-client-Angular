@@ -1,14 +1,15 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { IUserInformation } from 'src/app/Interfaces/userInformation';
+import { IUser } from 'src/app/Interfaces/auth/userInformation';
 import { Categories } from 'src/app/Interfaces/categories';
 import { ICities } from 'src/app/Interfaces/Cities';
 
 import * as ShoppingActions from '../actions/shopping.actions';
 import * as UserInformation from '../actions/user.actions';
 import { IProduct } from '../../../app/Interfaces/Products';
-import { CartResponseForUser, Item } from 'src/app/Interfaces/GetCartUser';
-import { AuthErrorLogin } from 'src/app/Interfaces/Errors/Auth/Auth.error';
+
+import { AuthErrorLogin } from 'src/app/Interfaces/cart/Auth/Auth.error';
+import { Cart, Item } from 'src/app/Interfaces/cart/GetCartUser';
 
 export interface Shopping {
   categories: Categories[] | null;
@@ -17,13 +18,13 @@ export interface Shopping {
   loading: boolean | null;
   authErrorLogin: AuthErrorLogin | null;
   error: null;
-  infoLogin: IUserInformation | null;
+  infoLogin: IUser | null;
   isRegistered: boolean | null;
   citiesList: ICities[] | null;
   errorAlert: any;
 
   cartId: string | null;
-  cartListProducts: CartResponseForUser | null;
+  cartListProducts: Cart | null;
 
   getDetailsShipments: { city: string; address: string } | null;
   orderID: string | null;
@@ -170,13 +171,13 @@ export const shoppingReducer = createReducer(
     })
   ),
   on(
-    ShoppingActions.DeleteSingleProductFromCartListSuccess,
-    (state, { idItem }) => ({
+    ShoppingActions.DeleteSingleProductFromCartListInit,
+    (state, { itemId }) => ({
       ...state,
       cartListProducts: {
         ...state.cartListProducts,
         items: state.cartListProducts.items.filter(
-          (item) => item._id !== idItem
+          (item) => item._id !== itemId
         ),
       },
     })
@@ -200,9 +201,9 @@ export const shoppingReducer = createReducer(
       getDetailsShipments: { city, address },
     })
   ),
-  on(ShoppingActions.lastOrderSuccess, (state, { lastOrderDetail }) => ({
+  on(ShoppingActions.lastOrderSuccess, (state, { OrderDetail }) => ({
     ...state,
-    lastOrderDetail: lastOrderDetail,
+    OrderDetail: OrderDetail,
   })),
   on(ShoppingActions.createNewOrderSuccess, (state, { _id }) => ({
     ...state,
@@ -225,7 +226,7 @@ export const shoppingReducer = createReducer(
     getDetailsShipments: null,
     infoLogin: null,
     isRegistered: null,
-    lastOrderDetail: null,
+    OrderDetail: null,
     loading: null,
     orderID: null,
     products: null,
@@ -236,13 +237,22 @@ export const shoppingReducer = createReducer(
 );
 
 const updateProducts = (products: IProduct[], items: Item[]): IProduct[] => {
-  const updateProducts: IProduct[] = [ ...products ];
+  const updateProducts: IProduct[] = [...products];
+
+
+     updateProducts.map((product)=>{
+      const obj = Object.assign({},product)
+      obj['quantity'] = 0;
+      return obj
+    })
+
+
   items.forEach((item: Item) => {
     const productId: string = item.productRefId._id;
     let index: number = updateProducts.findIndex((p) => p._id === productId);
     if (index > -1) {
       const product: IProduct = updateProducts[index];
-      updateProducts.splice(index, 1, {...product, quantity: item.quantity});
+      updateProducts.splice(index, 1, { ...product, quantity: item.quantity });
     }
   });
   return updateProducts;

@@ -1,6 +1,6 @@
 
 
-    export interface lastOrderDetail {
+    export interface OrderDetail {
         _id: string;
         cartRef: string;
         customerRef: string;

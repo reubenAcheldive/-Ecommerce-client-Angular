@@ -7,7 +7,6 @@ import {
   Output,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Item } from 'src/app/Interfaces/GetCartUser';
 import { IProduct } from 'src/app/Interfaces/Products';
 import { initUpdateItemQuantityInCart } from 'src/app/state/actions/shopping.actions';
 
@@ -22,7 +21,7 @@ export class AddProductAmountComponent {
   public amount: number = 0;
 
   @Output()
-  public quantityChange: EventEmitter<number> = new EventEmitter
+  public quantityChange: EventEmitter<number> = new EventEmitter();
 
   constructor(private store: Store) {}
 
@@ -37,6 +36,7 @@ export class AddProductAmountComponent {
     if (this.amount > 0) {
       this.amount -= 1;
       this.quantityChange.emit(this.amount);
+
       //this.dispatchUpdateAction(this._item);
     }
   }

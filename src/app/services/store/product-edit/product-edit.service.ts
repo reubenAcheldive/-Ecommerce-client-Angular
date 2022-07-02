@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { CreateNewProduct } from 'src/app/Interfaces/CreateNewProduct';
+
 import { IProduct } from 'src/app/Interfaces/Products';
 import { EDIT_PRODUCT, NEW_PRODUCT } from '../../environment';
 
@@ -17,7 +17,7 @@ export class ProductEditService {
     return this.http.patch<IProduct>(EDIT_PRODUCT, product);
   }
 
-  createNewProduct(payload: CreateNewProduct): Observable<IProduct>{
+  createNewProduct(payload: IProduct): Observable<IProduct>{
   return this.http.post<IProduct>(NEW_PRODUCT,payload)
   }
 

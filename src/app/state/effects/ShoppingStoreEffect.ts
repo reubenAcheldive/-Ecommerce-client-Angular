@@ -10,7 +10,6 @@ import { ShoppingCartService } from '../../services/store/shopping-cart/shopping
 import { CitiesService } from '../../services/store/cities/cities.service';
 import { OrderService } from 'src/app/services/store/order/order.service';
 import { selectCartList } from '../selectors/shopping-selectors';
-import { CartResponseForUser, Item } from './../../Interfaces/GetCartUser';
 import { Store } from '@ngrx/store';
 import { IProduct } from 'src/app/Interfaces/Products';
 import { ProductStyleDirective } from './../../directives/product-style.directive';
@@ -164,10 +163,10 @@ export class ShoppingEffects {
       ofType(shoppingActions.DeleteSingleProductFromCartListInit),
       exhaustMap(({ cartId, itemId }) => {
         return this.shoppingCartService.deleteProduct(cartId, itemId).pipe(
-          map(({ idItem }) => {
-            return shoppingActions.DeleteSingleProductFromCartListSuccess({
-              idItem,
-            });
+          map(() => {
+            return shoppingActions.DeleteSingleProductFromCartListSuccess(
+
+            );
           }),
           catchError((error) =>
             of(shoppingActions.DeleteSingleProductFromCartListFail({ error }))
@@ -218,11 +217,11 @@ export class ShoppingEffects {
     );
   });
 
-  createNewOrder$ = createEffect(() => {
+  CreateOrder$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(shoppingActions.createNewOrderInit),
       exhaustMap(({ payload }) => {
-        return this.orderService.createNewOrder(payload).pipe(
+        return this.orderService.CreateOrder(payload).pipe(
           map(({ message, idOrder }) => {
             return shoppingActions.createNewOrderSuccess({ _id: idOrder });
           }),
@@ -258,7 +257,7 @@ export class ShoppingEffects {
         return this.orderService.getLastOrderDetail(_id).pipe(
           map((action) => {
             return shoppingActions.lastOrderSuccess({
-              lastOrderDetail: action,
+              OrderDetail: action,
             });
           }),
           catchError((error) => of(shoppingActions.lastOrderFail(error)))

@@ -4,7 +4,7 @@ import * as UserActions from '../actions/user.actions';
 import { LoginService } from '../../services/login/login.service';
 import { Injectable } from '@angular/core';
 import { RegisterService } from 'src/app/services/register/register.service';
-import { AuthErrorLogin } from 'src/app/Interfaces/Errors/Auth/Auth.error';
+import { AuthErrorLogin } from 'src/app/Interfaces/cart/Auth/Auth.error';
 
 @Injectable()
 export class AuthEffects {

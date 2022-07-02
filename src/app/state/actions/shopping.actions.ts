@@ -1,14 +1,11 @@
-import { CartResponseForUser } from './../../Interfaces/GetCartUser';
 import { createAction, props } from '@ngrx/store';
 import { IProduct } from '../../../app/Interfaces/Products';
 
-import { createNewOrder } from 'src/app/Interfaces/createNewOrder';
-import { CreateNewProduct } from 'src/app/Interfaces/CreateNewProduct';
+
 import { Categories } from 'src/app/Interfaces/categories';
-import { lastOrderDetail } from 'src/app/Interfaces/lastOrderDetail';
+
 import { ICities } from 'src/app/Interfaces/Cities';
-import { AddItemsToCartByUserId } from 'src/app/Interfaces/AddItemsToCart';
-import { IUpdateItemInCart } from 'src/app/Interfaces/UpdateItemInCart';
+
 import {
   CategoriesTypes,
   CitiesTypes,
@@ -30,6 +27,12 @@ import {
   UpdateItemQuantityInCart,
 
 } from './acationTypes';
+import { CreateOrder } from '../../Interfaces/order/createNewOrder';
+import { OrderDetail } from 'src/app/Interfaces/order/lastOrderDetail';
+import { AddItems } from 'src/app/Interfaces/cart/AddItemsToCart';
+import { AddItem } from 'src/app/Interfaces/cart/UpdateItemInCart';
+import { Cart } from 'src/app/Interfaces/cart/GetCartUser';
+
 
 export const fetchCategories = createAction(CategoriesTypes.init);
 
@@ -103,7 +106,7 @@ export const getCartByCartIdInit = createAction(
 //---------------------------------------------------------------
 export const getCartByCartIdSuccess = createAction(
   GetCartByIdTypes.success,
-  props<{ cart: CartResponseForUser }>()
+  props<{ cart: Cart }>()
 );
 export const getCartByCartIdFail = createAction(
   GetCartByIdTypes.failure,
@@ -153,7 +156,7 @@ export const DeleteSingleProductFromCartListInit = createAction(
 //---------------------------------------------------------------
 export const DeleteSingleProductFromCartListSuccess = createAction(
   DeleteSingleItemInCartTypes.success,
-  props<{idItem:string}>()
+
 );
 
 export const DeleteSingleProductFromCartListFail = createAction(
@@ -166,14 +169,14 @@ export const DeleteSingleProductFromCartListFail = createAction(
 export const addSingleProductToListCartInit = createAction(
   AddProductToCartListTypes.init,
   props<{
-    addItemsCartByUserId: AddItemsToCartByUserId;
+    addItemsCartByUserId: AddItems;
   }>()
 );
 // ----------------------------------------------------------
 //---------------------------------------------------------------
 export const addSingleProductToListCartSuccess = createAction(
   AddProductToCartListTypes.success,
-  props<{ cartItems: CartResponseForUser }>()
+  props<{ cartItems: Cart }>()
 );
 export const addSingleProductToListCartFail = createAction(
   AddProductToCartListTypes.failure,
@@ -213,7 +216,7 @@ export const getUserDetailsShipmentsError = createAction(
 
 export const createNewOrderInit = createAction(
   CreateNewOrderTypes.init,
-  props<{ payload: createNewOrder }>()
+  props<{ payload: CreateOrder }>()
 );
 export const createNewOrderSuccess = createAction(
   CreateNewOrderTypes.success,
@@ -226,7 +229,7 @@ export const createNewOrderFailed = createAction(
 
 export const AddNewProductByAdminInit = createAction(
   AddNewProductByAdminTypes.init,
-  props<{ payload: CreateNewProduct }>()
+  props<{ payload: IProduct }>()
 );
 export const AddNewProductByAdminSuccess = createAction(
   AddNewProductByAdminTypes.success,
@@ -243,7 +246,7 @@ export const lastOrderInit = createAction(
 );
 export const lastOrderSuccess = createAction(
   LastOrderTypes.success,
-  props<{ lastOrderDetail: lastOrderDetail[] }>()
+  props<{ OrderDetail: OrderDetail[] }>()
 );
 export const lastOrderFail = createAction(
   LastOrderTypes.failure,
@@ -273,11 +276,11 @@ export const fetchUnavailableDatesFail = createAction(
 );
 export const initUpdateItemQuantityInCart = createAction(
   UpdateItemQuantityInCart.init,
-  props<{ itemUpdate: IUpdateItemInCart }>()
+  props<{ itemUpdate: AddItem }>()
 );
 export const successUpdateItemQuantityInCart = createAction(
   UpdateItemQuantityInCart.success,
-  props<{ cartList: CartResponseForUser }>()
+  props<{ cartList: Cart }>()
 );
 export const failUpdateItemQuantityInCart = createAction(
   UpdateItemQuantityInCart.failure,

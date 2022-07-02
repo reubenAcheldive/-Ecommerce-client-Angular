@@ -1,4 +1,4 @@
-export interface IUserInformation {
+export interface IUser {
   jwt: string;
   email: string;
   isAdmin: boolean;

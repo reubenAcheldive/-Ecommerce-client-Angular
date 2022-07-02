@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
-import { AuthErrorLogin } from 'src/app/Interfaces/Errors/Auth/Auth.error';
-import { Iuser } from 'src/app/Interfaces/user';
-import { IUserInformation } from 'src/app/Interfaces/userInformation';
+import { AuthErrorLogin } from 'src/app/Interfaces/cart/Auth/Auth.error';
+
+import { IUser } from 'src/app/Interfaces/auth/userInformation';
 
 
 
@@ -12,7 +12,7 @@ export const loginByJwt = createAction('[User] Login By JWT', props<{jwt: string
 
 export const loginInitSuccess = createAction(
   '[User] Login User Success',
-  props<{ infoLogin: IUserInformation }>()
+  props<{ infoLogin: IUser }>()
 );
 
 export const loginInitFailure = createAction(
@@ -32,11 +32,11 @@ export const checkRegisterFailure = createAction(
   props<{ error: any }>()
 );
 
-export const registerUserInit = createAction('[User] lode start full register',props<{data:Iuser}>()
+export const registerUserInit = createAction('[User] lode start full register',props<{data:IUser}>()
 );
 export const registerUserSuccess = createAction(
   '[User] lode full register Success',
-  props<{ infoLogin: IUserInformation }>()
+  props<{ infoLogin: IUser }>()
 );
 export const registerUserFailure = createAction(
   '[User] lode full  register failure',

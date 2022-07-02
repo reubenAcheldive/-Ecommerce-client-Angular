@@ -2,10 +2,10 @@ import { Store } from '@ngrx/store';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { selectAuthDetails } from 'src/app/state/selectors/auth-selectors';
 import { selectCartList } from '../../../state/selectors/shopping-selectors';
-import { CartResponseForUser } from 'src/app/Interfaces/GetCartUser';
 import { filter, Observable, Subject, takeUntil } from 'rxjs';
-import { IUserInformation } from './../../../Interfaces/userInformation';
+import { IUser } from '../../../Interfaces/auth/userInformation';
 import { deleteAllItemsInCartInit } from 'src/app/state/actions/shopping.actions';
+import { Cart } from 'src/app/Interfaces/cart/GetCartUser';
 
 @Component({
   selector: 'app-cart',
@@ -16,16 +16,16 @@ import { deleteAllItemsInCartInit } from 'src/app/state/actions/shopping.actions
 export class CartComponent implements OnInit {
   constructor(private store: Store) {}
   getUserId: string;
-  cartList: CartResponseForUser;
+  cartList: Cart;
   unsubscribe$ = new Subject<void>();
-  public cartData$: Observable<CartResponseForUser>;
+  public cartData$: Observable<Cart>;
 
   ngOnInit(): void {
     this.store
       .select(selectAuthDetails)
-      .pipe(filter((user: IUserInformation) => !!user))
+      .pipe(filter((user: IUser) => !!user))
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((user: IUserInformation) => (this.getUserId = user.userId));
+      .subscribe((user: IUser) => (this.getUserId = user.userId));
     this.cartData$ = this.store
       .select(selectCartList)
       .pipe(takeUntil(this.unsubscribe$));
