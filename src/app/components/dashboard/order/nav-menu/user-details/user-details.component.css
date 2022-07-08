@@ -1,0 +1,14 @@
+mat-card {
+  width: 45rem;
+  height: 20rem;
+  display: flex;
+
+
+}
+
+mat-card>mat-card-content {
+
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center
+}

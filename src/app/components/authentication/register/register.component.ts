@@ -22,6 +22,10 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.buildRegisterForm();
+  }
+
+  buildRegisterForm() {
     this.profileRegister = this.fb.group(
       {
         id: [''],
@@ -35,6 +39,7 @@ export class RegisterComponent implements OnInit {
       { validators: confirmedValidator('password', 'confirmPassword') }
     );
   }
+
   get f() {
     return this.profileRegister.controls;
   }

@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-title>Personal Details</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="profileUpdateDetails" (ngSubmit)="handleSubmit()">
+      <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>First Name</mat-label>
+          <input
+            matInput
+            placeholder="First Name.."
+            formControlName="firstName"
+            required
+
+          />
+          <mat-error *ngIf="firstName.invalid">{{getControlErrorMessage(firstName)}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Last Name</mat-label>
+          <input
+            matInput
+            placeholder="First Name.."
+            formControlName="lastName"
+            required
+          />
+          <mat-error *ngIf="lastName.invalid">{{getControlErrorMessage(lastName)}}</mat-error>
+        </mat-form-field>
+      </div>
+      <button mat-raised-button type="submit" color="primary">Update</button>
+    </form>
+  </mat-card-content>
+</mat-card>
