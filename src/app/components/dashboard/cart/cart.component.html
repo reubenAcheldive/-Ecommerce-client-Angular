@@ -1,6 +1,6 @@
 <div
   *ngIf="cartData$ | async as cartData; else emptyContent"
-  class="row text-center mt-3"
+  class="row  text-center mt-3"
 >
   <mat-card class="col">
     <app-icon-info icon="shopping_basket"></app-icon-info>
@@ -12,22 +12,27 @@
     ></span>
   </mat-card>
   <div class="row mt-2">
-    <mat-card class="col-lg-4  delete_outline" (click)="deleteAllItems(cartData._id)">
+    <mat-card
+      class="col-lg-3 delete_outline"
+      (click)="deleteAllItems(cartData._id)"
+    >
       <app-icon-info icon="delete_outline"></app-icon-info>
-      <button mat-raised-button>Go To Payment</button>
     </mat-card>
-
   </div>
   <div class="row mt-2">
     <div class="col cartList">
       <app-lists [cartList]="cartData"></app-lists>
     </div>
   </div>
-
+  <div class="col-lg-12 mt-5">
+    <mat-card class=" text-center" mat-raised-button
+      >Go To Payment</mat-card
+    >
+  </div>
 </div>
 
 <ng-template #emptyContent class="test-2">
-  <div class="row text-center mt-3" >
+  <div class="row text-center mt-3">
     <mat-card class="col-lg-6">
       <app-icon-info icon="shopping_basket"></app-icon-info>
     </mat-card>
@@ -41,15 +46,11 @@
       <mat-card class="col-lg-4 delete_outline">
         <app-icon-info icon="delete_outline"></app-icon-info>
       </mat-card>
-      <mat-card class="col-lg-auto delete_outline">
-      <p mat-raised-button>Go To Payment</p>
-    </mat-card>
     </div>
     <div class="row mt-2">
       <div class="col cartList">
         <app-lists></app-lists>
       </div>
     </div>
-
   </div>
 </ng-template>

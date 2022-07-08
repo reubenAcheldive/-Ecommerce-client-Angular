@@ -1,3 +1,24 @@
+.cart{
+  overflow: scroll;
+  overflow-x: auto;
+  height:60%
+
+}
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 1px 1px 5px 1px rgb(7, 7, 7);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(78, 76, 76, 0.541);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8686867c;
+}
 mat-card {
   background-color: #fff !important;
 }

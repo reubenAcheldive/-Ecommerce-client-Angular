@@ -1,6 +1,6 @@
-<div class="row hi">
-  <div *ngIf="cartList; else empty" class="col-lg-12 col-md-12 col-sm-12">
-    <mat-card class="col card-items" *ngFor="let item of cartList.items">
+<div class="row hi ">
+  <div *ngIf="cartList.items.length; else empty" class="col-lg-12 col-md-12 col-sm-12 cart">
+    <mat-card class="col card-items " *ngFor="let item of cartList.items">
       <div class="row justify-content-between">
         <div class="col-lg-1 text">
           <button

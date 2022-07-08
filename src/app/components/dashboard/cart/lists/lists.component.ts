@@ -25,7 +25,7 @@ import { IUser } from 'src/app/Interfaces/auth/userInformation';
 })
 export class ListsComponent implements OnInit {
   @Input() cartList: Cart;
-  // haveUser: Observable<IUser> = this.store.select(selectAuthDetails);
+ 
   public fetchProducts$: Observable<IProduct[]> =
     this.store.select(selectProducts);
   constructor(private store: Store) {}
