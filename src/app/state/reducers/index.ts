@@ -5,10 +5,10 @@ import { Categories } from 'src/app/Interfaces/categories';
 import { ICities } from 'src/app/Interfaces/Cities';
 
 import * as ShoppingActions from '../actions/shopping.actions';
-import * as UserInformation from '../actions/user.actions';
+import * as UserActions from '../actions/user.actions';
 import { IProduct } from '../../../app/Interfaces/Products';
 
-import { AuthErrorLogin } from 'src/app/Interfaces/cart/Auth/Auth.error';
+import { AuthErrorLogin } from 'src/app/Interfaces/auth/Auth.error';
 import { Cart, Item } from 'src/app/Interfaces/cart/GetCartUser';
 
 export interface Shopping {
@@ -98,13 +98,13 @@ export const shoppingReducer = createReducer(
       errorAlert: error,
     })
   ),
-  on(UserInformation.loginInit, (state) => ({
+  on(UserActions.loginInit, (state) => ({
     ...state,
     loading: true,
   })),
   on(
-    UserInformation.loginInitSuccess,
-    UserInformation.registerUserSuccess,
+    UserActions.loginInitSuccess,
+    UserActions.registerUserSuccess,
     (state, { infoLogin }) => ({
       ...state,
       infoLogin: infoLogin,
@@ -112,30 +112,30 @@ export const shoppingReducer = createReducer(
       errorAlert: null,
     })
   ),
-  on(UserInformation.loginInitFailure, (state, { error }) => ({
+  on(UserActions.loginInitFailure, (state, { error }) => ({
     ...state,
     authErrorLogin: error,
     loading: false,
   })),
 
-  on(UserInformation.checkRegisterInit, (state, action) => ({
+  on(UserActions.checkRegisterInit, (state, action) => ({
     ...state,
     id: action.id,
     loading: false,
   })),
-  on(UserInformation.checkRegisterSuccess, (state, { success }) => ({
+  on(UserActions.checkRegisterSuccess, (state, { success }) => ({
     ...state,
     isRegistered: success,
     loading: false,
     errorAlert: null,
   })),
-  on(UserInformation.checkRegisterFailure, (state, { error }) => ({
+  on(UserActions.checkRegisterFailure, (state, { error }) => ({
     ...state,
     errorAlert: error,
     isRegistered: false,
     loading: false,
   })),
-  on(UserInformation.registerUserFailure, (state, { error }) => ({
+  on(UserActions.registerUserFailure, (state, { error }) => ({
     ...state,
     errorInRegister: error.error.isError,
   })),
@@ -213,6 +213,10 @@ export const shoppingReducer = createReducer(
     ...state,
     unavailableDates: date,
   })),
+  on(UserActions.successEditUserPersonalDetails, (state, { user }) => ({
+    ...state,
+    infoLogin: user,
+  })),
   on(ShoppingActions.logOut, (state) => ({
     cartId: null,
     cartListProducts: null,
@@ -239,13 +243,11 @@ export const shoppingReducer = createReducer(
 const updateProducts = (products: IProduct[], items: Item[]): IProduct[] => {
   const updateProducts: IProduct[] = [...products];
 
-
-     updateProducts.map((product)=>{
-      const obj = Object.assign({},product)
-      obj['quantity'] = 0;
-      return obj
-    })
-
+  updateProducts.map((product) => {
+    const obj = Object.assign({}, product);
+    obj['quantity'] = 0;
+    return obj;
+  });
 
   items.forEach((item: Item) => {
     const productId: string = item.productRefId._id;

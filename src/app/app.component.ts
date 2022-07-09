@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { AuthService } from './services/Auth/auth.service';
 
-import { AuthService } from './services/auth.service';
 import { getCartByCartIdInit } from './state/actions/shopping.actions';
 
 @Component({
@@ -13,7 +13,6 @@ import { getCartByCartIdInit } from './state/actions/shopping.actions';
 })
 export class AppComponent implements OnInit {
   constructor(
-    private auth: AuthService,
     private router: Router,
     private store: Store,
     private AuthService: AuthService
@@ -23,6 +22,6 @@ export class AppComponent implements OnInit {
     this.store.dispatch(
       getCartByCartIdInit({ cartId: '62bc60407a0a29c9f3c77b31' })
     );
-    this.AuthService.AutoCheckJwt()
+    this.AuthService.AutoCheckJwt();
   }
 }

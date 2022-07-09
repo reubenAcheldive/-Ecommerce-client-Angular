@@ -2,11 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-
-import { CHECK_ORDER_DATE, CREATE_NEW_ORDER, GET_ALL_ORDER, GET_LAST_ORDER, GET_USER_DETAILS, RESPITES } from '../../environment';
+import {
+  CHECK_ORDER_DATE,
+  CREATE_NEW_ORDER,
+  GET_ALL_ORDER,
+  GET_LAST_ORDER,
+  GET_USER_DETAILS,
+  RESPITES,
+} from '../../services/environment';
 
 import { CreateOrder } from 'src/app/Interfaces/order/createNewOrder';
 import { OrderDetail } from 'src/app/Interfaces/order/lastOrderDetail';
+
 
 @Injectable({
   providedIn: 'root',
@@ -31,9 +38,7 @@ export class OrderService {
   }
 
   getLastOrderDetail(_id: string): Observable<OrderDetail[]> {
-    return this.http.get<OrderDetail[]>(
-      `${GET_LAST_ORDER}/${_id}`
-    );
+    return this.http.get<OrderDetail[]>(`${GET_LAST_ORDER}/${_id}`);
   }
   getOrdersQuantity(): Observable<{
     quantityOrders: number;
@@ -44,9 +49,6 @@ export class OrderService {
   }
 
   downloadReceipt(cartId: string, orderId: string): Observable<any> {
-    console.log({ cartId });
-    console.log({ orderId });
-
     let searchParams = new HttpParams();
     searchParams = searchParams.append('cartId', cartId);
     searchParams = searchParams.append('orderId', orderId);

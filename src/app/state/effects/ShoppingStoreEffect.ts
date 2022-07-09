@@ -1,29 +1,33 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, EMPTY, exhaustMap, map, of, withLatestFrom } from 'rxjs';
-import { LoginService } from '../../services/login/login.service';
-import { Injectable } from '@angular/core';
-import { ProductService } from 'src/app/services/store/product/product.service';
-import * as shoppingActions from '../../state/actions/shopping.actions';
-import { ProductEditService } from '../../services/store/product-edit/product-edit.service';
-import { ShoppingCartService } from '../../services/store/shopping-cart/shopping-cart.service';
 
-import { CitiesService } from '../../services/store/cities/cities.service';
-import { OrderService } from 'src/app/services/store/order/order.service';
+import { Injectable } from '@angular/core';
+
+import * as shoppingActions from '../../state/actions/shopping.actions';
+
+
+import { CitiesService } from '../../services/cities/cities.service';
+
 import { selectCartList } from '../selectors/shopping-selectors';
 import { Store } from '@ngrx/store';
 import { IProduct } from 'src/app/Interfaces/Products';
 import { ProductStyleDirective } from './../../directives/product-style.directive';
+import { LoginService } from 'src/app/services/Auth/login/login.service';
+import { ProductService } from 'src/app/services/product/product.service';
+import { ProductEditService } from 'src/app/services/product-edit/product-edit.service';
+import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
+import { OrderService } from 'src/app/services/order/order.service';
 
 @Injectable()
 export class ShoppingEffects {
   constructor(
+    private readonly store: Store,
     private readonly actions$: Actions,
     private readonly loginService: LoginService,
     private readonly citiesService: CitiesService,
     private readonly categoryService: ProductService,
     private readonly productEditService: ProductEditService,
     private readonly shoppingCartService: ShoppingCartService,
-    private readonly store: Store,
     private readonly orderService: OrderService
   ) {}
 

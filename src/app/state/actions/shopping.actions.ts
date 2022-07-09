@@ -27,11 +27,13 @@ import {
   UpdateItemQuantityInCart,
 
 } from './acationTypes';
-import { CreateOrder } from '../../Interfaces/order/createNewOrder';
+import { Cart } from 'src/app/Interfaces/cart/GetCartUser';
+
+import { CreateOrder } from './../../Interfaces/order/createNewOrder';
 import { OrderDetail } from 'src/app/Interfaces/order/lastOrderDetail';
 import { AddItems } from 'src/app/Interfaces/cart/AddItemsToCart';
 import { AddItem } from 'src/app/Interfaces/cart/UpdateItemInCart';
-import { Cart } from 'src/app/Interfaces/cart/GetCartUser';
+
 
 
 export const fetchCategories = createAction(CategoriesTypes.init);

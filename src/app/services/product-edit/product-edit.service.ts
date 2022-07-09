@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 
 
 import { IProduct } from 'src/app/Interfaces/Products';
-import { EDIT_PRODUCT, NEW_PRODUCT } from '../../environment';
+import { EDIT_PRODUCT, NEW_PRODUCT } from '../environment';
+
 
 @Injectable({
   providedIn: 'root',

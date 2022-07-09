@@ -1,17 +1,19 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, exhaustMap, map, of } from 'rxjs';
 import * as UserActions from '../actions/user.actions';
-import { LoginService } from '../../services/login/login.service';
-import { Injectable } from '@angular/core';
-import { RegisterService } from 'src/app/services/register/register.service';
-import { AuthErrorLogin } from 'src/app/Interfaces/cart/Auth/Auth.error';
 
+import { Injectable } from '@angular/core';
+import { RegisterService } from 'src/app/services/Auth/register/register.service';
+import { AuthErrorLogin } from 'src/app/Interfaces/auth/Auth.error';
+import { LoginService } from 'src/app/services/Auth/login/login.service';
+import { UserEditService } from '../../services/Auth/edit/user-edit.service';
 @Injectable()
 export class AuthEffects {
   constructor(
     private readonly actions$: Actions,
     private readonly loginService: LoginService,
-    private readonly registerService: RegisterService
+    private readonly registerService: RegisterService,
+    private readonly editUserService: UserEditService
   ) {}
 
   login$ = createEffect(() => {
@@ -69,6 +71,23 @@ export class AuthEffects {
             return UserActions.registerUserSuccess({ infoLogin });
           }),
           catchError((error) => of(UserActions.registerUserFailure({ error })))
+        );
+      })
+    );
+  });
+
+  editUserDetails$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UserActions.initEditUserPersonalDetails),
+      exhaustMap(({ user }) => {
+        return this.editUserService.editPersonalDetails(user).pipe(
+          map((user) => {
+            localStorage.setItem('jwt', user.jwt);
+            return UserActions.successEditUserPersonalDetails({ user });
+          }),
+          catchError((error) =>
+            of(UserActions.FailEditUserPersonalDetails({ error }))
+          )
         );
       })
     );

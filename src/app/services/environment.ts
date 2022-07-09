@@ -12,7 +12,7 @@ export const GET_ALL_ORDER = `${BASE_URI_STORE}/all-orders`
 export const  RESPITES = `${BASE_URI}/respites`
 export const  CHECK_ORDER_DATE = `${BASE_URI_STORE}/check-order-date`
 export const GET_CATEGORY = `${BASE_URI_STORE}/category`
-
+export const EDIT_USER_PERSONAL_DETAILS = `${BASE_URI}/api/users/update-user`
 export const SEARCH_PRODUCT_BY_NAME = `${BASE_URI_STORE}/search/name`
 export const ALL_PRODUCT_QUN = `${BASE_URI_STORE}/all-product-available`
 export const EDIT_PRODUCT = `${BASE_URI_STORE}/edit-product`

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { IUser } from 'src/app/Interfaces/auth/userInformation';
 
-import { URL_FIRST_STEP_REGISTER, URL_STEP_TWO_REGISTER } from '../environment';
+import { URL_FIRST_STEP_REGISTER, URL_STEP_TWO_REGISTER } from '../../environment';
 let headers = new HttpHeaders();
 headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 @Injectable({

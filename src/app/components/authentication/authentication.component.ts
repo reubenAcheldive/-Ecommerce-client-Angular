@@ -16,7 +16,7 @@ import {
   shoppingSelectorFetcher,
 } from '../../state/selectors/auth-selectors';
 import { Observable, takeUntil, Subject } from 'rxjs';
-import { AuthErrorLogin } from 'src/app/Interfaces/cart/Auth/Auth.error';
+import { AuthErrorLogin } from 'src/app/Interfaces/auth/Auth.error';
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.component.html',

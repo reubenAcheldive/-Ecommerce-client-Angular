@@ -8,6 +8,10 @@ import {
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { IUser } from 'src/app/Interfaces/auth/userInformation';
+import {
+  initEditUserPersonalDetails,
+  successEditUserPersonalDetails,
+} from '../../../../../state/actions/user.actions';
 
 import { Observable, Subscription } from 'rxjs';
 import { selectAuthDetails } from 'src/app/state/selectors/auth-selectors';
@@ -21,12 +25,15 @@ export class UserDetailsComponent implements OnInit {
   constructor(private fb: FormBuilder, private store: Store) {}
 
   getUserDetails$: Subscription;
-
+  userId: string;
   profileUpdateDetails: FormGroup;
   ngOnInit(): void {
     this.getUserDetails$ = this.store
       .select(selectAuthDetails)
       .subscribe((user) => {
+        console.log(user);
+
+        this.userId = user.userId;
         this.buildUpdateDetailsForm(user.firstName, user.lastName);
       });
   }
@@ -52,7 +59,17 @@ export class UserDetailsComponent implements OnInit {
     return false;
   }
 
-  handleSubmit() {}
+  handleSubmit() {
+    const { firstName, lastName } = this.profileUpdateDetails.value;
+    console.log(this.userId);
+
+    const user = {
+      _id: this.userId,
+      firstName,
+      lastName,
+    };
+    this.store.dispatch(initEditUserPersonalDetails({ user }));
+  }
   ngOnDestroy() {
     this.getUserDetails$.unsubscribe();
   }
