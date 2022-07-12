@@ -4,9 +4,6 @@ export const shoppingSelectorFetcher =
   createFeatureSelector<Shopping>('shoppingFeature');
 
 export const selectError = createSelector(shoppingSelectorFetcher, (state) => {
-console.log(state?.authErrorLogin);
-
-
   return state?.authErrorLogin;
 });
 
@@ -17,4 +14,8 @@ export const selectAuthDetails = createSelector(
 export const selectLoading = createSelector(
   shoppingSelectorFetcher,
   (state) => state?.loading
+);
+export const selectUserId = createSelector(
+  shoppingSelectorFetcher,
+  (state) => state?.customerId
 );

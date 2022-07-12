@@ -17,7 +17,7 @@ export const SEARCH_PRODUCT_BY_NAME = `${BASE_URI_STORE}/search/name`
 export const ALL_PRODUCT_QUN = `${BASE_URI_STORE}/all-product-available`
 export const EDIT_PRODUCT = `${BASE_URI_STORE}/edit-product`
 export const NEW_PRODUCT = `${BASE_URI_STORE}/add-new-product`
-
+export const GET_ADDRESS = `${BASE_URI_STORE}/addresses`
 
  export const URL_ADD_NEW_CART = `${BASE_URI_STORE}/addNewCart`;
  export const  URL_ADD_ITEMS_ARRAY_TO_CART = `${BASE_URI_STORE}/add-all-items-to-cart`;

@@ -1,5 +1,4 @@
 export const CategoriesTypes = {
-
   init: '[Init Categories] fetch Categories',
   success: '[ Success Categories] fetch Categories ',
   failure: '[ Failure Categories] fetch Categories ',
@@ -70,33 +69,40 @@ export const CreateNewOrderTypes = {
   failure: '[Failure  create order for customer]',
 };
 
-export const  AddNewProductByAdminTypes = {
+export const AddNewProductByAdminTypes = {
   init: '[Init add new product by admin]',
   success: '[Success add new product by admin]',
   failure: '[Failure add new product by admin]',
+};
 
-}
-
-export const LastOrderTypes ={
+export const LastOrderTypes = {
   init: '[Init last order type]',
   success: '[Success last order type]',
   failure: '[Failure last order type]',
-
-}
+};
 export const DownloadRecipeTypes = {
   init: '[Init download recipe]',
   success: '[Success download recipe]',
   failure: '[Failure download recipe]',
-}
-export const  FetchUnavailableDatesTypes = {
-    init: '[Init fetch unavailable dates]',
+};
+export const FetchUnavailableDatesTypes = {
+  init: '[Init fetch unavailable dates]',
   success: '[Success fetch unavailable dates]',
   failure: '[Failure fetch unavailable dates]',
+};
 
-}
-
-export const UpdateItemQuantityInCart ={
+export const UpdateItemQuantityInCart = {
   init: '[Init update item quantity in cart]',
   success: '[Success update item quantity in cart]',
   failure: '[Failure update item quantity in cart]',
+};
+function createActionTypes(nameAction: string) {
+  return {
+    init: `[Init  ${nameAction}]`,
+    success: `[success  ${nameAction}]`,
+    failure: `[failure  ${nameAction}]`,
+  };
 }
+
+export const fetchAddressesTypes = createActionTypes('fetch addresses');
+export const editAddressTypes = createActionTypes('edit address');

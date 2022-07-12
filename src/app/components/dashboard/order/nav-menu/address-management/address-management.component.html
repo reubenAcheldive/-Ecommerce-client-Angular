@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-title>Personal Details</mat-card-title>
-  <mat-card-content>
+  <mat-card-content *ngIf="profileAddressDetails">
     <form [formGroup]="profileAddressDetails" (ngSubmit)="handleSubmit()">
       <div class="form-field">
         <mat-form-field appearance="standard">

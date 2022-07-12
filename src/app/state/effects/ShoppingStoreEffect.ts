@@ -5,18 +5,18 @@ import { Injectable } from '@angular/core';
 
 import * as shoppingActions from '../../state/actions/shopping.actions';
 
-
 import { CitiesService } from '../../services/cities/cities.service';
 
 import { selectCartList } from '../selectors/shopping-selectors';
 import { Store } from '@ngrx/store';
 import { IProduct } from 'src/app/Interfaces/Products';
-import { ProductStyleDirective } from './../../directives/product-style.directive';
+
 import { LoginService } from 'src/app/services/Auth/login/login.service';
 import { ProductService } from 'src/app/services/product/product.service';
 import { ProductEditService } from 'src/app/services/product-edit/product-edit.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 import { OrderService } from 'src/app/services/order/order.service';
+import { AddressesService } from '../../services/order/addresses.service';
 
 @Injectable()
 export class ShoppingEffects {
@@ -28,7 +28,8 @@ export class ShoppingEffects {
     private readonly categoryService: ProductService,
     private readonly productEditService: ProductEditService,
     private readonly shoppingCartService: ShoppingCartService,
-    private readonly orderService: OrderService
+    private readonly orderService: OrderService,
+    private readonly addressesService: AddressesService
   ) {}
 
   categories$ = createEffect(() => {
@@ -168,9 +169,7 @@ export class ShoppingEffects {
       exhaustMap(({ cartId, itemId }) => {
         return this.shoppingCartService.deleteProduct(cartId, itemId).pipe(
           map(() => {
-            return shoppingActions.DeleteSingleProductFromCartListSuccess(
-
-            );
+            return shoppingActions.DeleteSingleProductFromCartListSuccess();
           }),
           catchError((error) =>
             of(shoppingActions.DeleteSingleProductFromCartListFail({ error }))
@@ -305,5 +304,34 @@ export class ShoppingEffects {
       })
     );
   });
+
+  fetchAddresses$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(shoppingActions.InitFetchAddress),
+      exhaustMap(({ customerRef }) => {
+        console.log({customerRef});
+        return this.addressesService.getAddressesList(customerRef).pipe(
+          map((payload) => {
+          
+
+            return shoppingActions.successFetchAddress({ payload });
+          })
+        );
+      }),
+      catchError((err) => of(shoppingActions.failureFetchAddress(err)))
+    );
+  });
+  editAddresses$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(shoppingActions.InitEditAddress),
+      exhaustMap(({ payload }) => {
+        return this.addressesService.editAddress(payload).pipe(
+          map((payload) => {
+            return shoppingActions.successEditAddress({ payload });
+          })
+        );
+      }),
+      catchError((err) => of(shoppingActions.failureEditAddress(err)))
+    );
+  });
 }
-('feature');

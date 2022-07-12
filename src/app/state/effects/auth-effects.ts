@@ -23,7 +23,7 @@ export class AuthEffects {
         return this.loginService.login({ email, password }).pipe(
           map((infoLogin) => {
             localStorage.setItem('jwt', infoLogin.jwt);
-
+              console.log({infoLogin})
             return UserActions.loginInitSuccess({ infoLogin });
           }),
           catchError((error: AuthErrorLogin) => {

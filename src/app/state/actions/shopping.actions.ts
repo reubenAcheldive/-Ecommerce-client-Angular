@@ -1,7 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { IProduct } from '../../../app/Interfaces/Products';
 
-
 import { Categories } from 'src/app/Interfaces/categories';
 
 import { ICities } from 'src/app/Interfaces/Cities';
@@ -25,7 +24,8 @@ import {
   DownloadRecipeTypes,
   FetchUnavailableDatesTypes,
   UpdateItemQuantityInCart,
-
+  fetchAddressesTypes,
+  editAddressTypes,
 } from './acationTypes';
 import { Cart } from 'src/app/Interfaces/cart/GetCartUser';
 
@@ -33,8 +33,7 @@ import { CreateOrder } from './../../Interfaces/order/createNewOrder';
 import { OrderDetail } from 'src/app/Interfaces/order/lastOrderDetail';
 import { AddItems } from 'src/app/Interfaces/cart/AddItemsToCart';
 import { AddItem } from 'src/app/Interfaces/cart/UpdateItemInCart';
-
-
+import { IAddresses } from './../../Interfaces/order/addresses';
 
 export const fetchCategories = createAction(CategoriesTypes.init);
 
@@ -157,8 +156,7 @@ export const DeleteSingleProductFromCartListInit = createAction(
 // ----------------------------------------------------------
 //---------------------------------------------------------------
 export const DeleteSingleProductFromCartListSuccess = createAction(
-  DeleteSingleItemInCartTypes.success,
-
+  DeleteSingleItemInCartTypes.success
 );
 
 export const DeleteSingleProductFromCartListFail = createAction(
@@ -287,4 +285,38 @@ export const successUpdateItemQuantityInCart = createAction(
 export const failUpdateItemQuantityInCart = createAction(
   UpdateItemQuantityInCart.failure,
   props<{ error: any }>()
+);
+
+
+
+
+
+export const InitFetchAddress = createAction(
+  fetchAddressesTypes.init,
+  props<{ customerRef: string }>()
+);
+export const successFetchAddress = createAction(
+  fetchAddressesTypes.success,
+  props<{ payload: IAddresses }>()
+);
+export const failureFetchAddress = createAction(
+  fetchAddressesTypes.failure,
+  props<{ payload: IAddresses }>()
+);
+
+
+
+
+
+export const InitEditAddress = createAction(
+  editAddressTypes.init,
+  props<{ payload: IAddresses }>()
+);
+export const successEditAddress = createAction(
+  editAddressTypes.success,
+  props<{ payload: IAddresses }>()
+);
+export const failureEditAddress = createAction(
+  editAddressTypes.failure,
+  props<{ payload: IAddresses }>()
 );

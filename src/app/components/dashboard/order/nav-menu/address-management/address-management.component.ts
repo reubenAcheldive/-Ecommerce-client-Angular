@@ -7,27 +7,44 @@ import {
   Validators,
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
-
+import { IAddresses } from 'src/app/Interfaces/order/addresses';
+import { InitEditAddress } from 'src/app/state/actions/shopping.actions';
+import {
+  selectAuthDetails,
+  selectUserId,
+} from '../../../../../state/selectors/auth-selectors';
+import { exhaustMap, Subject, takeUntil } from 'rxjs';
+import { selectAddress } from 'src/app/state/selectors/shopping-selectors';
 @Component({
   selector: 'app-address-management',
   templateUrl: './address-management.component.html',
   styleUrls: ['./address-management.component.css'],
 })
 export class AddressManagementComponent implements OnInit {
+  unsubscribe$ = new Subject<void>();
   constructor(private fb: FormBuilder, private store: Store) {}
 
   profileAddressDetails: FormGroup;
+
   ngOnInit(): void {
-      this.buildProfileAddressDetailsForm();
+    this.store.select(selectAddress).pipe(takeUntil(this.unsubscribe$)).subscribe((payload) => {
+      this.buildProfileAddressDetailsForm(payload);
+    });
   }
 
-  buildProfileAddressDetailsForm(): void {
+  buildProfileAddressDetailsForm(payload: Partial<IAddresses>): void {
     this.profileAddressDetails = this.fb.group({
-      city: new FormControl('', [Validators.required]),
-      streetAddress: new FormControl('', [Validators.required]),
-      entering: new FormControl('', [Validators.required]),
-      homeNumber: new FormControl('', [Validators.required]),
-      departmentNumber: new FormControl('', [Validators.required]),
+      _id: new FormControl(payload?._id),
+      customerRef: new FormControl(payload?.customerRef),
+      city: new FormControl(payload?.city, [Validators.required]),
+      streetAddress: new FormControl(payload?.streetAddress, [
+        Validators.required,
+      ]),
+      entering: new FormControl(payload?.entering, [Validators.required]),
+      homeNumber: new FormControl(payload?.homeNumber, [Validators.required]),
+      departmentNumber: new FormControl(payload?.departmentNumber, [
+        Validators.required,
+      ]),
     });
   }
 
@@ -54,6 +71,13 @@ export class AddressManagementComponent implements OnInit {
     return false;
   }
 
-  handleSubmit() {}
-  ngOnDestroy() {}
+  handleSubmit() {
+    console.log(this.profileAddressDetails.value);
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.complete();
+    this.unsubscribe$.next();
+    this.unsubscribe$.unsubscribe();
+  }
 }

@@ -10,6 +10,7 @@ import { IProduct } from '../../../app/Interfaces/Products';
 
 import { AuthErrorLogin } from 'src/app/Interfaces/auth/Auth.error';
 import { Cart, Item } from 'src/app/Interfaces/cart/GetCartUser';
+import { IAddresses } from 'src/app/Interfaces/order/addresses';
 
 export interface Shopping {
   categories: Categories[] | null;
@@ -30,6 +31,8 @@ export interface Shopping {
   orderID: string | null;
   DateCreatedCart: number | Date | null;
   unavailableDates: string[] | null;
+  address: IAddresses | null;
+  customerId: string;
 }
 
 export const initialShoppingState: Shopping | null = {
@@ -49,6 +52,8 @@ export const initialShoppingState: Shopping | null = {
   orderID: '',
   DateCreatedCart: null,
   unavailableDates: null,
+  customerId: '',
+  address: null,
 };
 
 export const shoppingReducer = createReducer(
@@ -110,6 +115,7 @@ export const shoppingReducer = createReducer(
       infoLogin: infoLogin,
       loading: false,
       errorAlert: null,
+      customerId: infoLogin?.userId,
     })
   ),
   on(UserActions.loginInitFailure, (state, { error }) => ({
@@ -217,6 +223,15 @@ export const shoppingReducer = createReducer(
     ...state,
     infoLogin: user,
   })),
+  on(ShoppingActions.successFetchAddress, (state, { payload }) => ({
+    ...state,
+    address: payload,
+  })),
+  on(ShoppingActions.successEditAddress, (state, { payload }) => ({
+    ...state,
+    address: payload,
+  })),
+
   on(ShoppingActions.logOut, (state) => ({
     cartId: null,
     cartListProducts: null,
@@ -237,6 +252,8 @@ export const shoppingReducer = createReducer(
     DateCreatedCart: null,
     unavailableDates: [],
     authErrorLogin: null,
+    address: null,
+    customerId: null,
   }))
 );
 
