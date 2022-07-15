@@ -15,6 +15,7 @@ import {
 
 import { Observable, Subscription } from 'rxjs';
 import { selectAuthDetails } from 'src/app/state/selectors/auth-selectors';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-details',
@@ -22,20 +23,17 @@ import { selectAuthDetails } from 'src/app/state/selectors/auth-selectors';
   styleUrls: ['./user-details.component.css'],
 })
 export class UserDetailsComponent implements OnInit {
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(private fb: FormBuilder, private store: Store, private route: ActivatedRoute) {}
+
 
   getUserDetails$: Subscription;
   userId: string;
   profileUpdateDetails: FormGroup;
-  ngOnInit(): void {
-    this.getUserDetails$ = this.store
-      .select(selectAuthDetails)
-      .subscribe((user) => {
-        console.log(user);
 
-        this.userId = user.userId;
-        this.buildUpdateDetailsForm(user.firstName, user.lastName);
-      });
+  ngOnInit(): void {
+    const user = this.route.snapshot.data['userDetails'];
+    this.userId = user.userId;
+    this.buildUpdateDetailsForm(user.firstName, user.lastName);
   }
 
   buildUpdateDetailsForm(firstName: string, lastName: string): void {
@@ -71,6 +69,5 @@ export class UserDetailsComponent implements OnInit {
     this.store.dispatch(initEditUserPersonalDetails({ user }));
   }
   ngOnDestroy() {
-    this.getUserDetails$.unsubscribe();
   }
 }

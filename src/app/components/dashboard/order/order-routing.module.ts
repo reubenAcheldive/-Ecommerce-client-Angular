@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UserDetailsResolver } from 'src/app/resolvers/user-details.resolver';
 import { AddressManagementComponent } from './nav-menu/address-management/address-management.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { OrdersCustomerComponent } from './nav-menu/orders-customer/orders-customer.component';
@@ -15,10 +16,12 @@ const routes: Routes = [
       {
         path: '',
         component: NavMenuComponent,
+        resolve: {userDetails: UserDetailsResolver},
         children: [
           {
             path: '',
             component: UserDetailsComponent,
+
           },
           {
             path: 'addresses',
