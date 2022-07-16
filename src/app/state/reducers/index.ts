@@ -258,12 +258,15 @@ export const shoppingReducer = createReducer(
 );
 
 const updateProducts = (products: IProduct[], items: Item[]): IProduct[] => {
+  console.log(products, items);
+  if (!products) return [];
   const updateProducts: IProduct[] = [...products];
 
   updateProducts.map((product) => {
     const obj = Object.assign({}, product);
+    console.log({ obj });
+
     obj['quantity'] = 0;
-    return obj;
   });
 
   items.forEach((item: Item) => {
@@ -273,6 +276,8 @@ const updateProducts = (products: IProduct[], items: Item[]): IProduct[] => {
       const product: IProduct = updateProducts[index];
       updateProducts.splice(index, 1, { ...product, quantity: item.quantity });
     }
+
+    return updateProducts;
   });
   return updateProducts;
 };

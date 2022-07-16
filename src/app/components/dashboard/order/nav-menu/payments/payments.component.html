@@ -1,7 +1,7 @@
 <h1 class="title">Hover Me!</h1>
 
 <div class="card">
-  <form>
+
     <div class="card__front card__part">
       <img
         class="card__front-square card__square"
@@ -11,10 +11,10 @@
         class="card__front-logo card__logo"
         src="https://logos-world.net/wp-content/uploads/2020/05/Visa-Logo-700x394.png"
       />
-      <p class="card_numer">**** **** **** 6258</p>
+      <p class="card_number">{{cardHide(cardNumber.value) ? cardHide(cardNumber.value) : '**** **** **** ****'}}</p>
       <div class="card__space-75">
         <span class="card__label">Card holder</span>
-        <p class="card__info">John Doe</p>
+        <p class="card__info">{{cardName.value}}</p>
       </div>
       <div class="card__space-25">
         <span class="card__label">Expires</span>
@@ -38,5 +38,23 @@
         />
       </div>
     </div>
-  </form>
+
+</div>
+<div>
+<form [formGroup]="creditCardForm" (submit)="handleFormSubmit()">
+<input #cardNumber type="text" formControlName="cardNumber" name="card_number" [(ngModel)]="cardNumber.value" >
+<input #cardName type="text" formControlName="cardName" name="card_number" [(ngModel)]="cardName.value" >
+<mat-form-field appearance="fill">
+  <mat-label>Month and Year</mat-label>
+  <input matInput [matDatepicker]="dp" [formControl]="date">
+  <mat-hint>MM/YYYY</mat-hint>
+  <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+  <mat-datepicker #dp
+                  startView="multi-year"
+                  (monthSelected)="setMonthAndYear($event, dp)"
+                  panelClass="example-month-picker">
+  </mat-datepicker>
+</mat-form-field>
+</form>
+
 </div>
