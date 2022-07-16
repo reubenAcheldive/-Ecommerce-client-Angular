@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
-  FormBuilder,
-  FormControl,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -23,12 +23,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./user-details.component.css'],
 })
 export class UserDetailsComponent implements OnInit {
-  constructor(private fb: FormBuilder, private store: Store, private route: ActivatedRoute) {}
+  constructor(private fb: UntypedFormBuilder, private store: Store, private route: ActivatedRoute) {}
 
 
   getUserDetails$: Subscription;
   userId: string;
-  profileUpdateDetails: FormGroup;
+  profileUpdateDetails: UntypedFormGroup;
 
   ngOnInit(): void {
     const user = this.route.snapshot.data['userDetails'];
@@ -38,8 +38,8 @@ export class UserDetailsComponent implements OnInit {
 
   buildUpdateDetailsForm(firstName: string, lastName: string): void {
     this.profileUpdateDetails = this.fb.group({
-      firstName: new FormControl(firstName || '', [Validators.required]),
-      lastName: new FormControl(lastName || '', [Validators.required]),
+      firstName: new UntypedFormControl(firstName || '', [Validators.required]),
+      lastName: new UntypedFormControl(lastName || '', [Validators.required]),
     });
   }
 

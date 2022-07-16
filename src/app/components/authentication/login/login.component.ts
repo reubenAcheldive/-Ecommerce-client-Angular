@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { Store } from '@ngrx/store';
@@ -26,14 +26,14 @@ export class LoginComponent implements OnInit {
     private togglePageService: TogglePageService,
     public dialogRef: MatDialogRef<AuthenticationComponent>
   ) {}
-  profileLogin: FormGroup;
+  profileLogin: UntypedFormGroup;
 
 
 
   ngOnInit(): void {
-    this.profileLogin = new FormGroup({
-      email: new FormControl('', [Validators.email, Validators.required]),
-      password: new FormControl('', [Validators.required]),
+    this.profileLogin = new UntypedFormGroup({
+      email: new UntypedFormControl('', [Validators.email, Validators.required]),
+      password: new UntypedFormControl('', [Validators.required]),
     });
   }
   get emailError() {

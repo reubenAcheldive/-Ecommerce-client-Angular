@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, UntypedFormBuilder } from '@angular/forms';
 
 import * as _moment from 'moment';
 
@@ -29,23 +29,23 @@ const moment = _moment;
   
 })
 export class PaymentsComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: UntypedFormBuilder) {}
 
-  creditCardForm: FormGroup;
+  creditCardForm: UntypedFormGroup;
   ngOnInit(): void {
     this.createFormCreditCard();
   }
 
   createFormCreditCard(): void {
     this.creditCardForm = this.fb.group({
-      cardNumber: new FormControl(''),
-      cardName: new FormControl(''),
-      cardExpires: new FormControl(''),
-      cardSecret: new FormControl(''),
+      cardNumber: new UntypedFormControl(''),
+      cardName: new UntypedFormControl(''),
+      cardExpires: new UntypedFormControl(''),
+      cardSecret: new UntypedFormControl(''),
     });
   }
 
-  date = new FormControl(moment());
+  date = new UntypedFormControl(moment());
 
 
 

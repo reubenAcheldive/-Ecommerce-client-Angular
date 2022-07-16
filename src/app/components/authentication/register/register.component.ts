@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 
 import {
   AbstractControl,
-  FormBuilder,
+  UntypedFormBuilder,
   FormControl,
-  FormGroup,
+  UntypedFormGroup,
 } from '@angular/forms';
 import { confirmedValidator } from './validatorsPassword/validators-password';
 
@@ -15,9 +15,9 @@ import { confirmedValidator } from './validatorsPassword/validators-password';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  profileRegister: FormGroup;
+  profileRegister: UntypedFormGroup;
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private togglePageService: TogglePageService
   ) {}
 

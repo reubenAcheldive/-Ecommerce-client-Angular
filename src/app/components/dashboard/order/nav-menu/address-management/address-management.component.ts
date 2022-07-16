@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
-  FormBuilder,
-  FormControl,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -22,9 +22,9 @@ import { selectAddress } from 'src/app/state/selectors/shopping-selectors';
 })
 export class AddressManagementComponent implements OnInit {
   unsubscribe$ = new Subject<void>();
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(private fb: UntypedFormBuilder, private store: Store) {}
 
-  profileAddressDetails: FormGroup;
+  profileAddressDetails: UntypedFormGroup;
 
   ngOnInit(): void {
     this.store.select(selectAddress).pipe(takeUntil(this.unsubscribe$)).subscribe((payload) => {
@@ -34,15 +34,15 @@ export class AddressManagementComponent implements OnInit {
 
   buildProfileAddressDetailsForm(payload: Partial<IAddresses>): void {
     this.profileAddressDetails = this.fb.group({
-      _id: new FormControl(payload?._id),
-      customerRef: new FormControl(payload?.customerRef),
-      city: new FormControl(payload?.city, [Validators.required]),
-      streetAddress: new FormControl(payload?.streetAddress, [
+      _id: new UntypedFormControl(payload?._id),
+      customerRef: new UntypedFormControl(payload?.customerRef),
+      city: new UntypedFormControl(payload?.city, [Validators.required]),
+      streetAddress: new UntypedFormControl(payload?.streetAddress, [
         Validators.required,
       ]),
-      entering: new FormControl(payload?.entering, [Validators.required]),
-      homeNumber: new FormControl(payload?.homeNumber, [Validators.required]),
-      departmentNumber: new FormControl(payload?.departmentNumber, [
+      entering: new UntypedFormControl(payload?.entering, [Validators.required]),
+      homeNumber: new UntypedFormControl(payload?.homeNumber, [Validators.required]),
+      departmentNumber: new UntypedFormControl(payload?.departmentNumber, [
         Validators.required,
       ]),
     });
