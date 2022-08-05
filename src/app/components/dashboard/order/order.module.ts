@@ -15,9 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
+
 @NgModule({
   declarations: [
     OrderComponent,
@@ -28,8 +26,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     OrdersCustomerComponent,
   ],
   imports: [
-
-  CommonModule,
+    CommonModule,
     OrderRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -40,9 +37,6 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatMomentDateModule,
   ],
 })
 export class OrderModule {}
