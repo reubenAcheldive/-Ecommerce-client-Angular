@@ -1,23 +1,19 @@
-<div
-  *ngIf="cartData$ | async as cartData; else emptyContent"
-  class="row  text-center mt-3"
->
-  <mat-card class="col">
-    <app-icon-info icon="shopping_basket"></app-icon-info>
-  </mat-card>
+<div *ngIf="cartData$ | async as cartData" class="cart--container-flex">
+  <div class="icons--container-flex">
+    <span class="item--card-container">
+      <app-icon-info icon="shopping_basket"></app-icon-info>
+    </span>
 
-  <mat-card class="col">
-    <span matBadge="{{ cartData.items?.length }}" matBadgeOverlap="false">
-      <app-icon-info icon="shopping_cart"></app-icon-info
-    ></span>
-  </mat-card>
-  <div class="row mt-2">
-    <mat-card
-      class="col-lg-3 delete_outline"
-      (click)="deleteAllItems(cartData._id)"
-    >
-      <app-icon-info icon="delete_outline"></app-icon-info>
-    </mat-card>
+    <span class="item--card-container">
+      <span matBadge="{{ cartData.items?.length }}" matBadgeOverlap="false">
+        <app-icon-info icon="shopping_cart"></app-icon-info
+      ></span>
+    </span>
+    <span class="item--card-container">
+      <span  (click)="deleteAllItems(cartData._id)">
+        <app-icon-info icon="delete_outline"></app-icon-info>
+      </span>
+    </span>
   </div>
   <div class="row mt-2">
     <div class="col cartList">
@@ -25,32 +21,6 @@
     </div>
   </div>
   <div class="col-lg-12 mt-5">
-    <mat-card class=" text-center" mat-raised-button
-      >Go To Payment</mat-card
-    >
+    <span class="text-center" mat-raised-button>Go To Payment</span>
   </div>
 </div>
-
-<ng-template #emptyContent class="test-2">
-  <div class="row text-center mt-3">
-    <mat-card class="col-lg-6">
-      <app-icon-info icon="shopping_basket"></app-icon-info>
-    </mat-card>
-
-    <mat-card class="col">
-      <span matBadge="0" matBadgeOverlap="false">
-        <app-icon-info icon="shopping_cart"></app-icon-info
-      ></span>
-    </mat-card>
-    <div class="row mt-2">
-      <mat-card class="col-lg-4 delete_outline">
-        <app-icon-info icon="delete_outline"></app-icon-info>
-      </mat-card>
-    </div>
-    <div class="row mt-2">
-      <div class="col cartList">
-        <app-lists></app-lists>
-      </div>
-    </div>
-  </div>
-</ng-template>

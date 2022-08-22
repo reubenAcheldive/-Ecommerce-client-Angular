@@ -25,12 +25,13 @@ img {
   display: flex;
   margin: 0;
 
-  width:20rem;
+  width: 20rem;
   justify-content: center;
   background-color: #fff;
   border-radius: 15px 15px 15px 15px;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%);
   background-color: #fff;
+  opacity: 0.9;
 }
 
 .card-item {
@@ -39,4 +40,16 @@ img {
   margin: 1.5rem;
   align-items: center;
   justify-content: baseline;
+}
+
+.container--products--flex>.container--item:hover {
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.336);
+  opacity: 1;
+}
+
+.container--text {
+
+  text-align: left;
+  font-size: 18px;
+  font-weight: 400;
 }

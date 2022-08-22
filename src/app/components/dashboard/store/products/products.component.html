@@ -9,20 +9,21 @@
           alt="{{ product.imgUrl }}"
       /></span>
 
-      <span>
+      <span class="container--text">
         <app-add-product-amount
-          [class]="'h'"
+          [class]="' container--text '"
           [amount]="product.quantity || 0"
           (quantityChange)="onQuantityChange($event, product)"
         >
         </app-add-product-amount>
       </span>
-      <span
-        >{{ product.name }} <br />
-        {{ product.description }}</span
+      <span class="container--text"
+        >{{ product.name }} {{ product.description }}</span
       >
       <br />
-      <span>{{ product.price.toFixed(2) | currency }}</span>
+      <span class="container--text"
+        >price {{ product.price.toFixed(2) | currency }}</span
+      >
     </div>
   </div>
 </div>
