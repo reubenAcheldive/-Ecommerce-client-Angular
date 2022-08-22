@@ -5,13 +5,13 @@
 }
 
 .container-dashboard>.app-cart {
-  border: 1px solid black;
+  
   width: 20%;
   height: auto;
 }
 
 .dashboard-router-outlet {
-  border: 1px solid red;
+  
   width: 80%;
   flex: 1
 }

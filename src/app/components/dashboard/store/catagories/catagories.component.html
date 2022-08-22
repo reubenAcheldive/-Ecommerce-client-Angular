@@ -1,14 +1,14 @@
 
-  <ul class="row justify-content-md-lg-sm">
-    <li class="col-lg-1 categories" *ngFor="let category of categories" routerLink="{{ category._id }}">
-      <a class="col-lg-1 category-link text-center"
+  <ul class="container--categories--flex">
+    <li class="category--item" *ngFor="let category of categories" routerLink="{{ category._id }}">
+      <a class=""
         ><img
           width="48"
           height="48"
           src="../../../../../assets/icons/{{ category.nameCategory }}.png"
           alt=""
       /></a>
-      <br/>
+
       <small class="text-center">{{ category.nameCategory }}</small>
     </li>
   </ul>
