@@ -9,12 +9,27 @@
         <app-icon-info icon="shopping_cart"></app-icon-info
       ></span>
     </span>
-    <span class="item--card-container">
-      <span  (click)="deleteAllItems(cartData._id)">
-        <app-icon-info icon="delete_outline"></app-icon-info>
-      </span>
+  </div>
+
+  <div class=" list--button-container">
+
+    <span class="icon--list" (click)="deleteAllItems(cartData._id)">
+      <app-icon-info icon="save_alt"></app-icon-info>
+      <small>Saving cart</small>
+    </span>
+
+    <span class="icon--list" (click)="deleteAllItems(cartData._id)">
+      <app-icon-info icon="tab"></app-icon-info>
+      <small>my notes</small>
+    </span>
+
+    <span class="icon--list" (click)="deleteAllItems(cartData._id)">
+      <app-icon-info icon="delete_outline"></app-icon-info>
+      <small>Empty basket</small>
     </span>
   </div>
+
+
   <div class="row mt-2">
     <div class="col cartList">
       <app-lists [cartList]="cartData"></app-lists>

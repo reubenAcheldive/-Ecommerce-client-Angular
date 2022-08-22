@@ -1,7 +1,7 @@
 .cart--container-flex {
   display: flex;
   flex-direction: column;
-  border: 2px solid rgb(0, 0, 0);
+
   width: 100%;
   height: 100%;
   padding: 0 auto;
@@ -19,8 +19,9 @@
 
 }
 
-.icons--container-flex>.item--card-container {
-  width: 7rem;
+.icons--container-flex>.item--card-container,
+.item--card-trash {
+  width: 8rem;
   height: 5rem;
   display: flex;
   justify-items: center;
@@ -30,4 +31,23 @@
   border-radius: 15px 15px 15px 15px;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%);
   background-color: #fff;
+}
+
+.list--button-container {
+  display: flex;
+  border-radius: 15px 15px 15px 15px;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%);
+  background-color: #fff;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  color: rgba(0, 0, 255, 0.664);
+  padding: 10px 0;
+  margin: 12px;
+}
+
+.list--button-container>* {
+  display: flex;
+  flex-direction: column;
+
 }
