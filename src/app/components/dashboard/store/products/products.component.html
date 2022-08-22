@@ -21,6 +21,8 @@
         >{{ product.name }} <br />
         {{ product.description }}</span
       >
+      <br />
+      <span>{{ product.price.toFixed(2) | currency }}</span>
     </div>
   </div>
 </div>
