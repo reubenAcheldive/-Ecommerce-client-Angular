@@ -16,8 +16,8 @@ img {
   display: flex;
   gap: 2rem;
 
+  padding: 0.7rem 0.9rem;
 
-  padding: 1rem;
 }
 
 .container--products--flex>.container--item {

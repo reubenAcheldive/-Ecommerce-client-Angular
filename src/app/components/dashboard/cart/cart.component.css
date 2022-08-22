@@ -7,6 +7,8 @@
   padding: 0 auto;
   margin: 0;
   gap: 25px;
+  margin: 0 7px;
+
 }
 
 .icons--container-flex {
@@ -43,7 +45,7 @@
   text-align: center;
   color: rgba(0, 0, 255, 0.664);
   padding: 10px 0;
-  margin: 12px;
+
 }
 
 .list--button-container>* {

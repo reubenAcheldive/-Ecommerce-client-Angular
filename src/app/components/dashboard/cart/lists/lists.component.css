@@ -1,5 +1,35 @@
 img {
   max-width: 40px;
-   max-height: 40px;
- }
- 
+  max-height: 40px;
+}
+
+.container--list--cart--flex {
+
+  display: flex;
+  width: 100%;
+  height: 50vh;
+  overflow-y: scroll;
+  justify-content: center;
+
+}
+
+.flex-direction-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.cart--list--items {
+  display: flex;
+
+}
+
+.item--container--flex {
+  border: 0.5px solid rgb(243, 2, 2);
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  width: 16rem;
+  height: 4rem;
+
+}
