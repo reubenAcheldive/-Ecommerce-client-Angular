@@ -1,3 +1,9 @@
-mat-typography{
-  background: #b5b4b41f;
+.app-container-flex {
+
+  display: flex;
+  width: 100;
+  flex-direction: column;
 }
+
+
+

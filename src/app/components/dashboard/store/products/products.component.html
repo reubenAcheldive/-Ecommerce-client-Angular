@@ -1,16 +1,26 @@
-<div class="row justify-content-left product">
+<div class="container--products--flex">
+  <div class="container--item" *ngFor="let product of fetchProducts$ | async">
+    <div class="show-btn card-item">
+      <span>
+        <img
+          class="col-md-12"
+          mat-card-image
+          src="{{ product.imgUrl }}"
+          alt="{{ product.imgUrl }}"
+      /></span>
 
-  <mat-card class="col-lg-3 m-2 card"  *ngFor="let product of  fetchProducts$ |async">
-
-    <div class="show-btn">
-      <img class="col-md-12" mat-card-image src="{{product.imgUrl}}"
-        alt="{{product.imgUrl}}">
-      <span  >
-        <app-add-product-amount [class]="'h'" [amount]="product.quantity ||0" (quantityChange)="onQuantityChange($event, product)" >
+      <span>
+        <app-add-product-amount
+          [class]="'h'"
+          [amount]="product.quantity || 0"
+          (quantityChange)="onQuantityChange($event, product)"
+        >
         </app-add-product-amount>
       </span>
-      <mat-card-footer>"{{product.name}}" <br/> {{product.description}}</mat-card-footer>
+      <span
+        >{{ product.name }} <br />
+        {{ product.description }}</span
+      >
     </div>
-  </mat-card>
-
+  </div>
 </div>
