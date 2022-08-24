@@ -53,3 +53,29 @@
   flex-direction: column;
 
 }
+
+.cartList {
+
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  align-items: center;
+
+  overflow-x: hidden;
+  width: auto;
+
+  gap: 2rem
+}
+
+app-go-to-payment {
+  border: 2px solid black;
+  width: 17rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1579f2;
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+}

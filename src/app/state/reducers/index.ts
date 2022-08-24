@@ -194,6 +194,7 @@ export const shoppingReducer = createReducer(
       ...state.cartListProducts,
       items: [],
     },
+    products: t(state.products),
   })),
 
   on(ShoppingActions.getCartByCartIdSuccess, (state, { cart }) => ({
@@ -258,9 +259,8 @@ export const shoppingReducer = createReducer(
 );
 
 const updateProducts = (products: IProduct[], items: Item[]): IProduct[] => {
-  console.log(products, items);
-  if (!products) return [];
   const updateProducts: IProduct[] = [...products];
+  if (!products) return [];
 
   updateProducts.map((product) => {
     const obj = Object.assign({}, product);
@@ -281,3 +281,14 @@ const updateProducts = (products: IProduct[], items: Item[]): IProduct[] => {
   });
   return updateProducts;
 };
+
+function t(products: IProduct[]): IProduct[] {
+  let updateProducts: IProduct[] = [...products];
+  updateProducts.forEach((p, i) => {
+    if (p.quantity >= 0) {
+      const product: IProduct = updateProducts[i];
+      updateProducts.splice(i, 1, { ...product, quantity: 0 });
+    }
+  });
+  return updateProducts;
+}

@@ -1,38 +1,43 @@
-<div class="container--list--cart--flex ">
-
-  <div *ngIf="cartList.items.length; else empty" class="flex-direction-container" >
-
-    <div class="cart--list--items " *ngFor="let item of cartList.items">
-
+<div class="container--list--cart--flex">
+  <div
+    *ngIf="cartList.items.length; else empty"
+    class="flex-direction-container"
+  >
+    <div class="cart--list--items" *ngFor="let item of cartList.items">
       <div class="item--container--flex">
+        <span class="button">
+          <button
+            class="deleteItem"
+            (click)="deleteOnItem(cartList._id, item._id)"
+          >
+            X
+          </button>
+        </span>
 
-
+        <div class="single--item--container">
+          <span class="item--details">
+            <span class="quantity">
+              {{
+                item.quantity * item.productRefId.price
+                  | number: "1.0-1"
+                  | currency
+              }}
+            </span>
+            <span class="name-item">
+              {{ item.productRefId.name }}
+            </span>
+            <span>
+              <img alt="" src="{{ item.productRefId.imgUrl }}" />
+            </span>
+          </span>
+        </div>
       </div>
     </div>
   </div>
+
   <ng-template #empty>
     <img class="svg" src="../../../../../assets/shopping-bag-svgrepo-com.svg" />
     <h1>Your bag is empty... <br />Go shopping!</h1>
   </ng-template>
 </div>
-<!-- <div class="button--absulote">
-  <button
-    class="deleteItem"
-    (click)="deleteOnItem(cartList._id, item._id)"
-  >
-    X
-  </button>
-</div>
-<span class="">
-  <small class="">₪</small>
-  {{ item.quantity * item.productRefId.price | number: "1.0-1" }}
-</span>
 
-<span class="">{{ item.productRefId.name }}</span>
-<span class="" >
-  <img alt="" src="{{ item.productRefId.imgUrl }}" />
-  <app-add-product-amount
-    [amount]="item.quantity"
-    (quantityChange)="onQuantityChange($event, item)"
-  ></app-add-product-amount>
-</span> -->
