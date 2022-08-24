@@ -17,6 +17,6 @@ import { AddProductAmountModule } from 'src/app/UI/add-product-amount/add-produc
     MatToolbarModule,
     AddProductAmountModule,
   ],
-  exports: [],
+  exports: [CatagoriesComponent],
 })
 export class StoreModule {}
