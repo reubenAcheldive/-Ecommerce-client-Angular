@@ -1,33 +1,44 @@
-<mat-card class="row">
-  <mat-card-title class="col-lg-12 text-center">Personal Details</mat-card-title>
-  <mat-card-subtitle class="col-lg-12 ">
-    <form class="row" [formGroup]="profileUpdateDetails" (ngSubmit)="handleSubmit()">
-      <div class="col-lg-6">
-        <mat-form-field appearance="outline">
-          <mat-label>First Name</mat-label>
-          <input
-            matInput
-            placeholder="First Name.."
-            formControlName="firstName"
-            required
-
-          />
-          <mat-error *ngIf="firstName.invalid">{{getControlErrorMessage(firstName)}}</mat-error>
-        </mat-form-field>
+<div class="card--container--flex">
+  <h1>Personal details</h1>
+  <div class="card">
+    <form
+      class="form"
+      [formGroup]="profileUpdateDetails"
+      (ngSubmit)="handleSubmit()"
+    >
+      <div class="inputs-container">
+        <div class="input-group">
+          <mat-form-field class="mat-form-field " appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input
+              matInput
+              placeholder="First Name.."
+              formControlName="firstName"
+              required
+            />
+            <mat-error *ngIf="firstName.invalid">{{
+              getControlErrorMessage(firstName)
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="input-group">
+          <mat-form-field appearance="outline" class="mat-form-field " >
+            <mat-label>Last Name</mat-label>
+            <input
+              matInput
+              placeholder="First Name.."
+              formControlName="lastName"
+              required
+            />
+            <mat-error *ngIf="lastName.invalid">{{
+              getControlErrorMessage(lastName)
+            }}</mat-error>
+          </mat-form-field>
+        </div>
       </div>
-      <div class="col-lg-6">
-        <mat-form-field appearance="outline">
-          <mat-label>Last Name</mat-label>
-          <input
-            matInput
-            placeholder="First Name.."
-            formControlName="lastName"
-            required
-          />
-          <mat-error *ngIf="lastName.invalid">{{getControlErrorMessage(lastName)}}</mat-error>
-        </mat-form-field>
-      </div>
-      <button class="col-lg-3" mat-raised-button type="submit" color="primary">Update</button>
+      <button class="btn-update" type="submit" color="primary">Update</button>
     </form>
-  </mat-card-subtitle>
-</mat-card>
+  </div>
+</div>
+
+<form class="row"></form>

@@ -1,40 +1,28 @@
-.menu-container {
-  display: flex;
+.container {
 
-  flex-direction: column
-}
-
-.menu-container>div {
-  display: flex;
-  justify-content: flex-end;
-  margin: 5px;
-
-}
-
-.menu-container>div>button>.context {
   width: auto;
-  font-size: 15px;
-  text-align: center;
-
-  color: red;
-  margin: 5px 15px;
+  height: 100%;
+  margin: 0.75rem 1rem;
+  display: flex;
 }
 
-.btn-icon {
+.box-1 {
+  width: 80%;
+
+}
+
+.box-2 {
+  width: 20%;
 
   display: flex;
-  justify-content: flex-end;
-  border: none;
-  border-radius: 8rem;
-  margin: 0;
-  padding: 10px;
-  background: rgba(224, 221, 221, 0.39);
+  flex-direction: column;
+  align-self: flex-start;
+  gap: 0.3rem;
+  align-items: flex-start;
 }
 
-.btn-icon:hover {
-  background: rgba(161, 161, 161, 0.781);
-}
+.item--nav {
 
-button {
-  width: 250px;
+  width: 100%;
+
 }

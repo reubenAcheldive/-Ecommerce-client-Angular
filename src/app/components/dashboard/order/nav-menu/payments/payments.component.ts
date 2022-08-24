@@ -1,26 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormControl, UntypedFormBuilder } from '@angular/forms';
 
-import * as _moment from 'moment';
 
 
 
-import {MatDatepicker} from '@angular/material/datepicker';
+
+
 
 // tslint:disable-next-line:no-duplicate-imports
-export const MY_FORMATS = {
-  parse: {
-    dateInput: 'MM/YYYY',
-  },
-  display: {
-    dateInput: 'MM/YYYY',
-    monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
 
-const moment = _moment;
+
+
 @Component({
   selector: 'app-payments',
   templateUrl: './payments.component.html',
@@ -44,17 +34,10 @@ export class PaymentsComponent implements OnInit {
     });
   }
 
-  date = new UntypedFormControl(moment());
 
 
 
-  setMonthAndYear(normalizedMonthAndYear: _moment.Moment, datepicker: MatDatepicker<_moment.Moment>) {
-    const ctrlValue = this.date.value!;
-    ctrlValue.month(normalizedMonthAndYear.month());
-    ctrlValue.year(normalizedMonthAndYear.year());
-    this.date.setValue(ctrlValue);
-    datepicker.close();
-  }
+
 
   handleFormSubmit() {}
 
