@@ -26,8 +26,12 @@
             <span class="name-item">
               {{ item.productRefId.name }}
             </span>
-            <span>
+            <span class="add--product--relative">
               <img alt="" src="{{ item.productRefId.imgUrl }}" />
+              <app-add-product-amount
+                [amount]="item.quantity"
+                (quantityChange)="onQuantityChange($event, item)"
+              ></app-add-product-amount>
             </span>
           </span>
         </div>
@@ -40,4 +44,3 @@
     <h1>Your bag is empty... <br />Go shopping!</h1>
   </ng-template>
 </div>
-

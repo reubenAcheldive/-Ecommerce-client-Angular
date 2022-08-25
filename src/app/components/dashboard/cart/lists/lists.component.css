@@ -80,7 +80,7 @@ img {
   align-content: stretch;
   flex-wrap: nowrap;
 
-  gap: 2.6rem;
+
 
   max-width: 18rem;
 }
@@ -90,4 +90,20 @@ img {
   font-size: smaller;
   /* flex: 1; */
   font-weight: 300;
+}
+
+.add--product--relative {
+  position: relative;
+}
+
+.add--product--relative>app-add-product-amount {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  right: 0;
+}
+
+.buttonClass {
+  background-color: red;
 }

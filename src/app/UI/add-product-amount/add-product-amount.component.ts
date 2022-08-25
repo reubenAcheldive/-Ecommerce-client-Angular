@@ -19,9 +19,7 @@ import { initUpdateItemQuantityInCart } from 'src/app/state/actions/shopping.act
 export class AddProductAmountComponent {
   @Input()
   public amount: number = 0;
-  @Input () class:{}={
-    
-  }
+
   @Output()
   public quantityChange: EventEmitter<number> = new EventEmitter();
 
@@ -31,6 +29,7 @@ export class AddProductAmountComponent {
     this.amount += 1;
     this.quantityChange.emit(this.amount);
 
+    console.log({ amount: this.amount });
     //this.dispatchUpdateAction(this._item);
   }
 

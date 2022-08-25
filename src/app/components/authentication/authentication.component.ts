@@ -36,7 +36,7 @@ export class AuthenticationComponent implements OnInit, OnChanges, OnDestroy {
   loading = true;
 
   ngOnInit(): void {
-    this.togglePageService.toggleStatus.subscribe((l) => (this.toggle = !l));
+    this.togglePageService.toggleStatus.pipe(takeUntil(this.unsubscribe$)).subscribe((l) => (this.toggle = !l));
     this.handleWithLoading();
   }
 

@@ -16,7 +16,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { StoreModule } from '../store/store.module';
-
+import { NavDialogModalComponent } from './nav-menu/nav-dialog-modal/nav-dialog-modal.component';
+import {MatDialogModule} from '@angular/material/dialog';
 @NgModule({
   declarations: [
     OrderComponent,
@@ -25,6 +26,7 @@ import { StoreModule } from '../store/store.module';
     AddressManagementComponent,
     PaymentsComponent,
     OrdersCustomerComponent,
+    NavDialogModalComponent,
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { StoreModule } from '../store/store.module';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    StoreModule
+    StoreModule,
+    MatDialogModule
   ],
 })
 export class OrderModule {}

@@ -262,22 +262,14 @@ const updateProducts = (products: IProduct[], items: Item[]): IProduct[] => {
   const updateProducts: IProduct[] = [...products];
   if (!products) return [];
 
-  updateProducts.map((product) => {
-    const obj = Object.assign({}, product);
-    console.log({ obj });
-
-    obj['quantity'] = 0;
-  });
-
   items.forEach((item: Item) => {
+    console.log({item})
     const productId: string = item.productRefId._id;
     let index: number = updateProducts.findIndex((p) => p._id === productId);
     if (index > -1) {
       const product: IProduct = updateProducts[index];
       updateProducts.splice(index, 1, { ...product, quantity: item.quantity });
     }
-
-    return updateProducts;
   });
   return updateProducts;
 };
