@@ -29,7 +29,7 @@ export class AddProductAmountComponent {
     this.amount += 1;
     this.quantityChange.emit(this.amount);
 
-    console.log({ amount: this.amount });
+
     //this.dispatchUpdateAction(this._item);
   }
 

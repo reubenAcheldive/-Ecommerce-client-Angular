@@ -4,11 +4,11 @@
     class="flex-direction-container"
   >
     <div class="cart--list--items" *ngFor="let item of cartList.items">
-      <div class="item--container--flex">
+      <div  class="item--container--flex">
         <span class="button">
           <button
             class="deleteItem"
-            (click)="deleteOnItem(cartList._id, item._id)"
+            (click)="deleteOnItem(cartList._id, item._id,item.productRefId._id)"
           >
             X
           </button>

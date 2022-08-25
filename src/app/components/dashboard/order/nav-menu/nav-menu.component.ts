@@ -25,12 +25,12 @@ export class NavMenuComponent implements OnInit {
   constructor(private store: Store) {}
   getUserDetails$: Observable<IUser>;
   ngOnInit(): void {
-    console.log(1);
+
     this.store
       .select(selectUserId)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((selectUserId ) => {
-        console.log({ customerRef: selectUserId });
+
         this.store.dispatch(InitFetchAddress({ customerRef: selectUserId }));
       });
   }

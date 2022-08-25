@@ -59,7 +59,7 @@ export class UserDetailsComponent implements OnInit {
 
   handleSubmit() {
     const { firstName, lastName } = this.profileUpdateDetails.value;
-    console.log(this.userId);
+
 
     const user = {
       _id: this.userId,

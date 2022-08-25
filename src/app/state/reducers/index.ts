@@ -178,23 +178,29 @@ export const shoppingReducer = createReducer(
   ),
   on(
     ShoppingActions.DeleteSingleProductFromCartListInit,
-    (state, { itemId }) => ({
+
+    (state, { itemId, productId }) => ({
       ...state,
       cartListProducts: {
         ...state.cartListProducts,
-        items: state.cartListProducts.items.filter(
-          (item) => item._id !== itemId
-        ),
+        items: state.cartListProducts.items.filter((item) => {
+          return item._id !== itemId;
+        }),
       },
+      products: findOneAndUpdateQuantityToZero(state.products, productId),
     })
   ),
+  on(ShoppingActions.initUpdateItemQuantityInCart,(state,{itemUpdate})=>({
+...state,
+products:findOneAndUpdateQuantityToZero(state.products,itemUpdate.productRefId)
+  })),
   on(ShoppingActions.deleteAllItemsInCartSuccess, (state, {}) => ({
     ...state,
     cartListProducts: {
       ...state.cartListProducts,
       items: [],
     },
-    products: t(state.products),
+    products: updateAllProductQuantityToZero(state.products),
   })),
 
   on(ShoppingActions.getCartByCartIdSuccess, (state, { cart }) => ({
@@ -263,7 +269,6 @@ const updateProducts = (products: IProduct[], items: Item[]): IProduct[] => {
   if (!products) return [];
 
   items.forEach((item: Item) => {
-    console.log({item})
     const productId: string = item.productRefId._id;
     let index: number = updateProducts.findIndex((p) => p._id === productId);
     if (index > -1) {
@@ -274,13 +279,30 @@ const updateProducts = (products: IProduct[], items: Item[]): IProduct[] => {
   return updateProducts;
 };
 
-function t(products: IProduct[]): IProduct[] {
+function updateAllProductQuantityToZero(products: IProduct[]): IProduct[] {
   let updateProducts: IProduct[] = [...products];
   updateProducts.forEach((p, i) => {
     if (p.quantity >= 0) {
       const product: IProduct = updateProducts[i];
       updateProducts.splice(i, 1, { ...product, quantity: 0 });
     }
+  });
+  return updateProducts;
+}
+
+function findOneAndUpdateQuantityToZero(
+  products: IProduct[],
+  itemId: string
+): IProduct[] {
+
+  console.log({products,itemId})
+
+  const updateProducts: IProduct[] = [...products];
+  updateProducts.find((p, i) => {
+    const product: IProduct = updateProducts[i];
+
+    p._id === itemId &&
+      updateProducts.splice(i, 1, { ...product, quantity: 0 });
   });
   return updateProducts;
 }

@@ -166,7 +166,7 @@ export class ShoppingEffects {
   DeleteSingleProductCartList$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(shoppingActions.DeleteSingleProductFromCartListInit),
-      exhaustMap(({ cartId, itemId }) => {
+      exhaustMap(({ cartId, itemId ,productId}) => {
         return this.shoppingCartService.deleteProduct(cartId, itemId).pipe(
           map(() => {
             return shoppingActions.DeleteSingleProductFromCartListSuccess();
@@ -229,7 +229,7 @@ export class ShoppingEffects {
             return shoppingActions.createNewOrderSuccess({ _id: idOrder });
           }),
           catchError((error) => {
-            console.log(error, 'create order effect');
+
             return of(shoppingActions.createNewOrderFailed(error));
           })
         );
@@ -255,7 +255,7 @@ export class ShoppingEffects {
     return this.actions$.pipe(
       ofType(shoppingActions.lastOrderInit),
       exhaustMap(({ _id }) => {
-        console.log({ _id }, 'check _id');
+
 
         return this.orderService.getLastOrderDetail(_id).pipe(
           map((action) => {
@@ -291,8 +291,10 @@ export class ShoppingEffects {
     return this.actions$.pipe(
       ofType(shoppingActions.initUpdateItemQuantityInCart),
       exhaustMap(({ itemUpdate }) => {
+        console.log({itemUpdate})
         return this.shoppingCartService.updateItemOnCart(itemUpdate).pipe(
           map((cartList) => {
+          
             return shoppingActions.successUpdateItemQuantityInCart({
               cartList,
             });
@@ -309,10 +311,10 @@ export class ShoppingEffects {
     return this.actions$.pipe(
       ofType(shoppingActions.InitFetchAddress),
       exhaustMap(({ customerRef }) => {
-        console.log({customerRef});
+
         return this.addressesService.getAddressesList(customerRef).pipe(
           map((payload) => {
-          
+
 
             return shoppingActions.successFetchAddress({ payload });
           })

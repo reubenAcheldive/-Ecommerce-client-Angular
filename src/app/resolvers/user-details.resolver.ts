@@ -25,7 +25,7 @@ export class UserDetailsResolver implements Resolve<IUser> {
         this.store.dispatch(initEditUserPersonalDetails({user}));
       }),
       map((data) => {
-        console.log(data);
+
         return data;
       }),
       take(1)

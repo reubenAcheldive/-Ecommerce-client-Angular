@@ -72,7 +72,7 @@ export class AddressManagementComponent implements OnInit {
   }
 
   handleSubmit() {
-    console.log(this.profileAddressDetails.value);
+
   }
 
   ngOnDestroy(): void {

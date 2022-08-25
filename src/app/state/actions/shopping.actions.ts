@@ -151,7 +151,7 @@ export const deleteAllItemsInCartFail = createAction(
 
 export const DeleteSingleProductFromCartListInit = createAction(
   DeleteSingleItemInCartTypes.init,
-  props<{ cartId: string; itemId: string }>()
+  props<{ cartId: string; itemId: string,productId:string }>()
 );
 // ----------------------------------------------------------
 //---------------------------------------------------------------

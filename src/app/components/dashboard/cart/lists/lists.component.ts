@@ -25,13 +25,13 @@ import { IUser } from 'src/app/Interfaces/auth/userInformation';
 })
 export class ListsComponent implements OnInit {
   @Input() cartList: Cart;
- 
+
   public fetchProducts$: Observable<IProduct[]> =
     this.store.select(selectProducts);
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    console.log({ cartList: this.cartList });
+   
   }
 
   public onQuantityChange(quantity: number, item: Item): void {
@@ -46,9 +46,9 @@ export class ListsComponent implements OnInit {
     );
   }
 
-  deleteOnItem(cartId: string, itemId: string): void {
+  deleteOnItem(cartId: string, itemId: string,productId: string): void {
     this.store.dispatch(
-      DeleteSingleProductFromCartListInit({ cartId, itemId })
+      DeleteSingleProductFromCartListInit({ cartId, itemId ,productId})
     );
   }
 }
