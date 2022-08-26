@@ -3,3 +3,31 @@
   display: flex;
 
 }
+.container {
+
+  width: auto;
+  height: 100%;
+  margin: 0.75rem 1rem;
+  display: flex;
+}
+
+.box-1 {
+  width: 80%;
+
+}
+
+.box-2 {
+  width: 20%;
+
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  gap: 0.3rem;
+  align-items: flex-start;
+}
+
+.item--nav {
+
+  width: 100%;
+
+}

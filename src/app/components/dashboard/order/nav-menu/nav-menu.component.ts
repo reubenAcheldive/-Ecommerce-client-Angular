@@ -29,8 +29,7 @@ export class NavMenuComponent implements OnInit {
     this.store
       .select(selectUserId)
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((selectUserId ) => {
-
+      .subscribe((selectUserId) => {
         this.store.dispatch(InitFetchAddress({ customerRef: selectUserId }));
       });
   }

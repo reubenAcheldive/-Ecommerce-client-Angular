@@ -17,17 +17,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { StoreModule } from '../store/store.module';
 import { NavDialogModalComponent } from './nav-menu/nav-dialog-modal/nav-dialog-modal.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { LinksNavModule } from 'src/app/UI/links-nav/links-nav.module';
 @NgModule({
-  declarations: [
-    OrderComponent,
-    NavMenuComponent,
-    UserDetailsComponent,
-    AddressManagementComponent,
-    PaymentsComponent,
-    OrdersCustomerComponent,
-    NavDialogModalComponent,
-  ],
+  declarations: [OrderComponent],
   imports: [
     CommonModule,
     OrderRoutingModule,
@@ -41,7 +34,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatInputModule,
     MatButtonModule,
     StoreModule,
-    MatDialogModule
+    MatDialogModule,
+    LinksNavModule
   ],
 })
 export class OrderModule {}

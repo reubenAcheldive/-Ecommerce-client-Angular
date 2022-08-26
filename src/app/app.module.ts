@@ -26,6 +26,10 @@ import { AuthenticationModule } from './components/authentication/authentication
 import { MatButtonModule } from '@angular/material/button';
 
 import { MatMenuModule } from '@angular/material/menu';
+import { OrderModule } from './components/dashboard/order/order.module';
+
+import { LinksNavModule } from './UI/links-nav/links-nav.module';
+
 @NgModule({
   declarations: [AppComponent, NavBarComponent],
 
@@ -47,6 +51,8 @@ import { MatMenuModule } from '@angular/material/menu';
     AuthenticationModule,
     MatButtonModule,
     MatMenuModule,
+    OrderModule,
+    LinksNavModule,
   ],
   providers: [
     {
