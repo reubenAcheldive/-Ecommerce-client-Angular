@@ -25,7 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AuthenticationModule } from './components/authentication/authentication.module';
 import { MatButtonModule } from '@angular/material/button';
 
-
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [AppComponent, NavBarComponent],
 
@@ -37,7 +37,7 @@ import { MatButtonModule } from '@angular/material/button';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
- ReactiveFormsModule,
+    ReactiveFormsModule,
     StoreModule.forRoot({ shoppingFeature: shoppingReducer }),
     EffectsModule.forRoot([AuthEffects, ShoppingEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
@@ -46,7 +46,7 @@ import { MatButtonModule } from '@angular/material/button';
 
     AuthenticationModule,
     MatButtonModule,
- 
+    MatMenuModule,
   ],
   providers: [
     {
@@ -54,8 +54,6 @@ import { MatButtonModule } from '@angular/material/button';
       useClass: JwtInterceptor,
       multi: true,
     },
-
-
   ],
   bootstrap: [AppComponent],
 })

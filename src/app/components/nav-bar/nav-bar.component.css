@@ -1,0 +1,38 @@
+.container--flex {
+  width: 100%;
+  display: flex;
+  background-color: #ebeff1;
+  padding-bottom: 5px;
+  margin: 0 auto;
+}
+
+.navbar--container {
+  width: 100%;
+  display: flex;
+  background-color: #fbfcfc;
+  align-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+ul {
+  display: flex;
+  gap: 5rem;
+  align-items: center;
+  list-style-type: none;
+  justify-content: space-between
+}
+
+div>img {
+  width: 150px;
+  height: 55px;
+  background: red;
+  opacity: 0.8;
+  display: flex;
+  margin-right: 20px
+}
+
+img {
+  align-self: flex-end;
+}
