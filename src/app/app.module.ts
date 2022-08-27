@@ -32,6 +32,7 @@ import { LinksNavModule } from './UI/links-nav/links-nav.module';
 import { IconInfoModule } from './UI/icon-info/icon-info.module';
 import { ContentNameComponent } from './UI/content-name/content-name.component';
 
+
 @NgModule({
   declarations: [AppComponent, NavBarComponent, ContentNameComponent],
 

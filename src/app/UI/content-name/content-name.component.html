@@ -1,2 +1,24 @@
-<p>content-name works!</p>
-<input aria-label="ראובן"/>
+<div class="container__content">
+  <p class="p_">
+    איש קשר למשלוח
+    <app-icon-info icon="person"></app-icon-info>
+  </p>
+  <div class="inputs-group-container">
+    <div class="container__input">
+      <input type="text" />
+      <label for="">:שם מלא</label>
+    </div>
+    <div class="container__input">
+      <input type="text" />
+      <label for="">:מספר טלפון</label>
+    </div>
+    <div class="container__input">
+      <input type="text" />
+      <label for="">:טלפון נוסף</label>
+    </div>
+    <div class="container__flex__buttons">
+      <span> <button class="btn_save" (click)="onClose()">שמירה</button></span>
+      <span> <button class="btn_cancel" (click)="onClose()">ביטול</button></span>
+    </div>
+  </div>
+</div>
