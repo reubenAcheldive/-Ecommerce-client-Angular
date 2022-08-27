@@ -23,14 +23,15 @@ p {
   background-color: #fff;
   display: flex;
   justify-content: center;
+  opacity: 0;
 }
 
-.increment:hover,
-.decrement:hover {
-
-  background-color: rgb(206, 203, 203);
+.increment,.decrement {
+opacity: 1;
   border-radius: 2rem;
 }
+
 :host.blue-color {
   color: blue;
 }
+

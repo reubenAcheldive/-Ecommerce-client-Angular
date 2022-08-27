@@ -14,7 +14,7 @@ const routes: Routes = [
 
     children: [
       {
-        path: 'user-details',
+        path: '',
         component: UserDetailsComponent,
         resolve: { userDetails: UserDetailsResolver },
       },

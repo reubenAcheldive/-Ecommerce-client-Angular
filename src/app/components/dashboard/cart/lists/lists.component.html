@@ -4,11 +4,13 @@
     class="flex-direction-container"
   >
     <div class="cart--list--items" *ngFor="let item of cartList.items">
-      <div  class="item--container--flex">
+      <div class="item--container--flex">
         <span class="button">
           <button
             class="deleteItem"
-            (click)="deleteOnItem(cartList._id, item._id,item.productRefId._id)"
+            (click)="
+              deleteOnItem(cartList._id, item._id, item.productRefId._id)
+            "
           >
             X
           </button>
@@ -27,7 +29,7 @@
               {{ item.productRefId.name }}
             </span>
             <span class="add--product--relative">
-              <img alt="" src="{{ item.productRefId.imgUrl }}" />
+              <img alt="" src="{{ item.productRefId.imgUrl }}"  />
               <app-add-product-amount
                 [amount]="item.quantity"
                 (quantityChange)="onQuantityChange($event, item)"
@@ -40,7 +42,16 @@
   </div>
 
   <ng-template #empty>
-    <img class="svg" src="../../../../../assets/shopping-bag-svgrepo-com.svg" />
-    <h1>Your bag is empty... <br />Go shopping!</h1>
+    <div class="container--empty--flex">
+      <img
+        id="svg"
+        src="../../../../../assets/shopping-bag-svgrepo-com.svg"
+
+      />
+
+      <div>...העגלה שלך ריקה</div>
+      <div class="fast">מילוי מהיר</div>
+      <p style="color: #1579f2 !important">!או התחילו בקניה</p>
+    </div>
   </ng-template>
 </div>

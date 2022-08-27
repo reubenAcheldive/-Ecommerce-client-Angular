@@ -36,3 +36,7 @@ div>img {
 img {
   align-self: flex-end;
 }
+
+ul>li>span>.btn-name {
+
+}

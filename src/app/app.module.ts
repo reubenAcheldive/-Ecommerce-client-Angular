@@ -29,9 +29,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { OrderModule } from './components/dashboard/order/order.module';
 
 import { LinksNavModule } from './UI/links-nav/links-nav.module';
+import { IconInfoModule } from './UI/icon-info/icon-info.module';
+import { ContentNameComponent } from './UI/content-name/content-name.component';
 
 @NgModule({
-  declarations: [AppComponent, NavBarComponent],
+  declarations: [AppComponent, NavBarComponent, ContentNameComponent],
 
   imports: [
     BrowserModule,
@@ -53,6 +55,7 @@ import { LinksNavModule } from './UI/links-nav/links-nav.module';
     MatMenuModule,
     OrderModule,
     LinksNavModule,
+    IconInfoModule,
   ],
   providers: [
     {

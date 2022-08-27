@@ -1,5 +1,5 @@
 <div class="card--container--flex">
-  <h1>Personal details</h1>
+  <h1>פרטים איישים</h1>
   <div class="card">
     <form
       class="form"
@@ -8,8 +8,8 @@
     >
       <div class="inputs-container">
         <div class="input-group">
-          <mat-form-field class="mat-form-field" appearance="outline">
-            <mat-label>First Name</mat-label>
+          <mat-form-field class="mat-form-field" appearance="legacy">
+            <mat-label>שפ פרטי</mat-label>
             <input
               matInput
               placeholder="First Name.."
@@ -22,8 +22,8 @@
           </mat-form-field>
         </div>
         <div class="input-group">
-          <mat-form-field appearance="outline" class="mat-form-field">
-            <mat-label>Last Name</mat-label>
+          <mat-form-field appearance="legacy" class="mat-form-field">
+            <mat-label style="align-self: flex-end">שם משפחה</mat-label>
             <input
               matInput
               placeholder="First Name.."
@@ -36,7 +36,14 @@
           </mat-form-field>
         </div>
       </div>
-      <button class="btn-update" type="submit" color="primary">Update</button>
+      <button
+        *ngIf="lastName.value.length > 0 && firstName.value.length > 0"
+        class="btn-update"
+        type="submit"
+        color="primary"
+      >
+        Update
+      </button>
     </form>
   </div>
 </div>

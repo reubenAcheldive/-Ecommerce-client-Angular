@@ -16,13 +16,18 @@
   <nav class="navbar--container">
     <ul>
       <li>
-        <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+        <div>
+          <button class="btn-name" mat-button [matMenuTriggerFor]="menu">
+
+            <app-icon-info icon="person" label="ראובן"></app-icon-info>
+          </button>
+        </div>
         <mat-menu #menu="matMenu">
           <app-links-nav></app-links-nav>
         </mat-menu>
       </li>
-      <li><a mat-button href="#">About</a></li>
-      <li><a mat-button href="#">Contact</a></li>
+      <li><a mat-button href="#">עלינו</a></li>
+      <li><a mat-button href="#">צור קשר</a></li>
     </ul>
     <div>
       <img

@@ -16,6 +16,7 @@ import {
 import { Observable, Subscription } from 'rxjs';
 import { selectAuthDetails } from 'src/app/state/selectors/auth-selectors';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-details',
@@ -23,8 +24,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./user-details.component.css'],
 })
 export class UserDetailsComponent implements OnInit {
-  constructor(private fb: UntypedFormBuilder, private store: Store, private route: ActivatedRoute) {}
-
+  constructor(
+    private fb: UntypedFormBuilder,
+    private store: Store,
+    private route: ActivatedRoute,
+   
+  ) {}
 
   getUserDetails$: Subscription;
   userId: string;
@@ -60,7 +65,6 @@ export class UserDetailsComponent implements OnInit {
   handleSubmit() {
     const { firstName, lastName } = this.profileUpdateDetails.value;
 
-
     const user = {
       _id: this.userId,
       firstName,
@@ -68,6 +72,5 @@ export class UserDetailsComponent implements OnInit {
     };
     this.store.dispatch(initEditUserPersonalDetails({ user }));
   }
-  ngOnDestroy() {
-  }
+  ngOnDestroy() {}
 }

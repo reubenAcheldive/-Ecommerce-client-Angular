@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  HostBinding,
   Input,
   OnInit,
   Output,
@@ -19,7 +20,8 @@ import { initUpdateItemQuantityInCart } from 'src/app/state/actions/shopping.act
 export class AddProductAmountComponent {
   @Input()
   public amount: number = 0;
-
+@HostBinding("class")
+public readonly classList ="auth"
   @Output()
   public quantityChange: EventEmitter<number> = new EventEmitter();
 

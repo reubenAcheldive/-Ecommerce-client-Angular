@@ -1,10 +1,15 @@
-<div class="btn-position blue-color ">
+<div class="btn-position blue-color">
   <div class="btn-position-item">
     <button class="Ibtn increment" type="button" (click)="increment()">
       +
     </button>
-    <p class="amount ">{{ amount }}</p>
-    <button *ngIf="amount > 0" class="Ibtn decrement"  type="button" (click)="decrement()">
+    <p class="amount" [classList]="classList">{{ amount }}</p>
+    <button
+      [ngStyle]="{ opacity: amount > 0 ? 1 : 0 }"
+      class="Ibtn decrement"
+      type="button"
+      (click)="decrement()"
+    >
       -
     </button>
   </div>
