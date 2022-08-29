@@ -15,11 +15,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavMenuComponent } from './nav-menu.component';
 import { LinksNavModule } from 'src/app/UI/links-nav/links-nav.module';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { PaymentsComponent } from './payments/payments.component';
+import { PaymentDialogModule } from 'src/app/UI/payment-dialog/payment-dialog.module';
 
 @NgModule({
-  declarations: [AddressManagementComponent, NavMenuComponent,UserDetailsComponent],
+  declarations: [
+    AddressManagementComponent,
+    NavMenuComponent,
+    UserDetailsComponent,
+    PaymentsComponent,
+  ],
   imports: [
-  CommonModule,
+    CommonModule,
     NavMenuRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -38,6 +45,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     LinksNavModule,
     MatFormFieldModule,
     MatInputModule,
+    PaymentDialogModule,
   ],
   exports: [NavMenuComponent],
 })

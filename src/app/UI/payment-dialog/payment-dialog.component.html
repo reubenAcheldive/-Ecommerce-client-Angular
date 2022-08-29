@@ -1,0 +1,44 @@
+<div class="container--flex">
+  <ng-credit-card
+    [name]="creditCardForm.value['cardName']"
+    [number]="creditCardForm.value['cardNumber']"
+    [cvc]="'454'"
+    [expiry]="creditCardForm.value['cardExpires']"
+  ></ng-credit-card>
+  <div>
+    <form [formGroup]="creditCardForm">
+          <div class="form__group_container__flex">
+              <span class="input__group_container">
+                <label>:מספר כרטיס</label>
+                <input
+                maxlength="16"
+                (keypress)="(!validCardNumberPattern)"
+                formControlName="cardNumber"
+              />
+              </span>
+
+              <span class="input__group_container">
+                <label>:שם בעל הכרטיס</label>
+                <input maxlength="10" formControlName="cardName" />
+              </span>
+
+              <span class="input__group_container">
+                <label>:תוקף כרטיס </label>
+                <input minlength="4" maxlength="4" formControlName="cardExpires" />
+              </span>
+
+                <span class="input__group_container">
+                  <label>CVV</label>
+                  <input minlength="4" maxlength="4" formControlName="cardSecret" />
+                </span>
+            </div>
+
+      <button type="submit">yes</button>
+    </form>
+  </div>
+</div>
+
+<!-- <
+
+      <input minlength="4" maxlength="4" formControlName="cardExpires" />
+       -->

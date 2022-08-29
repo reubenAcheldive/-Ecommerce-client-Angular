@@ -1,79 +1,80 @@
-<mat-card>
-  <mat-card-title>Personal Details</mat-card-title>
+<mat-card class="mat-card-container">
+  <mat-card-title>פרטיים אישים</mat-card-title>
   <mat-card-content *ngIf="profileAddressDetails">
     <form [formGroup]="profileAddressDetails" (ngSubmit)="handleSubmit()">
-      <div class="form-field">
-        <mat-form-field appearance="standard">
-          <mat-label>city</mat-label>
-          <input
-            matInput
-            placeholder="city.."
-            formControlName="city"
-            required
-          />
-          <mat-error *ngIf="city.invalid">{{
-            getControlErrorMessage(city)
-          }}</mat-error>
-        </mat-form-field>
+      <div class="form-container">
+        <div class="form-field">
+          <mat-form-field appearance="standard">
+            <mat-label>city</mat-label>
+            <input
+              matInput
+              placeholder="city.."
+              formControlName="city"
+              required
+            />
+            <mat-error *ngIf="city.invalid">{{
+              getControlErrorMessage(city)
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-form-field appearance="standard">
+            <mat-label>Street Address</mat-label>
+            <input
+              matInput
+              placeholder="Street address.."
+              formControlName="streetAddress"
+              required
+            />
+            <mat-error *ngIf="streetAddress.invalid">{{
+              getControlErrorMessage(streetAddress)
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-form-field appearance="standard">
+            <mat-label>entering</mat-label>
+            <input
+              matInput
+              placeholder="entering.."
+              formControlName="entering"
+              required
+            />
+            <mat-error *ngIf="entering.invalid">{{
+              getControlErrorMessage(entering)
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-form-field appearance="standard">
+            <mat-label>home number</mat-label>
+            <input
+              matInput
+              placeholder="home Number.."
+              formControlName="homeNumber"
+              required
+            />
+            <mat-error *ngIf="homeNumber.invalid">{{
+              getControlErrorMessage(entering)
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-form-field appearance="standard">
+            <mat-label>department number</mat-label>
+            <input
+              matInput
+              placeholder="Department Number.."
+              formControlName="departmentNumber"
+              required
+            />
+            <mat-error *ngIf="departmentNumber.invalid">{{
+              getControlErrorMessage(entering)
+            }}</mat-error>
+          </mat-form-field>
+        </div>
       </div>
-      <div class="example-container">
-        <mat-form-field appearance="standard">
-          <mat-label>Street Address</mat-label>
-          <input
-            matInput
-            placeholder="Street address.."
-            formControlName="streetAddress"
-            required
-          />
-          <mat-error *ngIf="streetAddress.invalid">{{
-            getControlErrorMessage(streetAddress)
-          }}</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="example-container">
-        <mat-form-field appearance="standard">
-          <mat-label>entering</mat-label>
-          <input
-            matInput
-            placeholder="entering.."
-            formControlName="entering"
-            required
-          />
-          <mat-error *ngIf="entering.invalid">{{
-            getControlErrorMessage(entering)
-          }}</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="example-container">
-        <mat-form-field appearance="standard">
-          <mat-label>home number</mat-label>
-          <input
-            matInput
-            placeholder="home Number.."
-            formControlName="homeNumber"
-            required
-          />
-          <mat-error *ngIf="homeNumber.invalid">{{
-            getControlErrorMessage(entering)
-          }}</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="example-container">
-        <mat-form-field appearance="standard">
-          <mat-label>department number</mat-label>
-          <input
-            matInput
-            placeholder="Department Number.."
-            formControlName="departmentNumber"
-            required
-          />
-          <mat-error *ngIf="departmentNumber.invalid">{{
-            getControlErrorMessage(entering)
-          }}</mat-error>
-        </mat-form-field>
-      </div>
-      <button mat-raised-button type="submit" color="primary">Update</button>
+      <button mat-raised-button type="submit" color="primary">עדכון</button>
     </form>
   </mat-card-content>
 </mat-card>
-
