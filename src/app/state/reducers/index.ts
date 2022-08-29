@@ -11,6 +11,7 @@ import { IProduct } from '../../../app/Interfaces/Products';
 import { AuthErrorLogin } from 'src/app/Interfaces/auth/Auth.error';
 import { Cart, Item } from 'src/app/Interfaces/cart/GetCartUser';
 import { IAddresses } from 'src/app/Interfaces/order/addresses';
+import { IPayment } from 'src/app/Interfaces/Payment/Payment';
 
 export interface Shopping {
   categories: Categories[] | null;
@@ -33,6 +34,7 @@ export interface Shopping {
   unavailableDates: string[] | null;
   address: IAddresses | null;
   customerId: string;
+  payments: IPayment[] | null;
 }
 
 export const initialShoppingState: Shopping | null = {
@@ -54,6 +56,7 @@ export const initialShoppingState: Shopping | null = {
   unavailableDates: null,
   customerId: '',
   address: null,
+  payments: null,
 };
 
 export const shoppingReducer = createReducer(
@@ -190,9 +193,12 @@ export const shoppingReducer = createReducer(
       products: findOneAndUpdateQuantityToZero(state.products, productId),
     })
   ),
-  on(ShoppingActions.initUpdateItemQuantityInCart,(state,{itemUpdate})=>({
-...state,
-products:findOneAndUpdateQuantityToZero(state.products,itemUpdate.productRefId)
+  on(ShoppingActions.initUpdateItemQuantityInCart, (state, { itemUpdate }) => ({
+    ...state,
+    products: findOneAndUpdateQuantityToZero(
+      state.products,
+      itemUpdate.productRefId
+    ),
   })),
   on(ShoppingActions.deleteAllItemsInCartSuccess, (state, {}) => ({
     ...state,
@@ -238,6 +244,27 @@ products:findOneAndUpdateQuantityToZero(state.products,itemUpdate.productRefId)
     ...state,
     address: payload,
   })),
+  on(
+    ShoppingActions.successGetAllPaymentByCustomerId,
+    (state, { payload }) => ({
+      ...state,
+      payments: payload,
+    })
+  ),
+  on(ShoppingActions.successCreateNewPayment, (state, { payload }) => ({
+    ...state,
+    payments: state.payments.concat(payload),
+  })),
+  on(ShoppingActions.successUpdatePayment, (state, { payload }) => ({
+    ...state,
+    payments: state.payments
+      .filter((p) => p._id !== payload._id)
+      .concat(payload),
+  })),
+  on(ShoppingActions.successDeletePaymentBy_Id, (state, { _id }) => ({
+    ...state,
+    payments: state.payments.filter((p) => p._id !== _id),
+  })),
 
   on(ShoppingActions.logOut, (state) => ({
     cartId: null,
@@ -261,6 +288,7 @@ products:findOneAndUpdateQuantityToZero(state.products,itemUpdate.productRefId)
     authErrorLogin: null,
     address: null,
     customerId: null,
+    payments: null,
   }))
 );
 
@@ -294,8 +322,7 @@ function findOneAndUpdateQuantityToZero(
   products: IProduct[],
   itemId: string
 ): IProduct[] {
-
-  console.log({products,itemId})
+  console.log({ products, itemId });
 
   const updateProducts: IProduct[] = [...products];
   updateProducts.find((p, i) => {

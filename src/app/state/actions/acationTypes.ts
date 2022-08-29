@@ -106,3 +106,10 @@ function createActionTypes(nameAction: string) {
 
 export const fetchAddressesTypes = createActionTypes('fetch addresses');
 export const editAddressTypes = createActionTypes('edit address');
+
+export const fetchAllPaymentsByCustomerId = createActionTypes(
+  'fetch all payments by customer id'
+);
+export const addNewPayment = createActionTypes('add new payment');
+export const updatePayment = createActionTypes('update payment by id');
+export const deletePaymentById = createActionTypes('delete payment by id');

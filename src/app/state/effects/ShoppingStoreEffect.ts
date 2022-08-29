@@ -17,6 +17,7 @@ import { ProductEditService } from 'src/app/services/product-edit/product-edit.s
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 import { OrderService } from 'src/app/services/order/order.service';
 import { AddressesService } from '../../services/order/addresses.service';
+import { PaymentService } from 'src/app/services/Payment/payment.service';
 
 @Injectable()
 export class ShoppingEffects {
@@ -29,7 +30,8 @@ export class ShoppingEffects {
     private readonly productEditService: ProductEditService,
     private readonly shoppingCartService: ShoppingCartService,
     private readonly orderService: OrderService,
-    private readonly addressesService: AddressesService
+    private readonly addressesService: AddressesService,
+    private readonly paymentService: PaymentService
   ) {}
 
   categories$ = createEffect(() => {
@@ -166,7 +168,7 @@ export class ShoppingEffects {
   DeleteSingleProductCartList$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(shoppingActions.DeleteSingleProductFromCartListInit),
-      exhaustMap(({ cartId, itemId ,productId}) => {
+      exhaustMap(({ cartId, itemId, productId }) => {
         return this.shoppingCartService.deleteProduct(cartId, itemId).pipe(
           map(() => {
             return shoppingActions.DeleteSingleProductFromCartListSuccess();
@@ -229,7 +231,6 @@ export class ShoppingEffects {
             return shoppingActions.createNewOrderSuccess({ _id: idOrder });
           }),
           catchError((error) => {
-
             return of(shoppingActions.createNewOrderFailed(error));
           })
         );
@@ -255,8 +256,6 @@ export class ShoppingEffects {
     return this.actions$.pipe(
       ofType(shoppingActions.lastOrderInit),
       exhaustMap(({ _id }) => {
-
-
         return this.orderService.getLastOrderDetail(_id).pipe(
           map((action) => {
             return shoppingActions.lastOrderSuccess({
@@ -291,10 +290,9 @@ export class ShoppingEffects {
     return this.actions$.pipe(
       ofType(shoppingActions.initUpdateItemQuantityInCart),
       exhaustMap(({ itemUpdate }) => {
-        console.log({itemUpdate})
+        console.log({ itemUpdate });
         return this.shoppingCartService.updateItemOnCart(itemUpdate).pipe(
           map((cartList) => {
-          
             return shoppingActions.successUpdateItemQuantityInCart({
               cartList,
             });
@@ -311,11 +309,8 @@ export class ShoppingEffects {
     return this.actions$.pipe(
       ofType(shoppingActions.InitFetchAddress),
       exhaustMap(({ customerRef }) => {
-
         return this.addressesService.getAddressesList(customerRef).pipe(
           map((payload) => {
-
-
             return shoppingActions.successFetchAddress({ payload });
           })
         );
@@ -336,4 +331,79 @@ export class ShoppingEffects {
       catchError((err) => of(shoppingActions.failureEditAddress(err)))
     );
   });
+
+  getAllPayment$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(shoppingActions.initGetAllPaymentByCustomerId),
+      exhaustMap(({ customerId }) => {
+        return this.paymentService.getAllPaymentBy_CustomerId(customerId).pipe(
+          map((payload) => {
+            return shoppingActions.successGetAllPaymentByCustomerId({
+              payload,
+            });
+          })
+        );
+      }),
+      catchError((err) =>
+        of(shoppingActions.failGetAllPaymentByCustomerId(err))
+      )
+    );
+  });
+
+
+ createNewPayment$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(shoppingActions.initCreateNewPayment),
+      exhaustMap(({ payload }) => {
+        return this.paymentService.addNewPayment(payload).pipe(
+          map((payload) => {
+            return shoppingActions.successCreateNewPayment({
+              payload,
+            });
+          })
+        );
+      }),
+      catchError((err) =>
+        of(shoppingActions.failCreateNewPayment(err))
+      )
+    );
+  });
+
+
+  updateOnePayment$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(shoppingActions.initUpdatePayment),
+      exhaustMap(({ payload }) => {
+        return this.paymentService.addNewPayment(payload).pipe(
+          map((payload) => {
+            return shoppingActions.successUpdatePayment({
+              payload,
+            });
+          })
+        );
+      }),
+      catchError((err) =>
+        of(shoppingActions.failUpdatePayment(err))
+      )
+    );
+  });
+
+
+
+  deleteOnPayment$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(shoppingActions.initDeletePaymentBy_Id),
+      exhaustMap(({ _id }) => {
+        return this.paymentService.deletePaymentById(_id).pipe(
+          map(() => {
+            return shoppingActions.successDeletePaymentBy_Id({_id});
+          })
+        );
+      }),
+      catchError((err) =>
+        of(shoppingActions.failDeletePaymentBy_Id(err))
+      )
+    );
+  });
+
 }

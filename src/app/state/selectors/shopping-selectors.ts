@@ -55,3 +55,7 @@ export const selectAddress = createSelector(
   shoppingSelectorFetcher,
   (state) => state?.address
 );
+export const getALlPayment = createSelector(
+  shoppingSelectorFetcher,
+  (state) => state?.payments
+);

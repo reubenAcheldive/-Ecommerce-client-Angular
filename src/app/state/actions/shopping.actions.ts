@@ -26,6 +26,9 @@ import {
   UpdateItemQuantityInCart,
   fetchAddressesTypes,
   editAddressTypes,
+  fetchAllPaymentsByCustomerId,
+  addNewPayment,
+  updatePayment,
 } from './acationTypes';
 import { Cart } from 'src/app/Interfaces/cart/GetCartUser';
 
@@ -34,6 +37,7 @@ import { OrderDetail } from 'src/app/Interfaces/order/lastOrderDetail';
 import { AddItems } from 'src/app/Interfaces/cart/AddItemsToCart';
 import { AddItem } from 'src/app/Interfaces/cart/UpdateItemInCart';
 import { IAddresses } from './../../Interfaces/order/addresses';
+import { IPayment } from 'src/app/Interfaces/Payment/Payment';
 
 export const fetchCategories = createAction(CategoriesTypes.init);
 
@@ -151,7 +155,7 @@ export const deleteAllItemsInCartFail = createAction(
 
 export const DeleteSingleProductFromCartListInit = createAction(
   DeleteSingleItemInCartTypes.init,
-  props<{ cartId: string; itemId: string,productId:string }>()
+  props<{ cartId: string; itemId: string; productId: string }>()
 );
 // ----------------------------------------------------------
 //---------------------------------------------------------------
@@ -287,10 +291,6 @@ export const failUpdateItemQuantityInCart = createAction(
   props<{ error: any }>()
 );
 
-
-
-
-
 export const InitFetchAddress = createAction(
   fetchAddressesTypes.init,
   props<{ customerRef: string }>()
@@ -304,10 +304,6 @@ export const failureFetchAddress = createAction(
   props<{ payload: IAddresses }>()
 );
 
-
-
-
-
 export const InitEditAddress = createAction(
   editAddressTypes.init,
   props<{ payload: IAddresses }>()
@@ -319,4 +315,57 @@ export const successEditAddress = createAction(
 export const failureEditAddress = createAction(
   editAddressTypes.failure,
   props<{ payload: IAddresses }>()
+);
+// --- payment
+export const initGetAllPaymentByCustomerId = createAction(
+  fetchAllPaymentsByCustomerId.init,
+  props<{ customerId: string }>()
+);
+export const successGetAllPaymentByCustomerId = createAction(
+  fetchAllPaymentsByCustomerId.success,
+  props<{ payload: IPayment[] }>()
+);
+export const failGetAllPaymentByCustomerId = createAction(
+  fetchAllPaymentsByCustomerId.success,
+  props<{ error: any }>()
+);
+// payment create for user
+export const initCreateNewPayment = createAction(
+  addNewPayment.init,
+  props<{ payload: IPayment }>()
+);
+export const successCreateNewPayment = createAction(
+  addNewPayment.init,
+  props<{ payload: IPayment }>()
+);
+export const failCreateNewPayment = createAction(
+  addNewPayment.init,
+  props<{ error: any }>()
+);
+//payment update for user
+export const initUpdatePayment = createAction(
+  updatePayment.init,
+  props<{ payload: IPayment }>()
+);
+export const successUpdatePayment = createAction(
+  updatePayment.init,
+  props<{ payload: IPayment }>()
+);
+export const failUpdatePayment = createAction(
+  updatePayment.init,
+  props<{ error: any }>()
+);
+//delete payment by id
+export const initDeletePaymentBy_Id = createAction(
+  updatePayment.init,
+  props<{ _id: string }>()
+);
+export const successDeletePaymentBy_Id = createAction(
+  updatePayment.init,
+  props<{ _id: string }>()
+);
+export const failDeletePaymentBy_Id = createAction(
+  updatePayment.init,
+
+  props<{ error: any }>()
 );
