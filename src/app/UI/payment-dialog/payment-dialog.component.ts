@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-payment-dialog',
   templateUrl: './payment-dialog.component.html',
-  styleUrls: ['./payment-dialog.component.css']
+  styleUrls: ['./payment-dialog.component.css'],
 })
 export class PaymentDialogComponent implements OnInit {
-
-  constructor(private fb: FormBuilder,public dialogRef: MatDialogRef<PaymentDialogComponent>) {}
+  constructor(
+    private store: Store,
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<PaymentDialogComponent>
+  ) {}
 
   creditCardForm!: FormGroup<{
     cardNumber: FormControl<string>;
@@ -44,7 +53,7 @@ export class PaymentDialogComponent implements OnInit {
     return this.creditCardForm.get('cardNumber').hasError('pattern');
   }
   public get validCardNumberMinAndMaxLength() {
-    this.creditCardForm
+    this.creditCardForm;
     return (
       this.creditCardForm.get('cardNumber').hasError('maxLength') &&
       this.creditCardForm.get('cardNumber').hasError('minLength')
@@ -68,5 +77,4 @@ export class PaymentDialogComponent implements OnInit {
     }
     return hideNum.join('');
   }
-
 }

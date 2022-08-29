@@ -336,6 +336,7 @@ export class ShoppingEffects {
     return this.actions$.pipe(
       ofType(shoppingActions.initGetAllPaymentByCustomerId),
       exhaustMap(({ customerId }) => {
+        console.log({customerId},"customerId")
         return this.paymentService.getAllPaymentBy_CustomerId(customerId).pipe(
           map((payload) => {
             return shoppingActions.successGetAllPaymentByCustomerId({

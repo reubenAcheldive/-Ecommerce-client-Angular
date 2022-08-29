@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { PaymentDialogComponent } from 'src/app/UI/payment-dialog/payment-dialog.component';
 
 // tslint:disable-next-line:no-duplicate-imports
+import { ActivatedRoute } from '@angular/router';
+import { IPayment } from 'src/app/Interfaces/Payment/Payment';
 
 @Component({
   selector: 'app-payments',
@@ -10,9 +12,11 @@ import { PaymentDialogComponent } from 'src/app/UI/payment-dialog/payment-dialog
   styleUrls: ['./payments.component.css'],
 })
 export class PaymentsComponent {
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private route: ActivatedRoute) {}
   ngOnInit() {
-    this.openDialog();
+    const payments:IPayment[] = this.route.snapshot.data['payments'];
+    console.log({ payments });
+
   }
   openDialog(
     enterAnimationDuration: string = '0ms',
@@ -21,9 +25,7 @@ export class PaymentsComponent {
     this.dialog.open(PaymentDialogComponent, {
       width: '30%',
       height: '80%',
-      position: {
-
-      },
+      position: {},
     });
   }
 }
