@@ -1,3 +1,25 @@
+.nav__check__out_continer{
+  display: flex;
+  flex-direction: column;
+  gap: 23rem;
+  align-items: center;
+}
+
+.container_btn > *{
+  border: none;
+  outline: none;
+  padding: 1.3rem;
+  background: #db1f26;
+  width: 15rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  opacity: 0.9;
+}
+.container_btn > *:hover{
+  opacity: 1;
+}
 .nav--checkout--container--flex {
 
   width: 90%;

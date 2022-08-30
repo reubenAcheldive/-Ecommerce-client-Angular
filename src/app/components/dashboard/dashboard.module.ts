@@ -7,11 +7,11 @@ import { DashboardComponent } from './dashboard.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { CartModule } from './cart/cart.module';
-import { NavCheckoutModule } from './order/checkout/nav-checkout/nav-checkout.module';
+
 
 
 @NgModule({
   declarations: [DashboardComponent],
-  imports: [CommonModule, DashboardRoutingModule, MatToolbarModule,MatSidenavModule,CartModule,NavCheckoutModule],
+  imports: [CommonModule, DashboardRoutingModule, MatToolbarModule,MatSidenavModule,CartModule],
 })
 export class DashboardModule {}

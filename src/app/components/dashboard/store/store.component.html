@@ -1,9 +1,11 @@
 <div class="store--dashboard--flex">
   <div class="flex--row">
     <div class="app-catagories-size">
-      <app-catagories [categories]="fetchCategories$ |async"></app-catagories>
+      <app-catagories [categories]="fetchCategories$ | async"></app-catagories>
+      <router-outlet></router-outlet>
     </div>
-
-    <router-outlet></router-outlet>
+    <app-cart></app-cart>
   </div>
+
 </div>
+

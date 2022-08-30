@@ -1,0 +1,50 @@
+<div class="nav__check__out_continer">
+  <div class="nav--checkout--container--flex">
+    <div class="container-img">
+      <span class="price">{{ "360" | currency: "ILS" }}</span>
+      <span>
+        <img
+          src="https://www.shoppster.com/assets/media/international-page/shoppsterlogo.jpg"
+      /></span>
+    </div>
+
+    <div class="container--options--flex">
+      <div class="item--nav">
+        <button class="btn-icon">
+          <span class="change" (click)="openDialog()">שינוי</span>
+          <span class="context">ראובן אצ'לדייב </span>
+          <app-icon-info icon="person_outline"> </app-icon-info>
+        </button>
+      </div>
+
+      <div class="item--nav">
+        <button class="btn-icon">
+          <span class="change">שינוי</span>
+
+          <span class="context">לוד ערבה 4/5</span>
+          <app-icon-info icon="directions_car"> </app-icon-info>
+        </button>
+      </div>
+
+      <div class="item--nav">
+        <button class="btn-icon">
+          <span class="change">שינוי</span>
+          <span class="context">עד 5 ימי עסקים </span>
+          <app-icon-info icon="person_outline"> </app-icon-info>
+        </button>
+      </div>
+
+      <div class="item--nav">
+        <button class="btn-icon">
+          <span class="change">שינוי</span>
+          <span class="context">פריטים 4 </span>
+          <app-icon-info icon="shopping_basket"> </app-icon-info>
+        </button>
+      </div>
+    </div>
+
+  </div>
+  <div class="container_btn">
+    <button>תשלום</button>
+  </div>
+</div>

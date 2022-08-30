@@ -16,8 +16,6 @@ const routes: Routes = [
   },
 
   { path: '', redirectTo: '/dashboard/store', pathMatch: 'full' },
-  
-
 ];
 @NgModule({
   imports: [

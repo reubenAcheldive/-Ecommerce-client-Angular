@@ -20,6 +20,7 @@ import { NavDialogModalComponent } from './nav-menu/nav-dialog-modal/nav-dialog-
 import { MatDialogModule } from '@angular/material/dialog';
 import { LinksNavModule } from 'src/app/UI/links-nav/links-nav.module';
 import { NgCreditCardModule } from 'angular-credit-card';
+import { CartModule } from '../cart/cart.module';
 @NgModule({
   declarations: [OrderComponent],
   imports: [
@@ -38,6 +39,7 @@ import { NgCreditCardModule } from 'angular-credit-card';
     MatDialogModule,
     LinksNavModule,
     NgCreditCardModule,
+    CartModule
   ],
 })
 export class OrderModule {}
