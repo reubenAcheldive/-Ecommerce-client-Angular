@@ -29,6 +29,7 @@ import {
   fetchAllPaymentsByCustomerId,
   addNewPayment,
   updatePayment,
+  deletePaymentById,
 } from './acationTypes';
 import { Cart } from 'src/app/Interfaces/cart/GetCartUser';
 
@@ -335,11 +336,11 @@ export const initCreateNewPayment = createAction(
   props<{ payload: IPayment }>()
 );
 export const successCreateNewPayment = createAction(
-  addNewPayment.init,
+  addNewPayment.success,
   props<{ payload: IPayment }>()
 );
 export const failCreateNewPayment = createAction(
-  addNewPayment.init,
+  addNewPayment.failure,
   props<{ error: any }>()
 );
 //payment update for user
@@ -348,24 +349,24 @@ export const initUpdatePayment = createAction(
   props<{ payload: IPayment }>()
 );
 export const successUpdatePayment = createAction(
-  updatePayment.init,
+  updatePayment.success,
   props<{ payload: IPayment }>()
 );
 export const failUpdatePayment = createAction(
-  updatePayment.init,
+  updatePayment.failure,
   props<{ error: any }>()
 );
 //delete payment by id
 export const initDeletePaymentBy_Id = createAction(
-  updatePayment.init,
+  deletePaymentById.init,
   props<{ _id: string }>()
 );
 export const successDeletePaymentBy_Id = createAction(
-  updatePayment.init,
+  deletePaymentById.success,
   props<{ _id: string }>()
 );
 export const failDeletePaymentBy_Id = createAction(
-  updatePayment.init,
+  deletePaymentById.init,
 
   props<{ error: any }>()
 );

@@ -7,6 +7,12 @@ import {
 } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
+import { IPayment } from 'src/app/Interfaces/Payment/Payment';
+import {
+  initCreateNewPayment,
+  initDeletePaymentBy_Id,
+} from 'src/app/state/actions/shopping.actions';
+import { selectCartList } from 'src/app/state/selectors/shopping-selectors';
 
 @Component({
   selector: 'app-payment-dialog',
@@ -20,33 +26,36 @@ export class PaymentDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<PaymentDialogComponent>
   ) {}
 
+  cartRefId: string;
+  customerId: string;
   creditCardForm!: FormGroup<{
     cardNumber: FormControl<string>;
-    cardName: FormControl<string>;
-    cardExpires: FormControl<string>;
-    cardSecret: FormControl<string>;
+    name1: FormControl<string>;
+    expiredDate: FormControl<string>;
+    cvc: FormControl<string>;
   }>;
   ngOnInit(): void {
     this.createFormCreditCard();
+    this.store.select(selectCartList).subscribe((cart) => {
+      this.cartRefId = cart._id;
+      this.customerId = cart.customerRef;
+    });
   }
 
   createFormCreditCard(): void {
     this.creditCardForm = this.fb.nonNullable.group({
-      cardExpires: this.fb.nonNullable.control(
+      expiredDate: this.fb.nonNullable.control(
         '',
         Validators.pattern('^[0-9]*$')
       ),
-      cardName: this.fb.nonNullable.control(''),
+      name1: this.fb.nonNullable.control(''),
       cardNumber: this.fb.nonNullable.control('', [
         Validators.required,
         Validators.pattern('^[0-9]*$'),
         Validators.max(16),
         Validators.minLength(16),
       ]),
-      cardSecret: this.fb.nonNullable.control(
-        '',
-        Validators.pattern('^[0-9]*$')
-      ),
+      cvc: this.fb.nonNullable.control('', Validators.pattern('^[0-9]*$')),
     });
   }
   public get validCardNumberPattern() {
@@ -60,9 +69,34 @@ export class PaymentDialogComponent implements OnInit {
     );
   }
 
-  handleFormSubmit() {}
+  handleFormSubmit() {
+    const { expiredDate, name1, cardNumber, cvc } = this.creditCardForm.value;
 
-  loadFromHttp(): void {}
+    const payload: IPayment = {
+      cartRef: this.cartRefId,
+
+      expiredDate,
+      name:name1,
+      cardNumber,
+      cvc,
+      customerRef: this.customerId,
+    };
+    console.log({ payload });
+
+    this.store.dispatch(
+      initCreateNewPayment({
+        payload: {
+          cardNumber,
+          cartRef:this.cartRefId,
+          customerRef:this.customerId,
+          cvc,
+          expiredDate,
+          name:name1,
+        },
+      })
+    );
+    this.dialogRef.close();
+  }
 
   cardHide(card: string) {
     let hideNum = [];

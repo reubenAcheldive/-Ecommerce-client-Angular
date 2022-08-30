@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
       email: new UntypedFormControl('', [Validators.email, Validators.required]),
       password: new UntypedFormControl('', [Validators.required]),
     });
+    
   }
   get emailError() {
     return this.profileLogin.get('email');

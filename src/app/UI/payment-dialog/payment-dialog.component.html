@@ -1,12 +1,12 @@
 <div class="container--flex">
   <ng-credit-card
-    [name]="creditCardForm.value['cardName']"
+    [name]="creditCardForm.value['name1']"
     [number]="creditCardForm.value['cardNumber']"
-    [cvc]="'454'"
-    [expiry]="creditCardForm.value['cardExpires']"
+    [cvc]="creditCardForm.value['cvc']"
+    [expiry]="creditCardForm.value['expiredDate']"
   ></ng-credit-card>
   <div>
-    <form [formGroup]="creditCardForm">
+    <form [formGroup]="creditCardForm" (ngSubmit)="handleFormSubmit()">
           <div class="form__group_container__flex">
               <span class="input__group_container">
                 <label>:מספר כרטיס</label>
@@ -19,21 +19,21 @@
 
               <span class="input__group_container">
                 <label>:שם בעל הכרטיס</label>
-                <input maxlength="10" formControlName="cardName" />
+                <input maxlength="10" formControlName="name1" />
               </span>
 
               <span class="input__group_container">
                 <label>:תוקף כרטיס </label>
-                <input minlength="4" maxlength="4" formControlName="cardExpires" />
+                <input minlength="4" maxlength="4" formControlName="expiredDate" />
               </span>
 
                 <span class="input__group_container">
                   <label>CVV</label>
-                  <input minlength="4" maxlength="4" formControlName="cardSecret" />
+                  <input minlength="4" maxlength="4" formControlName="cvc" />
                 </span>
             </div>
 
-      <button type="submit">yes</button>
+      <button type="submit" title="submit">yes</button>
     </form>
   </div>
 </div>

@@ -29,6 +29,6 @@ export const api_url_change_quantity = `${BASE_URI_STORE}/update-one-item-cart`;
 
 //--------------- payment
 export const Url_Get_All_Payment = `${BASE_URI_STORE}/payment`;
-export const Url_Add_New_Payment = `${BASE_URI_STORE}/add-new-payment`;
-export const Url_Update_One_Payment = `${BASE_URI_STORE}/add-new-payment`;
+export const Url_Add_New_Payment = `${Url_Get_All_Payment}/add-new-payment`;
+export const Url_Update_One_Payment = `${Url_Get_All_Payment}/add-new-payment`;
 export const Url_Delete_On_Payment = (_id:string) => `${Url_Get_All_Payment}/${_id}`

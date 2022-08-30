@@ -6,5 +6,5 @@ export interface IPayment {
   cvc: string;
   expiredDate: string;
   name: string;
-  __v: number;
+
 }

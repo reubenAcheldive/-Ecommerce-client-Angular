@@ -336,7 +336,7 @@ export class ShoppingEffects {
     return this.actions$.pipe(
       ofType(shoppingActions.initGetAllPaymentByCustomerId),
       exhaustMap(({ customerId }) => {
-        console.log({customerId},"customerId")
+        console.log({ customerId }, 'customerId');
         return this.paymentService.getAllPaymentBy_CustomerId(customerId).pipe(
           map((payload) => {
             return shoppingActions.successGetAllPaymentByCustomerId({
@@ -351,11 +351,12 @@ export class ShoppingEffects {
     );
   });
 
-
- createNewPayment$ = createEffect(() => {
+  createNewPayment$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(shoppingActions.initCreateNewPayment),
+
       exhaustMap(({ payload }) => {
+
         return this.paymentService.addNewPayment(payload).pipe(
           map((payload) => {
             return shoppingActions.successCreateNewPayment({
@@ -364,17 +365,15 @@ export class ShoppingEffects {
           })
         );
       }),
-      catchError((err) =>
-        of(shoppingActions.failCreateNewPayment(err))
-      )
+      catchError((err) => of(shoppingActions.failCreateNewPayment(err)))
     );
   });
-
 
   updateOnePayment$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(shoppingActions.initUpdatePayment),
       exhaustMap(({ payload }) => {
+        console.log(payload, 'updateOnePayment$ ');
         return this.paymentService.addNewPayment(payload).pipe(
           map((payload) => {
             return shoppingActions.successUpdatePayment({
@@ -383,13 +382,9 @@ export class ShoppingEffects {
           })
         );
       }),
-      catchError((err) =>
-        of(shoppingActions.failUpdatePayment(err))
-      )
+      catchError((err) => of(shoppingActions.failUpdatePayment(err)))
     );
   });
-
-
 
   deleteOnPayment$ = createEffect(() => {
     return this.actions$.pipe(
@@ -397,14 +392,12 @@ export class ShoppingEffects {
       exhaustMap(({ _id }) => {
         return this.paymentService.deletePaymentById(_id).pipe(
           map(() => {
-            return shoppingActions.successDeletePaymentBy_Id({_id});
+            console.log({ _id }, ' deleteOnPayment$');
+            return shoppingActions.successDeletePaymentBy_Id({ _id });
           })
         );
       }),
-      catchError((err) =>
-        of(shoppingActions.failDeletePaymentBy_Id(err))
-      )
+      catchError((err) => of(shoppingActions.failDeletePaymentBy_Id(err)))
     );
   });
-
 }

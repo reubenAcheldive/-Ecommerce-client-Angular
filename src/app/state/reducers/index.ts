@@ -253,13 +253,10 @@ export const shoppingReducer = createReducer(
   ),
   on(ShoppingActions.successCreateNewPayment, (state, { payload }) => ({
     ...state,
-    payments: state.payments.concat(payload),
+    payments: state.payments.concat(payload)
   })),
   on(ShoppingActions.successUpdatePayment, (state, { payload }) => ({
     ...state,
-    payments: state.payments
-      .filter((p) => p._id !== payload._id)
-      .concat(payload),
   })),
   on(ShoppingActions.successDeletePaymentBy_Id, (state, { _id }) => ({
     ...state,

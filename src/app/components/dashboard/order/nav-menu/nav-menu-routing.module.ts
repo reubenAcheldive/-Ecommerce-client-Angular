@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GetPaymentsResolver } from 'src/app/resolvers/get-payments.resolver';
+
 import { UserDetailsResolver } from 'src/app/resolvers/user-details.resolver';
 import { AddressManagementComponent } from './address-management/address-management.component';
 import { NavMenuComponent } from './nav-menu.component';
@@ -22,13 +22,14 @@ const routes: Routes = [
       {
         path: 'addresses',
         component: AddressManagementComponent,
+        resolve: { userDetails: UserDetailsResolver },
       },
       {
         path: 'payments',
         component: PaymentsComponent,
         resolve: {
           userDetails: UserDetailsResolver,
-          payments: GetPaymentsResolver,
+
         },
 
       },

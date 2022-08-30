@@ -5,6 +5,13 @@ import { PaymentDialogComponent } from 'src/app/UI/payment-dialog/payment-dialog
 // tslint:disable-next-line:no-duplicate-imports
 import { ActivatedRoute } from '@angular/router';
 import { IPayment } from 'src/app/Interfaces/Payment/Payment';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import {
+  initDeletePaymentBy_Id,
+  initGetAllPaymentByCustomerId,
+} from 'src/app/state/actions/shopping.actions';
+import { getALlPayment } from 'src/app/state/selectors/shopping-selectors';
 
 @Component({
   selector: 'app-payments',
@@ -12,11 +19,20 @@ import { IPayment } from 'src/app/Interfaces/Payment/Payment';
   styleUrls: ['./payments.component.css'],
 })
 export class PaymentsComponent {
-  constructor(public dialog: MatDialog, private route: ActivatedRoute) {}
+  constructor(
+    private store: Store,
+    public dialog: MatDialog,
+    private route: ActivatedRoute
+  ) {}
+  public payments$: Observable<IPayment[]> = this.store.select(getALlPayment);
   ngOnInit() {
-    const payments:IPayment[] = this.route.snapshot.data['payments'];
-    console.log({ payments });
-
+    const getPayments = this.route.snapshot.data['userDetails'];
+    if (getPayments) {
+      this.store.dispatch(
+        initGetAllPaymentByCustomerId({ customerId: getPayments.userId })
+      );
+    }
+    console.log({ getPayments });
   }
   openDialog(
     enterAnimationDuration: string = '0ms',
@@ -27,5 +43,9 @@ export class PaymentsComponent {
       height: '80%',
       position: {},
     });
+  }
+  deleteCard(_id: string) {
+    console.log(_id);
+    this.store.dispatch(initDeletePaymentBy_Id({ _id }));
   }
 }
