@@ -11,7 +11,7 @@
     <div class="container--options--flex">
       <div class="item--nav">
         <button class="btn-icon">
-          <span class="change" (click)="openDialog()">שינוי</span>
+          <span class="change" (click)="openDialogContentComponent()">שינוי</span>
           <span class="context">ראובן אצ'לדייב </span>
           <app-icon-info icon="person_outline"> </app-icon-info>
         </button>
@@ -34,9 +34,9 @@
         </button>
       </div>
 
-      <div class="item--nav">
+      <div class="item--nav" >
         <button class="btn-icon">
-          <span class="change">שינוי</span>
+          <span class="change" (click)="openPaymentDialog()">שינוי</span>
           <span class="context">פריטים 4 </span>
           <app-icon-info icon="shopping_basket"> </app-icon-info>
         </button>
@@ -44,7 +44,7 @@
     </div>
 
   </div>
-  <div class="container_btn">
+  <div class="container_btn" >
     <button>תשלום</button>
   </div>
 </div>

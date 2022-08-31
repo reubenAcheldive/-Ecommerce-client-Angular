@@ -3,14 +3,15 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { StoreRoutingModule } from './store-routing.module';
 import { StoreComponent } from './store.component';
-import { CatagoriesComponent } from './catagories/catagories.component';
+
 import { ProductsComponent } from './products/products.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AddProductAmountModule } from 'src/app/UI/add-product-amount/add-product-amount.module';
 import { CartModule } from '../cart/cart.module';
+import { CatagoriesModule } from 'src/app/UI/catagories/catagories.module';
 @NgModule({
-  declarations: [StoreComponent, CatagoriesComponent, ProductsComponent],
+  declarations: [StoreComponent, ProductsComponent],
   imports: [
 
   CommonModule,
@@ -20,7 +21,8 @@ import { CartModule } from '../cart/cart.module';
     MatToolbarModule,
     AddProductAmountModule,
     CartModule,
+    CatagoriesModule
   ],
-  exports: [CatagoriesComponent],
+  exports: [],
 })
 export class StoreModule {}

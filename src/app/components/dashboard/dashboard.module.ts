@@ -10,8 +10,9 @@ import { CartModule } from './cart/cart.module';
 
 
 
+
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent ],
   imports: [CommonModule, DashboardRoutingModule, MatToolbarModule,MatSidenavModule,CartModule],
 })
 export class DashboardModule {}

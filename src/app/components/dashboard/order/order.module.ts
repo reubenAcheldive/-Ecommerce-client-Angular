@@ -21,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LinksNavModule } from 'src/app/UI/links-nav/links-nav.module';
 import { NgCreditCardModule } from 'angular-credit-card';
 import { CartModule } from '../cart/cart.module';
+import { CatagoriesModule } from 'src/app/UI/catagories/catagories.module';
 @NgModule({
   declarations: [OrderComponent],
   imports: [
@@ -35,11 +36,12 @@ import { CartModule } from '../cart/cart.module';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    StoreModule,
+ 
     MatDialogModule,
     LinksNavModule,
     NgCreditCardModule,
-    CartModule
+    CartModule,
+    CatagoriesModule
   ],
 })
 export class OrderModule {}

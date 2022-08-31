@@ -39,8 +39,9 @@ export class PaymentsComponent {
     exitAnimationDuration: string = '0ms'
   ): void {
     this.dialog.open(PaymentDialogComponent, {
-      width: '30%',
-      height: '80%',
+      width: 'auto',
+      height: 'auto',
+
       position: {},
     });
   }

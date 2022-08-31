@@ -26,7 +26,7 @@
   position: relative;
   display: flex;
   gap: 0.2rem;
-   margin: 0.1rem auto;
+  margin: 0.1rem auto;
 
 }
 
@@ -106,3 +106,4 @@ app-icon-info {
   margin-top: 1rem;
   cursor: pointer;
 }
+
