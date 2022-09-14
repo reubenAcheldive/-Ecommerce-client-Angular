@@ -9,7 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AddProductAmountModule } from 'src/app/UI/add-product-amount/add-product-amount.module';
 import { CartModule } from '../cart/cart.module';
-import { CatagoriesModule } from 'src/app/UI/catagories/catagories.module';
+import { CatagoriesModule } from 'src/app/components/dashboard/store/catagories/catagories.module';
 @NgModule({
   declarations: [StoreComponent, ProductsComponent],
   imports: [

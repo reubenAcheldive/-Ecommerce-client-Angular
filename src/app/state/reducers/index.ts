@@ -253,7 +253,7 @@ export const shoppingReducer = createReducer(
   ),
   on(ShoppingActions.successCreateNewPayment, (state, { payload }) => ({
     ...state,
-    payments: state.payments.concat(payload)
+    payments: state.payments.concat(payload),
   })),
   on(ShoppingActions.successUpdatePayment, (state, { payload }) => ({
     ...state,
@@ -319,8 +319,8 @@ function findOneAndUpdateQuantityToZero(
   products: IProduct[],
   itemId: string
 ): IProduct[] {
-  console.log({ products, itemId });
-
+  console.log(products, 'products.length');
+  if (products === null) return [];
   const updateProducts: IProduct[] = [...products];
   updateProducts.find((p, i) => {
     const product: IProduct = updateProducts[i];

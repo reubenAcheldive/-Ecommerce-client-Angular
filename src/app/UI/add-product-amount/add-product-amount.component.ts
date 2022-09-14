@@ -20,8 +20,8 @@ import { initUpdateItemQuantityInCart } from 'src/app/state/actions/shopping.act
 export class AddProductAmountComponent {
   @Input()
   public amount: number = 0;
-@HostBinding("class")
-public readonly classList ="auth"
+  @HostBinding('class')
+  public readonly classList = 'auth';
   @Output()
   public quantityChange: EventEmitter<number> = new EventEmitter();
 
@@ -30,7 +30,7 @@ public readonly classList ="auth"
   public increment(): void {
     this.amount += 1;
     this.quantityChange.emit(this.amount);
-
+    console.log(this.amount);
 
     //this.dispatchUpdateAction(this._item);
   }

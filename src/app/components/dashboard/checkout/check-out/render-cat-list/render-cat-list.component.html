@@ -1,15 +1,22 @@
-<div class="render__container">
+<div class="render__container" *ngIf="getCart">
   <div class="list__nav">
-    <h4 style="flex-grow: 0">תיאור פריט</h4>
-    <h4 style="flex-grow: 2">כמות</h4>
-    <h4 style="flex-grow: 1">סה''כ</h4>
+    <span><h4>תיאור פריט</h4></span>
+    <span style="width: 22rem"> <h4>כמות</h4></span>
+    <span> <h4>סה''כ</h4></span>
   </div>
 
-  <div class="list_container">
-    <span style="flex-grow: 0" class="img__item">
-      <img src="https://img.rami-levy.co.il/product/7290112195432/small.jpg" />
+  <div class="list_container" *ngFor="let item of getCart.items">
+    <span class="img__item">
+      <img src="{{ item.productRefId.imgUrl }}" />
+      <p>{{ item.productRefId.description }}+{{ item.productRefId.name }}</p>
     </span>
-    <span style="flex-grow: 2" class="quntity">+ 1 - </span>
-    <span style="flex-grow: 1">150</span>
+    <span>
+      <app-add-product-amount
+        style="flex-grow: 2"
+        [amount]="item.quantity"
+        (quantityChange)="onQuantityChange($event, item)"
+      ></app-add-product-amount>
+    </span>
+    <span>{{ item.quantity * item.productRefId.price| number }}</span>
   </div>
 </div>

@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Categories } from '../../Interfaces/categories';
+import { Categories } from '../../../../Interfaces/categories';
 import { Observable } from 'rxjs';
 import { Component, Input, OnInit } from '@angular/core';
 

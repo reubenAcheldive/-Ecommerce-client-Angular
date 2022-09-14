@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 import { AuthenticationComponent } from '../authentication/authentication.component';
+import { selectAuthDetails } from 'src/app/state/selectors/auth-selectors';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,12 +10,18 @@ import { AuthenticationComponent } from '../authentication/authentication.compon
   styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent implements OnInit {
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private store: Store) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store.select(selectAuthDetails).subscribe((data) => {
+      if (!data) {
+        this.openDialog();
+      }
+    });
+  }
   openDialog() {
     let dialogRef = this.dialog.open(AuthenticationComponent, {
-     height:"500px"
+      height: '500px',
     });
   }
 }

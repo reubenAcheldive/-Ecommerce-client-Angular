@@ -36,8 +36,8 @@
 
       <div class="item--nav" >
         <button class="btn-icon">
-          <span class="change" (click)="openPaymentDialog()">שינוי</span>
-          <span class="context">פריטים 4 </span>
+          <span class="change" (click)="openCartListDialog()">שינוי</span>
+          <span class="context">{{ getCart?.items?.length }} פריטים  </span>
           <app-icon-info icon="shopping_basket"> </app-icon-info>
         </button>
       </div>
