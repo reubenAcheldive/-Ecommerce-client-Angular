@@ -7,13 +7,15 @@ import { RegisterService } from 'src/app/services/Auth/register/register.service
 import { AuthErrorLogin } from 'src/app/Interfaces/auth/Auth.error';
 import { LoginService } from 'src/app/services/Auth/login/login.service';
 import { UserEditService } from '../../services/Auth/edit/user-edit.service';
+
 @Injectable()
 export class AuthEffects {
   constructor(
     private readonly actions$: Actions,
     private readonly loginService: LoginService,
     private readonly registerService: RegisterService,
-    private readonly editUserService: UserEditService
+    private readonly editUserService: UserEditService,
+
   ) {}
 
   login$ = createEffect(() => {
@@ -68,6 +70,7 @@ export class AuthEffects {
         return this.registerService.fullRegister(action.data).pipe(
           map((infoLogin) => {
             localStorage.setItem('jwt', infoLogin.jwt);
+
             return UserActions.registerUserSuccess({ infoLogin });
           }),
           catchError((error) => of(UserActions.registerUserFailure({ error })))

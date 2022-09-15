@@ -1,60 +1,81 @@
-<div class="row text-center">
-  <div class="col-lg-12">
+<div class="login__container__flex">
+  <div class="title__container__flex">
     <span class="title">
-      <p class="p-1">Login</p>
+      <p class="p-1">כניסה</p>
       <mat-icon>person_outline</mat-icon>
     </span>
   </div>
-  <form [formGroup]="profileLogin" (ngSubmit)="handleSubmit()">
-    <div class="col-lg-12 mt-4">
-      <input
-        formControlName="email"
-        class="has-error"
-        placeholder="Email"
-        type="email"
-        id=""
-      />
-    </div>
-    <span
-      *ngIf="emailError.invalid && (emailError.dirty || emailError.touched)"
-      class="has-error"
-    >
-      <span *ngIf="emailError.errors?.['required']"> Email is required.</span>
-      <span *ngIf="emailError.errors?.['email']">Only Email </span>
+
+  <form
+    class="form__container__flex"
+    [formGroup]="profileLogin"
+    (ngSubmit)="handleSubmit()"
+  >
+    <span class="input__container__flex">
+      <mat-form-field appearance="outline">
+        <mat-label>דואר אלקטרוני</mat-label>
+        <input
+          matInput
+          placeholder="pat@example.com"
+          formControlName="email"
+          required
+        />
+        <mat-error *ngIf="emailError.invalid">{{
+          getEmailErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
     </span>
-    <div class="col-lg-12 form mt-4">
-      <input
-        formControlName="password"
-        class="has-error"
-        placeholder="password"
-        type="password"
-        id=""
-      />
-    </div>
-    <span
-      *ngIf="
-        passwordError.invalid && (passwordError.dirty || passwordError.touched)
-      "
-      class="has-error"
-    >
-      <span *ngIf="passwordError.errors?.['required']"
-        >Password is Required
-      </span>
+
+    <span class="input__container__flex">
+      <mat-form-field appearance="outline">
+        <mat-label>הכנס סיסמה</mat-label>
+        <input
+          matInput
+          placeholder="pat@example.com"
+          formControlName="password"
+          required
+        />
+        <mat-error *ngIf="passwordError.invalid">{{
+          getPasswordErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
     </span>
-    <div class="col-lg-12 mt-1">
-      <button class="btn-form" type="submit" title=" submit">Sing In</button>
+
+    <div class="button__submit__form">
+      <button
+        mat-raised-button
+        color="warn"
+        class="btn-form"
+        type="submit"
+        title=" submit"
+      >
+        כניסה
+      </button>
     </div>
   </form>
-</div>
-<div class="row text-center">
-  <div class="col-lg-12 mt-1">
-    <button
-      class="btn-form register"
-      type="submit"
-      title=" submit"
-      (click)="goToRegister()"
-    >
-      It is my first Time!
+  <span class="go__to__register">
+    <a mat-flat-button (click)="goToRegister()">הרשמה</a>
+    <button mat-raised-button color="primary" class="btn-form" >
+      ! זאת פעם ראשונה שלי פה
     </button>
-  </div>
+  </span>
 </div>
+
+<!-- <span
+*ngIf="emailError.invalid && (emailError.dirty || emailError.touched)"
+class="has-error"
+>
+<span *ngIf="emailError.errors?.['required']"> Email is required.</span>
+<span *ngIf="emailError.errors?.['email']">Only Email </span>
+</span> -->
+
+<!-- <span
+*ngIf="
+  passwordError.invalid && (passwordError.dirty || passwordError.touched)
+"
+class="has-error"
+>
+<span *ngIf="passwordError.errors?.['required']"
+  >Password is Required
+</span>
+</span> -->

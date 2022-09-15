@@ -1,5 +1,5 @@
 import { TogglePageService } from './../togglePage/toggle-page.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
 import {
   AbstractControl,
@@ -8,19 +8,26 @@ import {
   UntypedFormGroup,
 } from '@angular/forms';
 import { confirmedValidator } from './validatorsPassword/validators-password';
+import { Store } from '@ngrx/store';
+import { checkRegisterSuccess, registerUserInit } from 'src/app/state/actions/user.actions';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit,OnDestroy {
   profileRegister: UntypedFormGroup;
   constructor(
     private fb: UntypedFormBuilder,
-    private togglePageService: TogglePageService
+    private togglePageService: TogglePageService,
+    private store:Store
   ) {}
+  ngOnDestroy(): void {
 
+
+  }
+  @Input() closeDialog:()=>void;
   ngOnInit(): void {
     this.buildRegisterForm();
   }
@@ -45,8 +52,9 @@ export class RegisterComponent implements OnInit {
   }
   handleSubmit() {
     if (this.f['confirmPassword'].errors) {
-      alert('error compared password');
+     return
     }
+    this.store.dispatch(registerUserInit({data:this.profileRegister.value}))
   }
   goBackToLoginPage() {
     return this.togglePageService.handleWithChangeBetweenForms();

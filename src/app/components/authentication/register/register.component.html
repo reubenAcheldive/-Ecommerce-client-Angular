@@ -1,72 +1,121 @@
-<div class="row text-center">
-  <div class="col-lg-12">
+<div class="login__container__flex">
+  <div class="title__container__flex">
     <span class="title">
-      <p class="p-1">Register</p>
+      <p class="p-1">הרשמה</p>
       <mat-icon>person_outline</mat-icon>
     </span>
   </div>
-  <form [formGroup]="profileRegister" (ngSubmit)="handleSubmit()">
-    <div class="col-lg-12 mt-4">
-      <input
-        formControlName="id"
-        class="has-error"
-        placeholder="ID"
-        type="text"
-      />
-    </div>
-    <span class="has-error">have in error</span>
-    <div class="col-lg-12 form mt-4">
-      <input
-        formControlName="email"
-        class="has-error"
-        placeholder="email"
-        type="email"
-        id=""
-      />
-    </div>
-    <div class="col-lg-12 form mt-4">
-      <input
-        formControlName="password"
-        class="has-error"
-        placeholder="password"
-        type="password"
-        id=""
-      />
-    </div>
-    <div class="col-lg-12 form mt-4">
-      <input
-        formControlName="confirmPassword"
-        class="has-error"
-        placeholder="Confirm Password"
-        type="password"
-        id=""
-      />
-    </div>
-    <div class="col-lg-12 form mt-4">
-      <input
-        formControlName="firstName"
-        class="has-error"
-        placeholder="First Name"
-        type="text"
-        id=""
-      />
-    </div>
-    <div class="col-lg-12 form mt-4">
-      <input
-        formControlName="lastName"
-        class="has-error"
-        placeholder="Last Name"
-        type="text"
-        id=""
-      />
-    </div>
-    <div class="col-lg-12 mt-1">
-      <button class="btn-form" type="submit" title="submit">Sing Up</button>
+
+  <form
+    class="form__container__flex"
+    [formGroup]="profileRegister"
+    (ngSubmit)="handleSubmit()"
+  >
+    <span class="input__container__flex">
+      <mat-form-field appearance="outline">
+        <mat-label>שם פרטי</mat-label>
+        <input
+          matInput
+          placeholder="שם פרטי"
+          formControlName="firstName"
+          required
+        />
+        <!-- <mat-error *ngIf="emailError.invalid">{{
+          getEmailErrorMessage()
+        }}</mat-error> -->
+      </mat-form-field>
+    </span>
+
+    <span class="input__container__flex">
+      <mat-form-field appearance="outline">
+        <mat-label>שם משפחה</mat-label>
+        <input
+          matInput
+          placeholder="שם משפחה"
+          formControlName="lastName"
+          required
+        />
+        <!-- <mat-error *ngIf="passwordError.invalid">{{
+          getPasswordErrorMessage()
+        }}</mat-error> -->
+      </mat-form-field>
+    </span>
+
+    <span class="input__container__flex">
+      <mat-form-field appearance="outline">
+        <mat-label>דואר אלקרוני</mat-label>
+        <input
+          matInput
+          placeholder="דואר אלקרוני"
+          formControlName="email"
+          required
+        />
+        <!-- <mat-error *ngIf="passwordError.invalid">{{
+          getPasswordErrorMessage()
+        }}</mat-error> -->
+      </mat-form-field>
+    </span>
+
+    <span class="input__container__flex">
+      <mat-form-field appearance="outline">
+        <mat-label>סיסמה</mat-label>
+        <input
+          matInput
+          placeholder="סיסמה"
+          formControlName="password"
+          required
+        />
+        <!-- <mat-error *ngIf="passwordError.invalid">{{
+          getPasswordErrorMessage()
+        }}</mat-error> -->
+      </mat-form-field>
+    </span>
+
+    <span class="input__container__flex">
+      <mat-form-field appearance="outline">
+        <mat-label>אישור סיסמה</mat-label>
+        <input
+          matInput
+          placeholder="אישור סיסמה"
+          formControlName="confirmPassword"
+          required
+        />
+        <!-- <mat-error *ngIf="passwordError.invalid">{{
+          getPasswordErrorMessage()
+        }}</mat-error> -->
+      </mat-form-field>
+    </span>
+
+    <span class="input__container__flex">
+      <mat-form-field appearance="outline">
+        <mat-label>הכנס תועדת זהות</mat-label>
+        <input
+          matInput
+          placeholder="אישור סיסמה"
+          formControlName="id"
+          required
+        />
+        <!-- <mat-error *ngIf="passwordError.invalid">{{
+          getPasswordErrorMessage()
+        }}</mat-error> -->
+      </mat-form-field>
+    </span>
+
+    <div class="button__submit__form">
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn-form"
+        type="submit"
+        title=" submit"
+        (click)="closeDialog()"
+      >
+        קחו אותי לסופר
+      </button>
+
     </div>
   </form>
-  <div class="row text-center">
-    <div class="col-lg-12 mt-1">
-      <button class="btn-form" type="button" title="button" (click)="goBackToLoginPage()">Cancel</button>
-    </div>
-  </div>
+  <span class="go__to__register">
+    <a mat-raised-button class="btn-form" (click)="closeDialog()" >ביטול</a>
+  </span>
 </div>

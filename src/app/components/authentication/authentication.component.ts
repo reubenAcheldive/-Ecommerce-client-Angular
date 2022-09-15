@@ -17,6 +17,7 @@ import {
 } from '../../state/selectors/auth-selectors';
 import { Observable, takeUntil, Subject } from 'rxjs';
 import { AuthErrorLogin } from 'src/app/Interfaces/auth/Auth.error';
+
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.component.html',
@@ -25,7 +26,8 @@ import { AuthErrorLogin } from 'src/app/Interfaces/auth/Auth.error';
 export class AuthenticationComponent implements OnInit, OnChanges, OnDestroy {
   constructor(
     private togglePageService: TogglePageService,
-    private store: Store
+    private store: Store,
+    private dialog: MatDialogRef<AuthenticationComponent>
   ) {}
   unsubscribe$ = new Subject<void>();
 
@@ -36,7 +38,9 @@ export class AuthenticationComponent implements OnInit, OnChanges, OnDestroy {
   loading = true;
 
   ngOnInit(): void {
-    this.togglePageService.toggleStatus.pipe(takeUntil(this.unsubscribe$)).subscribe((l) => (this.toggle = !l));
+    this.togglePageService.toggleStatus
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((l) => (this.toggle = !l));
     this.handleWithLoading();
   }
 
@@ -44,12 +48,16 @@ export class AuthenticationComponent implements OnInit, OnChanges, OnDestroy {
     this.store
       .select(selectLoading)
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((l) => (this.loading = l));
+      .subscribe((loading) => (this.loading = loading));
   }
 
   ngOnDestroy(): void {
     this.togglePageService.toggleStatus.complete();
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+  }
+
+  closeAuthDialog = () => {
+    this.dialog.close()
   }
 }

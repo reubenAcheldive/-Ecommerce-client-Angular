@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { AuthenticationComponent } from '../authentication/authentication.component';
 import { selectAuthDetails } from 'src/app/state/selectors/auth-selectors';
+import { MatMenuPanel } from '@angular/material/menu';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,17 +12,14 @@ import { selectAuthDetails } from 'src/app/state/selectors/auth-selectors';
 })
 export class NavBarComponent implements OnInit {
   constructor(public dialog: MatDialog, private store: Store) {}
-
+  userData = this.store.select(selectAuthDetails);
   ngOnInit(): void {
-    this.store.select(selectAuthDetails).subscribe((data) => {
-      if (!data) {
-        this.openDialog();
-      }
-    });
+    this.openDialog();
   }
   openDialog() {
-    let dialogRef = this.dialog.open(AuthenticationComponent, {
-      height: '500px',
+    this.dialog.open(AuthenticationComponent, {
+      width: '55%',
+      height: '90%',
     });
   }
 }

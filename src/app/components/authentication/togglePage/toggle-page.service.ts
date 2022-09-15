@@ -10,6 +10,7 @@ export class TogglePageService {
 
   handleWithChangeBetweenForms() {
     this.toggle.next(!this.toggle.value);
+
   }
   get toggleStatus() {
     return this.toggle;

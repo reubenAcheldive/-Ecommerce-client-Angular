@@ -1,10 +1,6 @@
-<div class="row conatiner-auth">
-
-  <div *ngIf="!loading" class="col">
-    <app-login *ngIf="toggle"></app-login>
-    <app-register *ngIf="!toggle"></app-register>
+<div class="container__auth__flex">
+  <div *ngIf="!loading" class="">
+    <app-login  [closeDialog]="closeAuthDialog" *ngIf="toggle"></app-login>
+    <app-register [closeDialog]="closeAuthDialog" *ngIf="!toggle"></app-register>
   </div>
-  <!-- <div *ngIf="loading" class="col">
-    <h2>Loading....</h2>
-  </div> -->
 </div>

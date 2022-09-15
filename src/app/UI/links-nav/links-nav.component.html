@@ -1,7 +1,7 @@
-<div class="box-2">
+<div class="box-2" *ngIf="userData as user">
   <div class="item--nav">
     <button class="btn-icon" routerLink="/dashboard/order">
-      <span class="context">ראובן </span>
+      <span class="context">{{user.firstName}}</span>
       <app-icon-info icon="person_outline"> </app-icon-info>
     </button>
   </div>

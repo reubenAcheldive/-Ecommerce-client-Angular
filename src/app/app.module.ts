@@ -31,7 +31,7 @@ import { OrderModule } from './components/dashboard/order/order.module';
 import { LinksNavModule } from './UI/links-nav/links-nav.module';
 import { IconInfoModule } from './UI/icon-info/icon-info.module';
 import { ContentNameComponent } from './UI/content-name/content-name.component';
-
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent, NavBarComponent, ContentNameComponent],
@@ -52,6 +52,9 @@ import { ContentNameComponent } from './UI/content-name/content-name.component';
     MatDialogModule,
 
     AuthenticationModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+    }),
     MatButtonModule,
     MatMenuModule,
     OrderModule,

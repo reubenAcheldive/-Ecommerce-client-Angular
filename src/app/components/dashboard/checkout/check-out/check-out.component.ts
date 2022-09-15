@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { map, Observable, exhaustMap, take } from 'rxjs';
 import { Cart } from 'src/app/Interfaces/cart/GetCartUser';
 import { Categories } from 'src/app/Interfaces/categories';
-import { fetchCategories } from 'src/app/state/actions/shopping.actions';
+import {
+  fetchCategories,
+  initGetAllPaymentByCustomerId,
+  successGetAllPaymentByCustomerId,
+} from 'src/app/state/actions/shopping.actions';
+import { selectAuthDetails } from 'src/app/state/selectors/auth-selectors';
 import {
   selectCartList,
   selectCategories,
@@ -22,5 +27,12 @@ export class CheckOutComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(fetchCategories());
+    this.store
+      .select(selectAuthDetails)
+      .subscribe((data) =>
+        this.store.dispatch(
+          initGetAllPaymentByCustomerId({ customerId: data.userId })
+        )
+      );
   }
 }
