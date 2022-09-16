@@ -29,6 +29,7 @@ export class RegisterComponent implements OnInit,OnDestroy {
     this.store.select(selectUserId).subscribe((userId)=>{
       if(userId) {
         alert(userId)
+        alert(userId)
         this.store.dispatch(newCartActionGroup.initCreateCart({customerRef:userId}))
       }
     })
@@ -62,6 +63,7 @@ export class RegisterComponent implements OnInit,OnDestroy {
      return
     }
     this.store.dispatch(registerUserInit({data:this.profileRegister.value}))
+   this.closeDialog()
   }
   goBackToLoginPage() {
     return this.togglePageService.handleWithChangeBetweenForms();

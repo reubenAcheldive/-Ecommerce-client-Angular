@@ -12,6 +12,7 @@ import { AuthErrorLogin } from 'src/app/Interfaces/auth/Auth.error';
 import { Cart, Item } from 'src/app/Interfaces/cart/GetCartUser';
 import { IAddresses } from 'src/app/Interfaces/order/addresses';
 import { IPayment } from 'src/app/Interfaces/Payment/Payment';
+import { newCartActionGroup } from '../actions/actionGroup';
 
 export interface Shopping {
   categories: Categories[] | null;
@@ -82,7 +83,7 @@ export const shoppingReducer = createReducer(
   })),
   on(ShoppingActions.fetchProductsSuccess, (state, { products }) => ({
     ...state,
-    products: updateProducts(products, state.cart.items),
+    products: updateProducts(products, state?.cart?.items),
     loading: false,
   })),
   on(ShoppingActions.fetchProductsFailure, (state, { error }) => ({
@@ -176,7 +177,7 @@ export const shoppingReducer = createReducer(
     (state, { cartList }) => ({
       ...state,
       cart: cartList,
-      products: updateProducts(state.products, cartList.items),
+      products: updateProducts(state.products, cartList?.items),
     })
   ),
   on(
@@ -212,10 +213,11 @@ export const shoppingReducer = createReducer(
   on(
     ShoppingActions.getCartByCartIdSuccess,
     ShoppingActions.getCartByCustomerIdSuccess,
+    newCartActionGroup.successCreateCart,
     (state, { cart }) => ({
       ...state,
       cart: cart,
-      products: updateProducts(state.products, cart.items),
+      products: updateProducts(state.products, cart?.items),
     })
   ),
   on(
@@ -289,7 +291,7 @@ export const shoppingReducer = createReducer(
     DateCreatedCart: null,
     unavailableDates: [],
     authErrorLogin: null,
-
+    cart: null,
     customerId: null,
     payments: null,
   }))
@@ -297,6 +299,7 @@ export const shoppingReducer = createReducer(
 
 const updateProducts = (products: IProduct[], items: Item[]): IProduct[] => {
   if (!products) return [];
+  if(!items) return products
   const updateProducts: IProduct[] = [...products];
 
   items.forEach((item: Item) => {

@@ -31,7 +31,7 @@ export class ProductsComponent implements OnInit {
     this.store
       .select(selectCartList)
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((data) => this.cartId = data._id);
+      .subscribe((data) => this.cartId = data?._id);
    
     this.route.params
       .pipe(takeUntil(this.unsubscribe$))
