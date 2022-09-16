@@ -4,6 +4,8 @@ import { Store } from '@ngrx/store';
 import { AuthenticationComponent } from '../authentication/authentication.component';
 import { selectAuthDetails } from 'src/app/state/selectors/auth-selectors';
 import { MatMenuPanel } from '@angular/material/menu';
+import { IUser } from 'src/app/Interfaces/auth/userInformation';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,9 +14,11 @@ import { MatMenuPanel } from '@angular/material/menu';
 })
 export class NavBarComponent implements OnInit {
   constructor(public dialog: MatDialog, private store: Store) {}
-  userData = this.store.select(selectAuthDetails);
+  userDate: IUser;
   ngOnInit(): void {
-    this.openDialog();
+    this.store.select(selectAuthDetails).subscribe((data) => {
+      this.userDate = data;
+    });
   }
   openDialog() {
     this.dialog.open(AuthenticationComponent, {
@@ -22,4 +26,6 @@ export class NavBarComponent implements OnInit {
       height: '90%',
     });
   }
+
+
 }

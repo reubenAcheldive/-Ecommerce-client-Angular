@@ -17,6 +17,7 @@ import {
 } from '../../state/selectors/auth-selectors';
 import { Observable, takeUntil, Subject } from 'rxjs';
 import { AuthErrorLogin } from 'src/app/Interfaces/auth/Auth.error';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-authentication',
@@ -27,7 +28,8 @@ export class AuthenticationComponent implements OnInit, OnChanges, OnDestroy {
   constructor(
     private togglePageService: TogglePageService,
     private store: Store,
-    private dialog: MatDialogRef<AuthenticationComponent>
+    private dialog: MatDialogRef<AuthenticationComponent>,
+    private toastr: ToastrService
   ) {}
   unsubscribe$ = new Subject<void>();
 
@@ -42,6 +44,19 @@ export class AuthenticationComponent implements OnInit, OnChanges, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((l) => (this.toggle = !l));
     this.handleWithLoading();
+    this.store
+      .select(selectError)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((data) => {
+        if (data) {
+          if (Array.isArray(data.error.messageError.message)) {
+            data.error.messageError.message.forEach((d) =>
+              this.toastr.error(d)
+            );
+          }
+          this.toastr.error(data.error.messageError.message.toString());
+        }
+      });
   }
 
   handleWithLoading() {
@@ -58,6 +73,6 @@ export class AuthenticationComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   closeAuthDialog = () => {
-    this.dialog.close()
-  }
+    this.dialog.close();
+  };
 }

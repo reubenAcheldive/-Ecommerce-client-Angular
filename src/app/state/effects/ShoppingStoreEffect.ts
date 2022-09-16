@@ -72,7 +72,7 @@ export class ShoppingEffects {
       withLatestFrom(this.store.select(selectCartList)),
       exhaustMap(([action, cartResponse]) => {
         return this.categoryService
-          .getAllProductByCategoryId(action.categoryId)
+          .getAllProductByCategoryId(action.categoryId,cartResponse._id)
           .pipe(
             map((products: IProduct[]) => {
               return shoppingActions.fetchProductsSuccess({ products });

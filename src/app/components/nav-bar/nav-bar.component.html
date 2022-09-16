@@ -15,27 +15,24 @@
 <div class="container--flex">
   <nav class="navbar--container">
     <ul>
-      <li>
-        <ng-template *ngIf="userData | async as userDat; else userIsLogin">
-          <div>
-            <button class="btn-name" mat-button [matMenuTriggerFor]="menu">
-              <app-icon-info
-                icon="person"
-                label={{ userDat.firstName + userDat.lastName }}
-              ></app-icon-info>
-            </button>
+      <li *ngIf="userDate">
+        <div>
+          <button class="btn-name" mat-button [matMenuTriggerFor]="menu">
+            <app-icon-info icon="person" label={{userDate.firstName}}></app-icon-info>
+          </button>
+        </div>
+        <mat-menu #menu="matMenu">
+          <app-links-nav [userData]="userDate"></app-links-nav>
+        </mat-menu>
+      </li>
 
-          </div>
-          <mat-menu #menu="matMenu">
-            <app-links-nav></app-links-nav>
-          </mat-menu>
-        </ng-template>
-        <ng-template #userIsLogin>
+      <li *ngIf="!userDate" (click)=" openDialog()">
+        <div >
+          <button class="btn-name" mat-button >
+            <app-icon-info icon="person" label="אורח"></app-icon-info>
+          </button>
+        </div>
 
-            <button class="btn-name" mat-button  (click)="openDialog()">
-              <app-icon-info icon="person" label="אורח"></app-icon-info>
-            </button>
-          </ng-template>
       </li>
       <li><a mat-button href="#">עלינו</a></li>
       <li><a mat-button href="#">צור קשר</a></li>

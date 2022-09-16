@@ -28,6 +28,7 @@ export class PaymentsComponent {
   ngOnInit() {
     const getPayments = this.route.snapshot.data['userDetails'];
     if (getPayments) {
+      alert(getPayments.userId)
       this.store.dispatch(
         initGetAllPaymentByCustomerId({ customerId: getPayments.userId })
       );
@@ -45,8 +46,5 @@ export class PaymentsComponent {
       position: {},
     });
   }
-  deleteCard(_id: string) {
-    console.log(_id);
-    this.store.dispatch(initDeletePaymentBy_Id({ _id }));
-  }
+
 }

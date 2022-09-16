@@ -46,7 +46,7 @@ export const registerUserSuccess = createAction(
 );
 export const registerUserFailure = createAction(
   '[User] lode full  register failure',
-  props<{ error: any }>()
+  props<{ error: AuthErrorLogin }>()
 );
 
 export const initEditUserPersonalDetails = createAction(

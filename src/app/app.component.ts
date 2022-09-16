@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { AuthService } from './services/Auth/auth.service';
 
 import { getCartByCartIdInit } from './state/actions/shopping.actions';
+import { selectAuthDetails } from './state/selectors/auth-selectors';
 
 @Component({
   selector: 'app-root',
@@ -19,9 +20,12 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(
-      getCartByCartIdInit({ cartId: '62bc60407a0a29c9f3c77b31' })
-    );
     this.AuthService.AutoCheckJwt();
+    this.store.select(selectAuthDetails).subscribe((authDetails) => {
+      authDetails &&
+        this.store.dispatch(
+          getCartByCartIdInit({ cartId: authDetails.userId })
+        );
+    });
   }
 }

@@ -20,10 +20,10 @@ export class ProductService {
 
   getAllProductByCategoryId(
     categoryId: string,
-    cartId?: string
+    cartId: string
   ): Observable<IProduct[]> {
     return this.http.post<IProduct[]>(`${GET_CATEGORY}/${categoryId}`, {
-      cartId: '62bc60407a0a29c9f3c77b31',
+      cartId: cartId,
     });
   }
 

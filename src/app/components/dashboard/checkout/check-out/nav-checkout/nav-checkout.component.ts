@@ -4,12 +4,13 @@ import { ContentNameComponent } from 'src/app/UI/content-name/content-name.compo
 import { RenderCatListComponent } from '../render-cat-list/render-cat-list.component';
 import { Store } from '@ngrx/store';
 import { selectCartList } from 'src/app/state/selectors/shopping-selectors';
-import { map, Observable, takeUntil, tap, Subject } from 'rxjs';
+import { map, Observable, takeUntil, tap, Subject, pipe } from 'rxjs';
 import { Cart } from 'src/app/Interfaces/cart/GetCartUser';
 import { getALlPayment } from './../../../../../state/selectors/shopping-selectors';
 import { PaymentDialogComponent } from 'src/app/UI/payment-dialog/payment-dialog.component';
 
 import { ToastrService } from 'ngx-toastr';
+import { UserNeedToLoginDialogComponent } from 'src/app/UI/user-need-to-login-dialog/user-need-to-login-dialog.component';
 
 @Component({
   selector: 'app-nav-checkout',
@@ -18,14 +19,25 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NavCheckoutComponent implements OnInit {
   unsubscribed$ = new Subject<void>();
-  constructor(public dialog: MatDialog, private store: Store,private toastr: ToastrService) {}
+  constructor(
+    public dialog: MatDialog,
+    private store: Store,
+    private toastr: ToastrService
+  ) {}
   @Input() getCart: Cart;
   haveActivePayment: boolean = false;
   ngOnInit(): void {
-    this.store.select(getALlPayment).subscribe((data) => {
-      console.log({data})
-      return data ? (this.haveActivePayment = true) : null;
+    this.dialog.open(UserNeedToLoginDialogComponent,{
+      width: '50%',
+      height: '80%',
     });
+    this.store
+      .select(getALlPayment)
+      .pipe(takeUntil(this.unsubscribed$))
+      .subscribe((data) => {
+        console.log({ data });
+        return data ? (this.haveActivePayment = true) : null;
+      });
   }
 
   openDialogContentComponent(): void {
@@ -42,24 +54,26 @@ export class NavCheckoutComponent implements OnInit {
   }
 
   goToFinalORder() {
-    console.log(this.haveActivePayment)
-    if (!this.haveActivePayment) {
-      return this.dialog.open(PaymentDialogComponent);
+    console.log(this.haveActivePayment);
+    if (this.haveActivePayment && this.getCart?.items?.length > 0) {
+      return this.dialog.open(UserNeedToLoginDialogComponent,{
+        width: '50%',
+        height: '80%',
+      });
     }
-    if(this.getCart?.items?.length > 0 ){
-      return this.alertToast("אין פריטים", "הכנס מוצרים לעגלה")
+
+    if (this.getCart?.items?.length <= 0) {
+      return this.alertToast('אין פריטים', 'הכנס מוצרים לעגלה');
     }
-    return null;
   }
   onDestroy(): void {
     this.unsubscribed$.next();
     this.unsubscribed$.complete();
   }
 
-  alertToast( message:string,sub:string){
-    this.toastr.info(message, sub,{
+  alertToast(message: string, sub: string) {
+    this.toastr.info(message, sub, {
       positionClass: 'toast-bottom-right',
-      
     });
   }
 }

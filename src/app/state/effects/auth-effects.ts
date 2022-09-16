@@ -73,7 +73,7 @@ export class AuthEffects {
 
             return UserActions.registerUserSuccess({ infoLogin });
           }),
-          catchError((error) => of(UserActions.registerUserFailure({ error })))
+          catchError((error:AuthErrorLogin) => of(UserActions.registerUserFailure({ error })))
         );
       })
     );

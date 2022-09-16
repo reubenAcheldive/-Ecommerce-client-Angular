@@ -4,12 +4,11 @@ import {
   EventEmitter,
   HostBinding,
   Input,
-  OnInit,
+
   Output,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { IProduct } from 'src/app/Interfaces/Products';
-import { initUpdateItemQuantityInCart } from 'src/app/state/actions/shopping.actions';
+
 
 @Component({
   selector: 'app-add-product-amount',
@@ -32,7 +31,7 @@ export class AddProductAmountComponent {
     this.quantityChange.emit(this.amount);
     console.log(this.amount);
 
-    //this.dispatchUpdateAction(this._item);
+
   }
 
   public decrement() {
@@ -40,19 +39,9 @@ export class AddProductAmountComponent {
       this.amount -= 1;
       this.quantityChange.emit(this.amount);
 
-      //this.dispatchUpdateAction(this._item);
+
     }
   }
 
-  private dispatchUpdateAction(product: IProduct): void {
-    this.store.dispatch(
-      initUpdateItemQuantityInCart({
-        itemUpdate: {
-          productRefId: product._id,
-          quantity: this.amount,
-          idCart: '62bc60407a0a29c9f3c77b31',
-        },
-      })
-    );
-  }
+
 }

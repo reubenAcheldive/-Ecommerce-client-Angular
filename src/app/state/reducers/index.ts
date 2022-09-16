@@ -146,7 +146,7 @@ export const shoppingReducer = createReducer(
   })),
   on(UserActions.registerUserFailure, (state, { error }) => ({
     ...state,
-    errorInRegister: error.error.isError,
+    authErrorLogin: error,
   })),
   on(ShoppingActions.fetchCitiesSuccess, (state, { cities }) => ({
     ...state,
@@ -264,10 +264,11 @@ export const shoppingReducer = createReducer(
   })),
 
   on(ShoppingActions.logOut, (state) => ({
+    ...state,
     cartId: null,
     cartListProducts: null,
     cartMessage: null,
-    categories: null,
+
     citiesList: null,
     editProduct: null,
     error: null,
@@ -279,11 +280,11 @@ export const shoppingReducer = createReducer(
     OrderDetail: null,
     loading: null,
     orderID: null,
-    products: null,
+
     DateCreatedCart: null,
     unavailableDates: [],
     authErrorLogin: null,
-    address: null,
+
     customerId: null,
     payments: null,
   }))

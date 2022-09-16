@@ -31,7 +31,7 @@ export class ListsComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-   
+
   }
 
   public onQuantityChange(quantity: number, item: Item): void {
@@ -40,7 +40,7 @@ export class ListsComponent implements OnInit {
         itemUpdate: {
           productRefId: item.productRefId._id,
           quantity,
-          idCart: '62bc60407a0a29c9f3c77b31',
+          idCart:this.cartList.customerRef,
         },
       })
     );

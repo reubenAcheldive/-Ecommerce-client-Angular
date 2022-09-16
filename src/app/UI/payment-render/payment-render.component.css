@@ -1,0 +1,109 @@
+.div-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+
+  background: #fff !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  height: 20rem;
+  align-self: flex-end;
+}
+
+.div-group>h1 {
+  align-self: flex-end;
+  padding: 1rem;
+  color: rgb(0, 38, 209);
+}
+
+
+.div-group>.container__flex {
+  position: relative;
+  display: flex;
+  gap: 0.2rem;
+  margin: 0.1rem auto;
+
+}
+
+.credit-card-container {
+
+  width: 15rem;
+  height: 8rem;
+  background-image: url(https://www.rami-levy.co.il/images/credit-new-bg.png);
+  color: #fff !important;
+  border-radius: 1rem;
+  background-color: none;
+  position: relative;
+}
+
+app-icon-info {
+  cursor: pointer;
+}
+
+.trush-icon>app-icon-info {
+  background-color: rgba(12, 0, 0, 0.308) !important;
+  background: rgb(12, 0, 0) !important;
+  font-size: 1.5rem;
+  position: absolute;
+  border-radius: 0.5rem;
+  top: -5px;
+  left: -2px;
+  cursor: pointer;
+}
+
+.credit-card-container {
+  display: flex;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  /* align-content: flex-end; */
+}
+
+.credit__card_numbers_container {
+  padding-top: 10px;
+  display: flex;
+  align-self: flex-start;
+  align-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+
+  justify-content: space-between;
+}
+
+.credit__card_numbers_container>* {
+  padding-left: 10px;
+  font-size: 0.8rem;
+  color: #fff !important;
+  letter-spacing: 2.5px;
+}
+
+.credit-date {
+  display: flex;
+  align-self: flex-start;
+  padding-bottom: 5px;
+  margin: 0 3px
+}
+
+.Add-btn {
+  width: 5rem;
+  height: 5rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%);
+  background-color: rgba(2, 167, 233, 0.644) !important;
+  padding: 19px 23px;
+  border-radius: 50% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+

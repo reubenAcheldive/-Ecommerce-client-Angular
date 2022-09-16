@@ -17,6 +17,7 @@ import { LinksNavModule } from 'src/app/UI/links-nav/links-nav.module';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { PaymentDialogModule } from 'src/app/UI/payment-dialog/payment-dialog.module';
+import { PaymentRenderModule } from 'src/app/UI/payment-render/payment-render.module';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { PaymentDialogModule } from 'src/app/UI/payment-dialog/payment-dialog.mo
     MatFormFieldModule,
     MatInputModule,
     PaymentDialogModule,
+    PaymentRenderModule,
   ],
   exports: [NavMenuComponent],
 })

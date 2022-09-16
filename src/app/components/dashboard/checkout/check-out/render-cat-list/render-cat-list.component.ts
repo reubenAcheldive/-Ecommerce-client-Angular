@@ -23,7 +23,7 @@ export class RenderCatListComponent implements OnInit {
         itemUpdate: {
           productRefId: item.productRefId._id,
           quantity,
-          idCart: '62bc60407a0a29c9f3c77b31',
+          idCart:this.getCart.customerRef,
         },
       })
     );
