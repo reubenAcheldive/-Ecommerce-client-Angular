@@ -46,7 +46,7 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot({ shoppingFeature: shoppingReducer }),
-    EffectsModule.forRoot([AuthEffects, ShoppingEffects]),
+    EffectsModule.forRoot([AuthEffects, ShoppingEffects, ]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     MatToolbarModule,
     MatDialogModule,

@@ -27,12 +27,12 @@ export class ShoppingCartService {
 
   constructor(private http: HttpClient) {}
 
-  // addNewCart(customerRef: string): Observable<GetCartByCustomerResponse> {
+  addNewCart(customerRef: string):  Observable<Cart> {
 
-  //   return this.http.post<GetCartByCustomerResponse>(`${this.api_url_add_new_cart}`, {
-  //     customerRef,
-  //   });
-  // }
+    return this.http.post<Cart>(`${this.api_url_add_new_cart}`, {
+      customerRef,
+    });
+  }
 
   deleteProduct(
     cartId: string,

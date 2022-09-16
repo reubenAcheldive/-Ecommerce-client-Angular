@@ -1,5 +1,5 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, EMPTY, exhaustMap, map, of, withLatestFrom } from 'rxjs';
+import { catchError, EMPTY, exhaustMap, map, of, withLatestFrom ,pipe} from 'rxjs';
 
 import { Injectable } from '@angular/core';
 
@@ -181,27 +181,27 @@ export class ShoppingEffects {
     );
   });
 
-  // createNewCart$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(shoppingActions.createNewCartInit),
-  //     exhaustMap(({ customerRef }) => {
-  //       return this.shoppingCartService.addNewCart(customerRef).pipe(
-  //         map((cart) => {
-  //           console.log(
-  //             { cart },
-  //             'register created new Cart',
-  //             cart.cart[0]._id
-  //           );
+  createNewCart$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(shoppingActions.createNewCartInit),
+      exhaustMap(({ customerRef }) => {
+        return this.shoppingCartService.addNewCart(customerRef).pipe(
+          map((cart) => {
+            console.log(
+              { cart },
+              'register created new Cart',
+              cart.cart[0]._id
+            );
 
-  //           return shoppingActions.createNewCartSuccess({ cart: cart });
-  //         }),
-  //         catchError((error) =>
-  //           of(shoppingActions.createNewCartFail({ error }))
-  //         )
-  //       );
-  //     })
-  //   );
-  // });
+            return shoppingActions.createNewCartSuccess({ cart: cart });
+          }),
+          catchError((error) =>
+            of(shoppingActions.createNewCartFail({ error }))
+          )
+        );
+      })
+    );
+  });
 
   getUserDetailsShipmentsInit$ = createEffect(() => {
     return this.actions$.pipe(
