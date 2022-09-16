@@ -1,5 +1,5 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, EMPTY, exhaustMap, map, of, withLatestFrom ,pipe} from 'rxjs';
+
 
 import { Injectable } from '@angular/core';
 
@@ -18,6 +18,8 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-car
 import { OrderService } from 'src/app/services/order/order.service';
 import { AddressesService } from '../../services/order/addresses.service';
 import { PaymentService } from 'src/app/services/Payment/payment.service';
+import { exhaustMap, catchError, of, map, withLatestFrom } from 'rxjs';
+import { newCartActionGroup } from '../actions/actionGroup';
 
 @Injectable()
 export class ShoppingEffects {
@@ -69,18 +71,16 @@ export class ShoppingEffects {
   productByCategoryId$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(shoppingActions.fetchProductsInit),
-      withLatestFrom(this.store.select(selectCartList)),
-      exhaustMap(([action, cartResponse]) => {
-        return this.categoryService
-          .getAllProductByCategoryId(action.categoryId,cartResponse._id)
-          .pipe(
-            map((products: IProduct[]) => {
-              return shoppingActions.fetchProductsSuccess({ products });
-            }),
-            catchError((error) =>
-              of(shoppingActions.fetchProductsFailure({ error }))
-            )
-          );
+      exhaustMap(({categoryId}) => {
+        return this.categoryService.getAllProductByCategoryId(categoryId).pipe(
+          map((products) =>
+            shoppingActions.fetchProductsSuccess({ products })
+          ),
+
+          catchError((error) =>
+            of(shoppingActions.fetchSingleProductsBySearchFailure({ error }))
+          )
+        );
       })
     );
   });
@@ -132,23 +132,23 @@ export class ShoppingEffects {
       })
     );
   });
-  // getCartByCustomerId$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(shoppingActions.getCartByCustomerIdInit),
-  //     exhaustMap(({ customerRef }) => {
-  //       return this.shoppingCartService.getCartByCustomerRef(customerRef).pipe(
-  //         map((cart) => {
-  //           console.log('get cart by useEffect', cart.cart[0].date);
+  getCartByCustomerId$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(shoppingActions.getCartByCustomerIdInit),
+      exhaustMap(({ customerRef }) => {
+        return this.shoppingCartService.getCartByCustomerId(customerRef).pipe(
+          map((cart) => {
+            
 
-  //           return shoppingActions.getCartByCustomerIdSuccess({ cart });
-  //         }),
-  //         catchError((error) =>
-  //           of(shoppingActions.getCartByCustomerFail({ error }))
-  //         )
-  //       );
-  //     })
-  //   );
-  // });
+            return shoppingActions.getCartByCustomerIdSuccess({ cart });
+          }),
+          catchError((error) =>
+            of(shoppingActions.getCartByCustomerFail({ error }))
+          )
+        );
+      })
+    );
+  });
   DeleteAllProductCartList$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(shoppingActions.deleteAllItemsInCartInit),
@@ -183,17 +183,13 @@ export class ShoppingEffects {
 
   createNewCart$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(shoppingActions.createNewCartInit),
+      ofType(newCartActionGroup.initCreateCart),
       exhaustMap(({ customerRef }) => {
         return this.shoppingCartService.addNewCart(customerRef).pipe(
           map((cart) => {
-            console.log(
-              { cart },
-              'register created new Cart',
-              cart.cart[0]._id
-            );
+           
 
-            return shoppingActions.createNewCartSuccess({ cart: cart });
+            return newCartActionGroup.successCreateCart({ cart: cart });
           }),
           catchError((error) =>
             of(shoppingActions.createNewCartFail({ error }))

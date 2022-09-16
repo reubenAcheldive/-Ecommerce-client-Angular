@@ -6,30 +6,23 @@ import { map, Observable } from 'rxjs';
 
 import { AddItem } from 'src/app/Interfaces/cart/UpdateItemInCart';
 import { Cart } from 'src/app/Interfaces/cart/GetCartUser';
-import { URL_DELETE_PRODUCT } from '../environment';
 import {
-  URL_DELETE_ALL_PRODUCT,
-  API_GET_CART_BY_CART_ID,
-} from './../environment';
+  api_url_change_quantity,
+  URL_ADD_NEW_CART,
+  URL_DELETE_PRODUCT,
+  URL_GET_CART_BY_CUSTOMER_ID,
+  URL_Get_cart_by_id,
+} from '../environment';
+import { URL_DELETE_ALL_PRODUCT } from './../environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingCartService {
-  readonly base_api_url = 'http://localhost:3000/api/store';
-  readonly api_url_add_new_cart = `${this.base_api_url}/addNewCart`;
-  readonly api_URL_ADD_ITEMS_ARRAY_TO_CART = `${this.base_api_url}/addProduct`;
-  readonly api_url_delete_product = `${this.base_api_url}/deleteProduct`;
-  readonly api_url_delete_all_products = `${this.base_api_url}/deleteAllProducts`;
-  readonly api_url_get_cart_by_customer_Id = `${this.base_api_url}/getCart`; // customerRef params
-  readonly api_url_get_cart_by_cart_Id = `${this.base_api_url}/getByCartId`; // cartId params
-  readonly api_url_change_quantity = `${this.base_api_url}/update-one-item-cart`;
-
   constructor(private http: HttpClient) {}
 
-  addNewCart(customerRef: string):  Observable<Cart> {
-
-    return this.http.post<Cart>(`${this.api_url_add_new_cart}`, {
+  addNewCart(customerRef: string): Observable<Cart> {
+    return this.http.post<Cart>(URL_ADD_NEW_CART, {
       customerRef,
     });
   }
@@ -48,15 +41,18 @@ export class ShoppingCartService {
   }
 
   getCartByCartId(cartId: string): Observable<Cart> {
-    return this.http.get<Cart>(`${API_GET_CART_BY_CART_ID}/${cartId}`);
+    return this.http.get<Cart>(URL_Get_cart_by_id(cartId));
   }
 
+  getCartByCustomerId(customerRef: string): Observable<Cart> {
+    return this.http.get<Cart>(URL_GET_CART_BY_CUSTOMER_ID(customerRef));
+  }
   updateItemOnCart({
     idCart,
     productRefId,
     quantity,
   }: AddItem): Observable<Cart> {
-    return this.http.post<Cart>(`${this.api_url_change_quantity}`, {
+    return this.http.post<Cart>(api_url_change_quantity, {
       idCart,
       productRefId,
       quantity,

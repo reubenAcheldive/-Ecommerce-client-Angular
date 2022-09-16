@@ -3,7 +3,7 @@ import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {Categories} from 'src/app/Interfaces/categories';
 import {Shopping} from 'src/app/state/reducers';
-import {fetchCategories, getCartByCartIdInit} from "../../../state/actions/shopping.actions"
+import {fetchCategories} from "../../../state/actions/shopping.actions"
 import {selectCategories} from "../../../state/selectors/shopping-selectors"
 
 @Component({

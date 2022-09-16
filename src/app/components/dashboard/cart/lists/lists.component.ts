@@ -14,9 +14,7 @@ import { selectProducts } from 'src/app/state/selectors/shopping-selectors';
 import { IProduct } from 'src/app/Interfaces/Products';
 import { Cart, Item } from 'src/app/Interfaces/cart/GetCartUser';
 
-import { selectAuthDetails } from './../../../../state/selectors/auth-selectors';
-import { IUser } from 'src/app/Interfaces/auth/userInformation';
-// import svg from "../../../../../assets/shopping-bag-svgrepo-com.svg";
+
 @Component({
   selector: 'app-lists',
   templateUrl: './lists.component.html',
@@ -40,7 +38,7 @@ export class ListsComponent implements OnInit {
         itemUpdate: {
           productRefId: item.productRefId._id,
           quantity,
-          idCart:this.cartList.customerRef,
+          idCart:this.cartList._id,
         },
       })
     );

@@ -129,7 +129,7 @@ export const getCartByCustomerIdInit = createAction(
 //---------------------------------------------------------------
 export const getCartByCustomerIdSuccess = createAction(
   getCartByCustomerIdTypes.success,
-  props<{ cart: null }>()
+  props<{ cart: Cart }>()
 );
 export const getCartByCustomerFail = createAction(
   getCartByCustomerIdTypes.failure,

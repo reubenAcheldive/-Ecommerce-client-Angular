@@ -1,11 +1,11 @@
-<div *ngIf="cartData$ | async as cartData" class="cart--container-flex">
+<div *ngIf="cartData$ | async as cartData; else empty" class="cart--container-flex">
   <div class="icons--container-flex">
     <span class="item--card-container">
       <app-icon-info icon="shopping_basket"></app-icon-info>
     </span>
 
     <span class="item--card-container">
-      <span matBadge="{{ cartData.items?.length }}" matBadgeOverlap="false">
+      <span matBadge="{{ cartData.items?.length}}" matBadgeOverlap="false">
         <app-icon-info icon="shopping_cart"></app-icon-info
       ></span>
     </span>
@@ -33,3 +33,42 @@
     <app-go-to-payment></app-go-to-payment>
   </div>
 </div>
+
+  <ng-template #empty>
+    <div  class="cart--container-flex">
+    <div class="icons--container-flex">
+      <span class="item--card-container">
+        <app-icon-info icon="shopping_basket"></app-icon-info>
+      </span>
+  
+      <span class="item--card-container">
+        <span matBadge="{{ 0}}" matBadgeOverlap="false">
+          <app-icon-info icon="shopping_cart"></app-icon-info
+        ></span>
+      </span>
+    </div>
+  
+    <div class="list--button-container">
+      <span class="icon--list" >
+        <app-icon-info icon="save_alt"></app-icon-info>
+        <small>Saving cart</small>
+      </span>
+  
+      <span class="icon--list">
+        <app-icon-info icon="tab"></app-icon-info>
+        <small>my notes</small>
+      </span>
+  
+      <span class="icon--list" (click)="deleteAllItems(null)">
+        <app-icon-info icon="delete_outline"></app-icon-info>
+        <small>Empty basket</small>
+      </span>
+    </div>
+  
+    <div class="cartList">
+      <app-lists [cartList]="null"></app-lists>
+      <app-go-to-payment></app-go-to-payment>
+    </div>
+  </div>
+
+  </ng-template>

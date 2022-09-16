@@ -6,7 +6,10 @@ import {
   fetchProductsInit,
   initUpdateItemQuantityInCart,
 } from '../../../../state/actions/shopping.actions';
-import { selectProducts } from '../../../../state/selectors/shopping-selectors';
+import {
+  selectCartList,
+  selectProducts,
+} from '../../../../state/selectors/shopping-selectors';
 import { IProduct } from './../../../../Interfaces/Products';
 import { selectUserId } from './../../../../state/selectors/auth-selectors';
 @Component({
@@ -18,12 +21,18 @@ import { selectUserId } from './../../../../state/selectors/auth-selectors';
 export class ProductsComponent implements OnInit {
   categoryId: string;
   unsubscribe$ = new Subject<void>();
+  cartId: string;
   constructor(private route: ActivatedRoute, private store: Store) {}
 
   public fetchProducts$: Observable<IProduct[]> =
     this.store.select(selectProducts);
 
   ngOnInit() {
+    this.store
+      .select(selectCartList)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((data) => this.cartId = data._id);
+   
     this.route.params
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((params: Params) => {
@@ -35,22 +44,21 @@ export class ProductsComponent implements OnInit {
         }
       });
   }
+  // this.store
+  //     .select(selectCartList)
+  //     .pipe(takeUntil(this.unsubscribe$))
 
   public onQuantityChange(quantity: number, item: IProduct): void {
-    this.store
-      .select(selectUserId)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((selectUserId) => {
-        this.store.dispatch(
-          initUpdateItemQuantityInCart({
-            itemUpdate: {
-              productRefId: item._id,
-              quantity,
-              idCart: selectUserId,
-            },
-          })
-        );
-      });
+  
+    return this.store.dispatch(
+      initUpdateItemQuantityInCart({
+        itemUpdate: {
+          productRefId: item._id,
+          quantity,
+          idCart: this.cartId,
+        },
+      })
+    );
   }
 
   ngOnDestroy() {

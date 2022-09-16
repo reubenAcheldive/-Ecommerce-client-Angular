@@ -15,10 +15,10 @@ import { Cart } from 'src/app/Interfaces/cart/GetCartUser';
 })
 export class CartComponent implements OnInit {
   constructor(private store: Store) {}
-  getUserId: string;
-  cartList: Cart;
+  getUserId: string |null;
+  cartList: Cart|null;
   unsubscribe$ = new Subject<void>();
-  public cartData$: Observable<Cart>;
+  public cartData$: Observable<Cart>|null;
 
   ngOnInit(): void {
     this.store

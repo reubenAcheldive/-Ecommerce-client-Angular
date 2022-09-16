@@ -1,6 +1,6 @@
 <div class="container--list--cart--flex">
   <div
-    *ngIf="cartList.items.length; else empty"
+    *ngIf="cartList?.items?.length; else empty"
     class="flex-direction-container"
   >
     <div class="cart--list--items" *ngFor="let item of cartList.items">

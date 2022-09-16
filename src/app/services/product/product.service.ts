@@ -4,8 +4,11 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Categories } from 'src/app/Interfaces/categories';
 import { IProduct } from 'src/app/Interfaces/Products';
-import { ALL_PRODUCT_QUN, GET_CATEGORY, SEARCH_PRODUCT_BY_NAME } from '../environment';
-
+import {
+  ALL_PRODUCT_QUN,
+  GET_CATEGORY,
+  SEARCH_PRODUCT_BY_NAME,
+} from '../environment';
 
 @Injectable({
   providedIn: 'root',
@@ -18,13 +21,8 @@ export class ProductService {
     return this.http.get<Categories[]>(GET_CATEGORY);
   }
 
-  getAllProductByCategoryId(
-    categoryId: string,
-    cartId: string
-  ): Observable<IProduct[]> {
-    return this.http.post<IProduct[]>(`${GET_CATEGORY}/${categoryId}`, {
-      cartId: cartId,
-    });
+  getAllProductByCategoryId(categoryId: string): Observable<IProduct[]> {
+    return this.http.post<IProduct[]>(`${GET_CATEGORY}/${categoryId}`,{});
   }
 
   getProductsByName(str: string): Observable<IProduct[]> {

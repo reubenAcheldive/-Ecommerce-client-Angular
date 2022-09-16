@@ -26,7 +26,7 @@ export const selectCities = createSelector(
 
 export const selectCartList = createSelector(
   shoppingSelectorFetcher,
-  (state) => state?.cartListProducts
+  (state) => state?.cart
 );
 export const getLastCartCreated = createSelector(
   shoppingSelectorFetcher,

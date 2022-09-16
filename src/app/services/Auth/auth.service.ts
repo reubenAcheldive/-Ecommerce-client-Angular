@@ -4,9 +4,9 @@ import { Store } from '@ngrx/store';
 import * as UserAction from '../../../../src/app/state/actions/user.actions';
 
 
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 import { selectAuthDetails } from 'src/app/state/selectors/auth-selectors';
-import { logOut } from 'src/app/state/actions/shopping.actions';
+import {  getCartByCartIdInit, getCartByCustomerIdInit, logOut } from 'src/app/state/actions/shopping.actions';
 
 
 @Injectable({
@@ -37,6 +37,13 @@ export class AuthService {
       if (loginInformation) {
         if (loginInformation.isAdmin) {
           this.router.navigateByUrl('/dashboard/order');
+        }
+        else{
+          this.store.dispatch(
+            getCartByCustomerIdInit({ customerRef: loginInformation.userId })
+            
+          );
+          this.router.navigateByUrl('/dashboard/store');
         }
       }
     });

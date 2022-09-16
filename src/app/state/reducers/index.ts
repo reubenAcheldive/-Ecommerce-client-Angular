@@ -15,18 +15,18 @@ import { IPayment } from 'src/app/Interfaces/Payment/Payment';
 
 export interface Shopping {
   categories: Categories[] | null;
-  currentCategory?: string;
+
   products: IProduct[] | null;
   loading: boolean | null;
   authErrorLogin: AuthErrorLogin | null;
-  error: null;
+
   infoLogin: IUser | null;
   isRegistered: boolean | null;
   citiesList: ICities[] | null;
   errorAlert: any;
 
   cartId: string | null;
-  cartListProducts: Cart | null;
+  cart: Cart | null;
 
   getDetailsShipments: { city: string; address: string } | null;
   orderID: string | null;
@@ -42,14 +42,14 @@ export const initialShoppingState: Shopping | null = {
   products: null,
   loading: null,
   authErrorLogin: null,
-  error: null,
+
   infoLogin: null,
   isRegistered: null, //check in register component if user can to continue with registration
   citiesList: null,
   errorAlert: null,
 
   cartId: null,
-  cartListProducts: null,
+  cart: null,
   getDetailsShipments: null,
   orderID: '',
   DateCreatedCart: null,
@@ -63,7 +63,7 @@ export const shoppingReducer = createReducer(
   initialShoppingState,
   on(ShoppingActions.fetchProductsInit, (state, payload) => ({
     ...state,
-    currentCategory: payload.categoryId,
+
     loading: true,
   })),
   on(ShoppingActions.fetchCategories, (state) => ({
@@ -82,7 +82,7 @@ export const shoppingReducer = createReducer(
   })),
   on(ShoppingActions.fetchProductsSuccess, (state, { products }) => ({
     ...state,
-    products,
+    products: updateProducts(products, state.cart.items),
     loading: false,
   })),
   on(ShoppingActions.fetchProductsFailure, (state, { error }) => ({
@@ -175,7 +175,7 @@ export const shoppingReducer = createReducer(
     ShoppingActions.successUpdateItemQuantityInCart,
     (state, { cartList }) => ({
       ...state,
-      cartListProducts: cartList,
+      cart: cartList,
       products: updateProducts(state.products, cartList.items),
     })
   ),
@@ -184,9 +184,9 @@ export const shoppingReducer = createReducer(
 
     (state, { itemId, productId }) => ({
       ...state,
-      cartListProducts: {
-        ...state.cartListProducts,
-        items: state.cartListProducts.items.filter((item) => {
+      cart: {
+        ...state.cart,
+        items: state.cart.items.filter((item) => {
           return item._id !== itemId;
         }),
       },
@@ -202,17 +202,22 @@ export const shoppingReducer = createReducer(
   })),
   on(ShoppingActions.deleteAllItemsInCartSuccess, (state, {}) => ({
     ...state,
-    cartListProducts: {
-      ...state.cartListProducts,
+    cart: {
+      ...state.cart,
       items: [],
     },
     products: updateAllProductQuantityToZero(state.products),
   })),
 
-  on(ShoppingActions.getCartByCartIdSuccess, (state, { cart }) => ({
-    ...state,
-    cartListProducts: cart,
-  })),
+  on(
+    ShoppingActions.getCartByCartIdSuccess,
+    ShoppingActions.getCartByCustomerIdSuccess,
+    (state, { cart }) => ({
+      ...state,
+      cart: cart,
+      products: updateProducts(state.products, cart.items),
+    })
+  ),
   on(
     ShoppingActions.getUserDetailsShipmentsSuccess,
     (state, { city, address }) => ({
@@ -266,7 +271,7 @@ export const shoppingReducer = createReducer(
   on(ShoppingActions.logOut, (state) => ({
     ...state,
     cartId: null,
-    cartListProducts: null,
+
     cartMessage: null,
 
     citiesList: null,
@@ -291,8 +296,8 @@ export const shoppingReducer = createReducer(
 );
 
 const updateProducts = (products: IProduct[], items: Item[]): IProduct[] => {
-  const updateProducts: IProduct[] = [...products];
   if (!products) return [];
+  const updateProducts: IProduct[] = [...products];
 
   items.forEach((item: Item) => {
     const productId: string = item.productRefId._id;

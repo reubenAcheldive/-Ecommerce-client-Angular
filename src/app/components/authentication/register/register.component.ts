@@ -11,6 +11,7 @@ import { confirmedValidator } from './validatorsPassword/validators-password';
 import { Store } from '@ngrx/store';
 import { checkRegisterSuccess, registerUserInit } from 'src/app/state/actions/user.actions';
 import { selectUserId } from './../../../state/selectors/auth-selectors';
+import { newCartActionGroup } from 'src/app/state/actions/actionGroup';
 
 @Component({
   selector: 'app-register',
@@ -27,7 +28,8 @@ export class RegisterComponent implements OnInit,OnDestroy {
   ngOnDestroy(): void {
     this.store.select(selectUserId).subscribe((userId)=>{
       if(userId) {
-        // this.store.dispatch()
+        alert(userId)
+        this.store.dispatch(newCartActionGroup.initCreateCart({customerRef:userId}))
       }
     })
 

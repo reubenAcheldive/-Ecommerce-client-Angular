@@ -23,8 +23,9 @@ export const URL_ADD_NEW_CART = `${BASE_URI_STORE}/addNewCart`;
 export const URL_ADD_ITEMS_ARRAY_TO_CART = `${BASE_URI_STORE}/add-all-items-to-cart`;
 export const URL_DELETE_PRODUCT = `${BASE_URI_STORE}/deleteProduct`;
 export const URL_DELETE_ALL_PRODUCT = `${BASE_URI_STORE}/deleteAllProducts`;
-export const URL_GET_CART_BY_CUSTOMER_ID = `${BASE_URI_STORE}/getCart`; // customerRef params
-export const API_GET_CART_BY_CART_ID = `${BASE_URI_STORE}/getByCartId`; // cartId params
+export const URL_GET_CART_BY_CUSTOMER_ID =(customerRef:string)=> `${BASE_URI_STORE}/get-cart-by-customer-ref/${customerRef}`; // customerRef params
+
+export const URL_Get_cart_by_id =(cartId:string)=> `${BASE_URI_STORE}/getByCartId/${cartId}`;
 export const api_url_change_quantity = `${BASE_URI_STORE}/update-one-item-cart`;
 
 //--------------- payment
