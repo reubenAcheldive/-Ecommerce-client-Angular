@@ -3,14 +3,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { ContentNameComponent } from 'src/app/UI/content-name/content-name.component';
 import { RenderCatListComponent } from '../render-cat-list/render-cat-list.component';
 import { Store } from '@ngrx/store';
-import { selectCartList } from 'src/app/state/selectors/shopping-selectors';
 import { map, Observable, takeUntil, tap, Subject, pipe } from 'rxjs';
 import { Cart } from 'src/app/Interfaces/cart/GetCartUser';
-import { getALlPayment } from './../../../../../state/selectors/shopping-selectors';
-import { PaymentDialogComponent } from 'src/app/UI/payment-dialog/payment-dialog.component';
+import { selectAllPayment } from './../../../../../state/selectors/shopping-selectors';
 
 import { ToastrService } from 'ngx-toastr';
-import { UserNeedToLoginDialogComponent } from 'src/app/UI/user-need-to-login-dialog/user-need-to-login-dialog.component';
+import { OrderDialogConfirmComponent } from 'src/app/UI/order-dialog-confirm/order-dialog-confirm.component';
 
 @Component({
   selector: 'app-nav-checkout',
@@ -27,12 +25,12 @@ export class NavCheckoutComponent implements OnInit {
   @Input() getCart: Cart;
   haveActivePayment: boolean = false;
   ngOnInit(): void {
-    this.dialog.open(UserNeedToLoginDialogComponent,{
-      width: '50%',
-      height: '80%',
+    this.dialog.open(OrderDialogConfirmComponent, {
+      width: '30%',
+      height: '50%',
     });
     this.store
-      .select(getALlPayment)
+      .select(selectAllPayment)
       .pipe(takeUntil(this.unsubscribed$))
       .subscribe((data) => {
         console.log({ data });
@@ -56,9 +54,9 @@ export class NavCheckoutComponent implements OnInit {
   goToFinalORder() {
     console.log(this.haveActivePayment);
     if (this.haveActivePayment && this.getCart?.items?.length > 0) {
-      return this.dialog.open(UserNeedToLoginDialogComponent,{
-        width: '50%',
-        height: '80%',
+      return this.dialog.open(OrderDialogConfirmComponent, {
+        width: '30%',
+        height: '50%',
       });
     }
 

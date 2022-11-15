@@ -14,8 +14,8 @@ const routes: Routes = [
         (m) => m.DashboardModule
       ),
   },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 
-  { path: '', redirectTo: '/dashboard/store', pathMatch: 'full' },
 ];
 @NgModule({
   imports: [

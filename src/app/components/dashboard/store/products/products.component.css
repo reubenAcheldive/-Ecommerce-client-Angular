@@ -1,18 +1,15 @@
-img {
-  display: flex;
-  width: 250px;
+.img-warp {
+  width: 228px;
   height: 250px;
-  background-size: cover;
-  margin: auto;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50%;
 }
-
-
-
 
 
 .container--products--flex {
   width: auto;
-  height: 100%;
+
   display: flex;
   gap: 2rem;
 
@@ -21,6 +18,7 @@ img {
 }
 
 .container--products--flex>.container--item {
+  position: relative;
   padding-top: 2rem;
   display: flex;
   margin: 0;
@@ -52,4 +50,30 @@ img {
   text-align: left;
   font-size: 18px;
   font-weight: 400;
+}
+
+.app-add-product-amount {
+  color: rgb(15, 15, 15);
+  background-color: transparent;
+  position: absolute;
+  z-index: 2;
+
+  top: 40%;
+  z-index: 99999;
+}
+
+.size__btn__host {
+  font-size: 1.5rem;
+}
+
+ .size__btn__host {
+  visibility: hidden;
+  display: none;
+}
+
+.show-btn:hover .size__btn__host {
+  visibility: visible;
+  display: block;
+  font-size: larger;
+
 }

@@ -266,16 +266,16 @@ export class ShoppingEffects {
 
   fetchAllBlockDateDelivery$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(shoppingActions.fetchUnavailableDatesInit),
+      ofType(shoppingActions.selectUnavailableDatesInit),
       exhaustMap(() => {
         return this.orderService.fetchAllUnavailableDates().pipe(
           map((action) => {
-            return shoppingActions.fetchUnavailableDatesSuccess({
+            return shoppingActions.selectUnavailableDatesSuccess({
               date: action,
             });
           }),
           catchError((error) =>
-            of(shoppingActions.fetchUnavailableDatesFail(error))
+            of(shoppingActions.selectUnavailableDatesFail(error))
           )
         );
       })

@@ -235,7 +235,7 @@ export const shoppingReducer = createReducer(
     ...state,
     orderID: _id,
   })),
-  on(ShoppingActions.fetchUnavailableDatesSuccess, (state, { date }) => ({
+  on(ShoppingActions.selectUnavailableDatesSuccess, (state, { date }) => ({
     ...state,
     unavailableDates: date,
   })),

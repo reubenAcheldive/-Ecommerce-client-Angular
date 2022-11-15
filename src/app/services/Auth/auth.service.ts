@@ -43,7 +43,7 @@ export class AuthService {
             getCartByCustomerIdInit({ customerRef: loginInformation.userId })
             
           );
-          this.router.navigateByUrl('/dashboard/store');
+          // this.router.navigateByUrl('/dashboard/store');
         }
       }
     });

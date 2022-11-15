@@ -28,25 +28,13 @@ export const selectCartList = createSelector(
   shoppingSelectorFetcher,
   (state) => state?.cart
 );
-export const getLastCartCreated = createSelector(
-  shoppingSelectorFetcher,
-  (state) => state?.DateCreatedCart
-);
-export const selectIdCart = createSelector(
-  shoppingSelectorFetcher,
-  (state) => state?.cartId
-);
 
-export const selectDetailShipment = createSelector(
-  shoppingSelectorFetcher,
-  (state) => state?.getDetailsShipments
-);
-export const returnNewOrderId = createSelector(
-  shoppingSelectorFetcher,
-  (state) => state?.orderID
-);
 
-export const fetchUnavailableDates = createSelector(
+
+
+
+
+export const selectUnavailableDates = createSelector(
   shoppingSelectorFetcher,
   (state) => state?.unavailableDates
 );
@@ -55,7 +43,7 @@ export const selectAddress = createSelector(
   shoppingSelectorFetcher,
   (state) => state?.address
 );
-export const getALlPayment = createSelector(
+export const selectAllPayment = createSelector(
   shoppingSelectorFetcher,
   (state) => state?.payments
 );

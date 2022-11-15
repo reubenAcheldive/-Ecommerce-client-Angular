@@ -1,8 +1,6 @@
-.container-dashboard >router-outlet {
-width: 100%;
-display: flex;
+.container-dashboard>router-outlet {
+
+    display: flex;
+
 
 }
-
-
-

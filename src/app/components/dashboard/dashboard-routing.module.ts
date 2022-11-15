@@ -28,7 +28,9 @@ const routes: Routes = [
           ),
       },
     ],
+   
   },
+  { path: '', redirectTo: '/dashboard/check-out', pathMatch: 'full' },
 ];
 
 @NgModule({

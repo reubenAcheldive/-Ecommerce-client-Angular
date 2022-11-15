@@ -1,11 +1,7 @@
 <div class="div-group">
   <h1>אפשרויות תשלום</h1>
-  <div class="container__flex" >
-    <div class="credit-card-container" *ngFor="let payment of payments$|async">
-      {{payment|json}}
-      <app-payment-render [payment]="payment"></app-payment-render>
-
-    </div>
+  <div class="container__flex" *ngIf="payments |async as payments " >
+    <app-payment-render ></app-payment-render>
   </div>
 </div>
 

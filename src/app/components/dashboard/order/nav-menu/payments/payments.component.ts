@@ -11,7 +11,7 @@ import {
   initDeletePaymentBy_Id,
   initGetAllPaymentByCustomerId,
 } from 'src/app/state/actions/shopping.actions';
-import { getALlPayment } from 'src/app/state/selectors/shopping-selectors';
+import { selectAllPayment } from 'src/app/state/selectors/shopping-selectors';
 
 @Component({
   selector: 'app-payments',
@@ -24,16 +24,15 @@ export class PaymentsComponent {
     public dialog: MatDialog,
     private route: ActivatedRoute
   ) {}
-  public payments$: Observable<IPayment[]> = this.store.select(getALlPayment);
+  public payments = this.store.select(selectAllPayment);
   ngOnInit() {
     const getPayments = this.route.snapshot.data['userDetails'];
     if (getPayments) {
-      alert(getPayments.userId)
+      alert(getPayments.userId);
       this.store.dispatch(
         initGetAllPaymentByCustomerId({ customerId: getPayments.userId })
       );
     }
-    console.log({ getPayments });
   }
   openDialog(
     enterAnimationDuration: string = '0ms',
@@ -46,5 +45,4 @@ export class PaymentsComponent {
       position: {},
     });
   }
-
 }

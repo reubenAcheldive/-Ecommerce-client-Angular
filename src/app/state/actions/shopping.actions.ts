@@ -267,15 +267,15 @@ export const downloadRecipeInit = createAction(
 export const downloadRecipeSuccess = createAction(DownloadRecipeTypes.success);
 export const downloadRecipeFail = createAction(DownloadRecipeTypes.failure);
 
-export const fetchUnavailableDatesInit = createAction(
+export const selectUnavailableDatesInit = createAction(
   FetchUnavailableDatesTypes.init
 );
-export const fetchUnavailableDatesSuccess = createAction(
+export const selectUnavailableDatesSuccess = createAction(
   FetchUnavailableDatesTypes.success,
   props<{ date: string[] }>()
 );
 
-export const fetchUnavailableDatesFail = createAction(
+export const selectUnavailableDatesFail = createAction(
   FetchUnavailableDatesTypes.failure,
   props<{ error: any }>()
 );

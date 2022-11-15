@@ -65,7 +65,7 @@ app-icon-info {
   /* align-content: flex-end; */
 }
 
-.credit__card_numbers_container {
+app-payment-render {
   padding-top: 10px;
   display: flex;
   align-self: flex-start;
@@ -76,7 +76,7 @@ app-icon-info {
   justify-content: space-between;
 }
 
-.credit__card_numbers_container>* {
+app-payment-render>* {
   padding-left: 10px;
   font-size: 0.8rem;
   color: #fff !important;

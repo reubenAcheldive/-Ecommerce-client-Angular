@@ -1,37 +1,45 @@
-.btn-position .btn-position-item {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
+ .btn-position {
+   max-width: 10rem;
+ }
 
-}
+ .btn-position-item {
+   display: flex;
+   justify-content: center;
+   flex-direction: row;
+   gap: 0.5rem;
+   font-size: 1.3rem;
+   text-align: center;
 
+   background-color: transparent;
+   position: absolute;
+   top: 0;
+   right: 50%;
+   left: 50%;
+ }
 
-.Ibtn,
-p {
-  border: none;
-  display: flex;
-  font-size: 20px;
-  padding: 5px;
-  margin: 0 0.2rem;
-  width: 1rem;
-}
+ .Ibtn {
+   outline: none;
+   border: none;
+   background: transparent;
+   color: rgb(8, 3, 3);
 
-.increment,
-.decrement {
+ }
 
-  border: none;
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  opacity: 0;
-}
+ :host-context(.size__btn__host),
+ button {
 
-.increment,.decrement {
-opacity: 1;
-  border-radius: 2rem;
-}
+   width: 5rem;
+   height: 3rem;
+   font-size: 4rem;
+   text-align: center;
 
-:host.blue-color {
-  color: blue;
-}
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: red;
 
+ }
+
+ :host-context(.size__btn__host) , span{
+  background-color: red;
+ }

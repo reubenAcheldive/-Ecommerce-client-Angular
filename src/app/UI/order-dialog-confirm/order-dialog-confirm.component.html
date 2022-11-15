@@ -1,0 +1,41 @@
+<div class="main__container__flex">
+  <div class="first__container">
+    <div class="header__flex">
+      <img
+        src="https://www.shoppster.com/assets/media/international-page/shoppsterlogo.jpg"
+      />
+      <span class="show__payment">80$</span>
+    </div>
+    <span class="p__1"> אמצעי תשלום</span>
+    <div class="container__flex">
+      <app-payment-render [showDeleteButton]="false"></app-payment-render>
+    </div>
+
+    <div
+      class="new__card__payment__flex"
+      *ngIf="payments?.length <= 0"
+      (click)="openNewPAymentDialog()"
+    >
+      <span class="add__new__payment">
+        <app-icon-info icon="add"></app-icon-info>
+        <p class="p__2">כרטיס אשראי חדש</p>
+      </span>
+    </div>
+    <div class="">
+      <mat-form-field appearance="outline">
+        <mat-label>בחירת תשלומים</mat-label>
+        <mat-select [(ngModel)]="selectedValue" name="food">
+          <mat-option
+            *ngFor="let payment of paymentsSelect"
+            [value]="payment.value"
+          >
+            {{ payment.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <span>
+    <button mat-raised-button color="warn">לאשיור הזמנה</button>
+  </span>
+</div>

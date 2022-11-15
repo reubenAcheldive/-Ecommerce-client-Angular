@@ -1,26 +1,31 @@
-<div *ngIf="payment">
-  <span class="trush-icon">
-    <app-icon-info icon="remove" (click)="deleteCard(payment._id)"> </app-icon-info>
-  </span>
-  <span class="img__icon">
-    <img
-      src="https://www.rami-levy.co.il/images/creditCards/svg/white/isracard.svg"
-      height="30"
-      width="60"
-      class=""
-    />
-  </span>
-  <div class="credit__card_numbers_container">
-    <span>****</span>
-    <span>****</span>
-    <span>****</span>
-    <span style="font-size: 1.2rem">{{
-      payment.cardNumber.slice(12, 16)
-    }}</span>
-  </div>
-  <div class="credit-date">
-    <span
-      >{{ payment.expiredDate.slice(0, 2) }}/{{ payment.expiredDate.slice(2,4) }}</span
-    >
+<div >
+  <div class="credit-card-container" *ngFor="let payment of payment$ |async">
+    <span class="trush-icon" *ngIf="showDeleteButton">
+      <app-icon-info icon="remove" (click)="deleteCard(payment._id)">
+      </app-icon-info>
+    </span>
+    <span class="img__icon">
+      <img
+        src="https://www.rami-levy.co.il/images/creditCards/svg/white/isracard.svg"
+        height="30"
+        width="60"
+        class=""
+      />
+    </span>
+    <div class="credit__card_numbers_container">
+      <span>****</span>
+      <span>****</span>
+      <span>****</span>
+      <span style="font-size: 1.2rem">{{
+        payment.cardNumber.slice(12, 16)
+      }}</span>
+    </div>
+    <div class="credit-date">
+      <span
+        >{{ payment.expiredDate.slice(0, 2) }}/{{
+          payment.expiredDate.slice(2, 4)
+        }}</span
+      >
+    </div>
   </div>
 </div>

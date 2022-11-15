@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getALlPayment } from 'src/app/state/selectors/shopping-selectors';
+import { selectAllPayment } from 'src/app/state/selectors/shopping-selectors';
 
 @Component({
   selector: 'app-go-to-payment',
@@ -14,7 +14,7 @@ export class GoToPaymentComponent implements OnInit {
     this.hasCreditCard()
   }
   hasCreditCard(): boolean {
-    this.store.select(getALlPayment).subscribe((data) => {
+    this.store.select(selectAllPayment).subscribe((data) => {
       if (data&& data.length>0) {
         console.log(data);
         return true;
